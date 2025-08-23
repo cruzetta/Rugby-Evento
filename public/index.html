@@ -978,12 +978,14 @@
                 };
                 localStorage.setItem('rugbyLegendsUser', JSON.stringify(userData)); 
                 
+                // APLICA A PERSONALIZAÇÃO NA PÁGINA ATUAL SEM RECARREGAR
+                window.applyPersonalization(userData);
+
                 const inscriptionWrapper = document.getElementById('inscription-wrapper');
                 inscriptionWrapper.style.transition = 'opacity 0.5s ease';
                 inscriptionWrapper.style.opacity = '0';
                 
                 setTimeout(() => {
-                    inscriptionWrapper.style.display = 'none';
                     openKitModalWithWelcome(nickname);
                 }, 500);
 
@@ -1001,57 +1003,70 @@
     </script>
     
     <script>
-        lucide.createIcons();
+        // FUNÇÃO GLOBAL PARA APLICAR PERSONALIZAÇÃO
+        window.applyPersonalization = (userData) => {
+             if (userData && userData.inscrito && userData.apelido) {
+                // 1. Personaliza a seção de Inscrição
+                const inscriptionWrapper = document.getElementById('inscription-wrapper');
+                const inscriptionForm = document.getElementById('inscriptionForm');
+                
+                if(inscriptionForm) inscriptionForm.style.display = 'none';
+
+                const alreadyRegisteredMessage = `
+                    <div class="text-center p-8 bg-gray-800 rounded-xl">
+                        <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                        <h3 class="text-3xl text-green-400 mb-2">Olá, ${userData.apelido}! Você já está no time.</h3>
+                        <p class="text-lg text-gray-300 mb-6">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
+                        <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                            GARANTIR MEU KIT
+                        </button>
+                    </div>
+                `;
+                if(inscriptionWrapper) inscriptionWrapper.innerHTML = alreadyRegisteredMessage;
+                
+                const kitButton = document.getElementById('showKitModalFromRegistered');
+                if(kitButton) {
+                    kitButton.addEventListener('click', () => {
+                        document.getElementById('openKitModalBtn').click();
+                    });
+                }
+
+                // 2. Adiciona mensagem de boas-vindas na seção Hero
+                const heroContent = document.querySelector('#hero .z-20.container');
+                // Remove a mensagem antiga se ela existir para não duplicar
+                const oldWelcome = heroContent.querySelector('.welcome-back-msg');
+                if(oldWelcome) oldWelcome.remove();
+
+                if(heroContent) {
+                    const welcomeMessage = document.createElement('div');
+                    welcomeMessage.className = 'welcome-back-msg bg-amber-500/90 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
+                    welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> Bem-vindo de volta, <span class="underline">${userData.apelido}</span>!`;
+                    heroContent.prepend(welcomeMessage);
+                }
+
+                // 3. Altera o botão principal do cabeçalho
+                const headerCta = document.getElementById('header-cta-btn');
+                if(headerCta) {
+                    headerCta.textContent = `BEM-VINDO, ${userData.apelido.toUpperCase()}!`;
+                    headerCta.href = '#kit';
+                }
+
+                lucide.createIcons();
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const userDataString = localStorage.getItem('rugbyLegendsUser');
-
-            if (userDataString) {
-                const userData = JSON.parse(userDataString);
-
-                if (userData.inscrito && userData.apelido) {
-                    const inscriptionWrapper = document.getElementById('inscription-wrapper');
-                    const inscriptionForm = document.getElementById('inscriptionForm');
-                    
-                    if(inscriptionForm) inscriptionForm.style.display = 'none';
-
-                    const alreadyRegisteredMessage = `
-                        <div class="text-center p-8 bg-gray-800 rounded-xl">
-                            <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                            <h3 class="text-3xl text-green-400 mb-2">Olá, ${userData.apelido}! Você já está no time.</h3>
-                            <p class="text-lg text-gray-300 mb-6">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
-                            <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
-                                GARANTIR MEU KIT
-                            </button>
-                        </div>
-                    `;
-                    if(inscriptionWrapper) inscriptionWrapper.innerHTML = alreadyRegisteredMessage;
-                    
-                    const kitButton = document.getElementById('showKitModalFromRegistered');
-                    if(kitButton) {
-                        kitButton.addEventListener('click', () => {
-                            document.getElementById('openKitModalBtn').click();
-                        });
-                    }
-
-                    const heroContent = document.querySelector('#hero .z-20.container');
-                    if(heroContent) {
-                        const welcomeMessage = document.createElement('div');
-                        welcomeMessage.className = 'bg-amber-500/90 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
-                        welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> Bem-vindo de volta, <span class="underline">${userData.apelido}</span>!`;
-                        heroContent.prepend(welcomeMessage);
-                    }
-
-                    const headerCta = document.getElementById('header-cta-btn');
-                    if(headerCta) {
-                        headerCta.textContent = `BEM-VINDO, ${userData.apelido.toUpperCase()}!`;
-                        headerCta.href = '#kit';
-                    }
-                }
-            }
-            
+            // Renderização inicial dos ícones
             lucide.createIcons();
 
+            // Verifica se o usuário já está logado ao carregar a página
+            const userDataString = localStorage.getItem('rugbyLegendsUser');
+            if (userDataString) {
+                const userData = JSON.parse(userDataString);
+                window.applyPersonalization(userData);
+            }
+            
+            // Lógica para seleção de times
             const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
             const teamSelectionContainer = document.getElementById('teamSelectionContainer');
             const teamNameSelect = document.getElementById('teamName');
