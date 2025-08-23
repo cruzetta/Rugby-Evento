@@ -249,6 +249,11 @@
                         <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                     </div>
 
+                    <div>
+                        <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2">De qual cidade está vindo? (Cidade / Estado)</label>
+                        <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="age" class="block text-amber-400 font-bold mb-2">Idade</label>
@@ -520,6 +525,10 @@
                         <input type="tel" id="kitCelular" name="kitCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                     </div>
                     <div>
+                        <label for="kitCidadeEstado" class="block text-amber-400 font-bold mb-2">De qual cidade está vindo? (Cidade / Estado)</label>
+                        <input type="text" id="kitCidadeEstado" name="kitCidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+                    <div>
                         <label for="kitNickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
                         <input type="text" id="kitNickname" name="kitNickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                     </div>
@@ -626,6 +635,7 @@
                 fullName: formData.get('fullName'),
                 nickname: formData.get('nickname'),
                 celular: formData.get('celular'),
+                cidadeEstado: formData.get('cidadeEstado'),
                 age: formData.get('age'),
                 position: formData.get('position'),
                 hasPackage: formData.get('hasPackage'),
@@ -661,6 +671,7 @@
             const kitPurchaseData = {
                 fullName: formData.get('kitFullName'),
                 celular: formData.get('kitCelular'),
+                cidadeEstado: formData.get('kitCidadeEstado'),
                 nickname: formData.get('kitNickname'),
                 kit_shirtName: formData.get('shirtName'),
                 kit_shirtNumber: formData.get('shirtNumber'),
@@ -741,7 +752,6 @@
             const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
             const teamSelectionContainer = document.getElementById('teamSelectionContainer');
             const teamNameSelect = document.getElementById('teamName');
-            // EQUIPES ATUALIZADAS AQUI
             const teams = { 'Sim': ['Keep Walking', 'pelicanos', 'Jurassic pira', 'Jaguaras', 'desterrados', 'Velho Oeste', 'Old Rats'], 'Não': ['Misto 1', 'Misto 2', 'Misto 3'] };
             hasTeamRadios.forEach(radio => {
                 radio.addEventListener('change', (event) => {
