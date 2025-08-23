@@ -1,101 +1,84 @@
 // Firebase Cloud Functions
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const fetch = require("node-fetch");
+// Importa o SDK oficial do Mercado Pago
+const mercadopago = require("mercadopago");
 
 admin.initializeApp();
 
 // ===================================================================================
-// MUDANÇA IMPORTANTE: Migração do functions.config() para variáveis de ambiente.
-// O Access Token agora é lido de forma segura do ambiente da função (process.env).
-// Para deploy, o Firebase CLI usará o arquivo .env.<project_id>.
+// Usando o método de configuração antigo (functions.config) igual ao seu projeto "platamais"
+// que já funciona, para manter a consistência.
 // ===================================================================================
-const accessToken = process.env.MERCADOPAGO_TOKEN;
+const accessToken = functions.config().mercadopago.token;
+
+// Configura o SDK do Mercado Pago com o seu Access Token
+if (accessToken) {
+  mercadopago.configure({
+    access_token: accessToken,
+  });
+}
 
 exports.createPaymentPreference = functions
-  .region("southamerica-east1")
+  .region("southamerica-east1") // <-- MANTÉM A CORREÇÃO MAIS IMPORTANTE (rodar no Brasil)
   .runWith({ node: "18" })
   .https.onCall(async (data, context) => {
-    // Verificação inicial se o Access Token foi carregado no ambiente da nuvem
+    
+    // Verificação se o Access Token foi configurado via comando
     if (!accessToken) {
-      console.error("ERRO CRÍTICO: MERCADOPAGO_TOKEN não foi encontrado nas variáveis de ambiente da função. Verifique se o deploy incluiu o arquivo .env.<project_id>.");
+      console.error("ERRO CRÍTICO: Access Token do Mercado Pago não configurado. Execute o comando: firebase functions:config:set mercadopago.token='SEU_TOKEN'");
       throw new functions.https.HttpsError(
         "internal",
         "A configuração de pagamento do servidor está incompleta."
       );
     }
 
-    // Verificando se os dados essenciais foram recebidos do site
-    if (!data.price || !data.title) {
+    // Verificando se os dados essenciais vieram do site
+    if (!data.price || !data.title || !data.payerName) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "A função precisa receber 'price' e 'title' do site."
+        "A função precisa receber 'price', 'title', e 'payerName' do site."
       );
     }
 
-    const kitPrice = data.price;
-    const kitTitle = data.title;
-    const payerName = data.payerName;
-
-    const item = {
-      title: kitTitle,
-      description: "Kit Lenda para o evento Rugby Legends",
-      quantity: 1,
-      currency_id: "BRL",
-      unit_price: kitPrice,
-    };
-
-    const payer = {
-      name: payerName,
-      email: "pagamento@rugbylegends.com", // E-mail genérico
-    };
-
-    const body = {
-      items: [item],
-      payer: payer,
+    // Objeto de preferência, estruturado para o SDK do Mercado Pago
+    const preference = {
+      items: [
+        {
+          title: data.title,
+          description: "Kit Lenda para o evento Rugby Legends",
+          quantity: 1,
+          currency_id: "BRL",
+          unit_price: Number(data.price),
+        },
+      ],
+      payer: {
+        name: data.payerName,
+        email: "pagamento@rugbylegends.com", // E-mail genérico
+      },
       payment_methods: {
         excluded_payment_types: [
-          { id: "credit_card" },
-          { id: "debit_card" },
-          { id: "ticket" },
-          { id: "atm" },
+            { id: "credit_card" },
+            { id: "debit_card" },
+            { id: "ticket" },
+            { id: "atm" },
         ],
         installments: 1,
       },
     };
 
     try {
-      const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        const errorBody = await response.json();
-        // Log mais detalhado do erro vindo do Mercado Pago
-        console.error("Erro retornado pela API do Mercado Pago:", JSON.stringify(errorBody, null, 2));
-        throw new functions.https.HttpsError(
-          "internal",
-          `Falha ao criar preferência de pagamento: ${errorBody.message || 'Verifique os logs da função.'}`
-        );
-      }
-
-      const preference = await response.json();
-      return { preferenceId: preference.id };
+      // Usa o SDK para criar a preferência de pagamento
+      const response = await mercadopago.preferences.create(preference);
+      
+      // Retorna o ID da preferência para o frontend renderizar o QR Code
+      return { preferenceId: response.body.id };
 
     } catch (error) {
-      // Log detalhado de erros de rede ou outros problemas
-      console.error("Erro catastrófico ao tentar se comunicar com a API do Mercado Pago:", error);
-      if (error instanceof functions.https.HttpsError) {
-        throw error; // Re-lança o erro que já formatamos acima
-      }
+      console.error("Erro ao criar preferência no Mercado Pago:", error);
       throw new functions.https.HttpsError(
-        "unknown",
-        "Ocorreu um erro inesperado no servidor. Verifique os logs da função para mais detalhes."
+        "internal",
+        "Não foi possível criar a preferência de pagamento. Verifique os logs."
       );
     }
   });

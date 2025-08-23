@@ -814,34 +814,6 @@
         // Prepara a chamada para a nossa "função-cofre"
         const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
 
-        // Função que chama a Cloud Function para criar a preferência de pagamento
-        async function createPaymentPreference(kitData) {
-            try {
-                const dataToSend = {
-                    price: kitData.kit_price,
-                    title: `Kit Lenda - ${kitData.kit_shirtName} #${kitData.kit_shirtNumber}`,
-                    payerName: kitData.fullName
-                };
-
-                const result = await createPaymentPreferenceCallable(dataToSend);
-                const preferenceId = result.data.preferenceId;
-                
-                // Renderiza o componente de pagamento com o ID recebido
-                createPaymentBrick(kitData, preferenceId);
-
-                document.getElementById('kit-details-step').classList.add('hidden');
-                document.getElementById('kit-payment-step').classList.remove('hidden');
-
-            } catch (error) {
-                console.error("Erro ao chamar a Cloud Function:", error);
-                alert('Ocorreu um erro ao processar o pagamento. Tente novamente.');
-            } finally {
-                const kitSubmitButton = document.getElementById('kitSubmitButton');
-                kitSubmitButton.disabled = false;
-                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
-            }
-        }
-
         // Função que renderiza o componente de pagamento (o QR Code do PIX)
         async function createPaymentBrick(kitData, preferenceId) {
             const bricksBuilder = mp.bricks();
@@ -884,6 +856,41 @@
             const kitData = event.detail;
             createPaymentPreference(kitData);
         });
+
+        // ===================================================================================
+        // FUNÇÃO DE PAGAMENTO CORRIGIDA
+        // ===================================================================================
+        // Função que chama a Cloud Function para criar a preferência de pagamento
+        async function createPaymentPreference(kitData) {
+            try {
+                // Prepara a chamada para a nossa nova função `onRequest`
+                const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
+
+                const result = await createPaymentPreferenceCallable({
+                    price: kitData.kit_price,
+                    title: `Kit Lenda - ${kitData.kit_shirtName} #${kitData.kit_shirtNumber}`,
+                    payerName: kitData.fullName
+                });
+                
+                const preferenceId = result.data.preferenceId;
+                
+                // Renderiza o componente de pagamento com o ID recebido
+                createPaymentBrick(kitData, preferenceId);
+
+                document.getElementById('kit-details-step').classList.add('hidden');
+                document.getElementById('kit-payment-step').classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Erro ao chamar a Cloud Function:", error);
+                // Exibe a mensagem de erro que vem do servidor, se houver
+                const errorMessage = error.details ? error.details.error : 'Ocorreu um erro ao processar o pagamento. Tente novamente.';
+                alert(errorMessage);
+            } finally {
+                const kitSubmitButton = document.getElementById('kitSubmitButton');
+                kitSubmitButton.disabled = false;
+                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
+            }
+        }
     </script>
 </body>
 </html>
