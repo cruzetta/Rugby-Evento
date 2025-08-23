@@ -46,29 +46,29 @@
 
          <div class="mb-12">
              <div class="flex items-center mb-4">
-                <h2 class="text-4xl text-cyan-400 border-b-2 border-cyan-400/50 pb-2">Pedidos de Kits</h2>
-                <span id="kitOrdersCount" class="ml-4 text-3xl font-bold bg-gray-700 text-cyan-400 px-3 py-1 rounded-lg">0</span>
-            </div>
-            <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
-                <table class="min-w-full">
-                    <thead class="bg-gray-900 sticky top-0">
-                        <tr>
-                            <th class="p-4 text-left text-cyan-400 tracking-wider">Data</th>
-                            <th class="p-4 text-left text-cyan-400 tracking-wider">Comprador</th>
-                            <th class="p-4 text-left text-cyan-400 tracking-wider">Celular</th>
-                            <th class="p-4 text-left text-cyan-400 tracking-wider">Valor Total</th>
-                            <th class="p-4 text-left text-cyan-400 tracking-wider">Kits</th>
-                            <th class="p-4 text-center text-cyan-400 tracking-wider">Status</th>
-                            <th class="p-4 text-center text-cyan-400 tracking-wider">Comprovante</th>
-                            <th class="p-4 text-center text-cyan-400 tracking-wider">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="kitOrdersTableBody">
-                        </tbody>
-                </table>
-                <p id="no-kit-orders" class="text-center text-gray-400 py-8 text-lg hidden">Nenhum pedido de kit encontrado.</p>
-            </div>
-        </div>
+                 <h2 class="text-4xl text-cyan-400 border-b-2 border-cyan-400/50 pb-2">Pedidos de Kits</h2>
+                 <span id="kitOrdersCount" class="ml-4 text-3xl font-bold bg-gray-700 text-cyan-400 px-3 py-1 rounded-lg">0</span>
+             </div>
+             <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
+                 <table class="min-w-full">
+                     <thead class="bg-gray-900 sticky top-0">
+                         <tr>
+                             <th class="p-4 text-left text-cyan-400 tracking-wider">Data</th>
+                             <th class="p-4 text-left text-cyan-400 tracking-wider">Comprador</th>
+                             <th class="p-4 text-left text-cyan-400 tracking-wider">Celular</th>
+                             <th class="p-4 text-left text-cyan-400 tracking-wider">Valor Total</th>
+                             <th class="p-4 text-left text-cyan-400 tracking-wider">Kits</th>
+                             <th class="p-4 text-center text-cyan-400 tracking-wider">Status</th>
+                             <th class="p-4 text-center text-cyan-400 tracking-wider">Comprovante</th>
+                             <th class="p-4 text-center text-cyan-400 tracking-wider">Ações</th>
+                         </tr>
+                     </thead>
+                     <tbody id="kitOrdersTableBody">
+                         </tbody>
+                 </table>
+                 <p id="no-kit-orders" class="text-center text-gray-400 py-8 text-lg hidden">Nenhum pedido de kit encontrado.</p>
+             </div>
+         </div>
 
         <div class="mb-12">
             <div class="flex items-center mb-4">
@@ -98,12 +98,14 @@
         </div>
     </div>
 
+    <!-- Modal Genérico para Detalhes e Imagens -->
     <div id="detailsModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4">
         <div id="detailsModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-lg p-6 relative transform scale-95 opacity-0">
              <button id="closeDetailsModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
-             <h3 class="text-3xl text-cyan-400 mb-4">Detalhes do Pedido</h3>
+             <h3 id="modal-title" class="text-3xl text-cyan-400 mb-4">Detalhes</h3>
              <div id="modal-body" class="space-y-2 max-h-[60vh] overflow-y-auto">
-                </div>
+                 <!-- Conteúdo dinâmico será inserido aqui -->
+             </div>
         </div>
     </div>
 
@@ -137,6 +139,7 @@
         const detailsModal = document.getElementById('detailsModal');
         const detailsModalContent = document.getElementById('detailsModalContent');
         const closeDetailsModalBtn = document.getElementById('closeDetailsModal');
+        const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
 
         window.handleDelete = async (docId, name) => {
@@ -152,18 +155,20 @@
 
         window.approvePayment = async (docId, name) => {
              if (confirm(`Confirmar o pagamento para o pedido de "${name}"?`)) {
-                try {
-                    const docRef = doc(db, "inscriptions", docId);
-                    await updateDoc(docRef, { paymentStatus: 'approved' });
-                } catch (error) {
-                    console.error("Erro ao aprovar pagamento: ", error);
-                    alert(`Ocorreu um erro ao aprovar o pagamento de "${name}".`);
-                }
-            }
+                 try {
+                     const docRef = doc(db, "inscriptions", docId);
+                     await updateDoc(docRef, { paymentStatus: 'approved' });
+                 } catch (error) {
+                     console.error("Erro ao aprovar pagamento: ", error);
+                     alert(`Ocorreu um erro ao aprovar o pagamento de "${name}".`);
+                 }
+             }
         };
         
+        // Função para mostrar detalhes dos kits
         window.showDetails = (kits) => {
-            modalBody.innerHTML = '';
+            modalTitle.textContent = 'Detalhes do Pedido';
+            modalBody.innerHTML = ''; // Limpa o corpo do modal
             const parsedKits = JSON.parse(decodeURIComponent(kits));
             parsedKits.forEach(kit => {
                 const kitDetail = document.createElement('div');
@@ -174,18 +179,34 @@
                 `;
                 modalBody.appendChild(kitDetail);
             });
+            openModal();
+        };
+
+        // Função para mostrar o comprovante
+        window.showReceipt = (url) => {
+            modalTitle.textContent = 'Comprovante de Pagamento';
+            // Verifica se é um PDF ou uma imagem para renderizar corretamente
+            if (url.toLowerCase().includes('.pdf')) {
+                 modalBody.innerHTML = `<iframe src="${url}" class="w-full h-[70vh]" frameborder="0"></iframe>`;
+            } else {
+                 modalBody.innerHTML = `<img src="${url}" alt="Comprovante em tamanho grande" class="w-full h-auto rounded-lg">`;
+            }
+            openModal();
+        }
+        
+        function openModal() {
             detailsModal.classList.remove('hidden');
             detailsModal.classList.add('flex');
             setTimeout(() => {
                 detailsModalContent.classList.remove('scale-95', 'opacity-0');
             }, 10);
-        };
-        
+        }
+
         function closeDetailsModal() {
              detailsModalContent.classList.add('scale-95', 'opacity-0');
              setTimeout(() => {
-                detailsModal.classList.add('hidden');
-                detailsModal.classList.remove('flex');
+                 detailsModal.classList.add('hidden');
+                 detailsModal.classList.remove('flex');
              }, 300);
         }
         closeDetailsModalBtn.addEventListener('click', closeDetailsModal);
@@ -228,6 +249,26 @@
                         } else {
                             statusHtml = `<button onclick="approvePayment('${docId}', '${nameForActions}')" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold text-xs py-1 px-3 rounded-full transition-colors">Aprovar?</button>`;
                         }
+                        
+                        // --- NOVA CÉLULA DE COMPROVANTE COM IMAGEM ---
+                        let receiptCellHtml = '<td class="p-4 text-center text-gray-500">N/A</td>'; // Padrão se não houver URL
+                        if (data.receiptUrl) {
+                            // Verifica se é PDF para mostrar um ícone diferente
+                            if (data.receiptUrl.toLowerCase().includes('.pdf')) {
+                                receiptCellHtml = `
+                                    <td class="p-4 text-center">
+                                        <button onclick="showReceipt('${data.receiptUrl}')" class="flex items-center justify-center mx-auto bg-red-700 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-sm" title="Ver PDF">
+                                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                                        </button>
+                                    </td>`;
+                            } else {
+                                receiptCellHtml = `
+                                    <td class="p-4 text-center">
+                                        <img src="${data.receiptUrl}" alt="Comprovante" class="w-24 h-auto rounded-md cursor-pointer transform hover:scale-110 transition-transform duration-200 mx-auto" onclick="showReceipt('${data.receiptUrl}')">
+                                    </td>`;
+                            }
+                        }
+
 
                         row.innerHTML = `
                             <td class="p-4 text-sm text-gray-400">${date}</td>
@@ -236,7 +277,7 @@
                             <td class="p-4 font-bold text-green-400">R$ ${data.totalPrice.toFixed(2).replace('.', ',')}</td>
                             <td class="p-4"><button onclick="showDetails('${kitsJson}')" class="text-cyan-400 hover:underline">${data.kits.length} kit(s) - Ver Detalhes</button></td>
                             <td class="p-4 text-center">${statusHtml}</td>
-                            <td class="p-4 text-center"><a href="${data.receiptUrl}" target="_blank" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-1 px-3 rounded-lg text-sm">Ver</a></td>
+                            ${receiptCellHtml}
                             ${actionsCell}
                         `;
                         kitOrdersTableBody.appendChild(row);
