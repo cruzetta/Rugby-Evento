@@ -692,15 +692,32 @@
         const auth = getAuth(app);
         const storage = getStorage(app);
         
-        signInAnonymously(auth).catch((error) => {
-            console.error("Anonymous sign-in failed:", error);
-        });
+        // --- INÍCIO DA CORREÇÃO ---
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        
+        // Desabilita o botão de envio assim que a página carrega
+        submitOrderBtn.disabled = true;
+        submitOrderBtn.innerHTML = '<span class="animate-pulse">AUTENTICANDO...</span>';
+
+        signInAnonymously(auth)
+          .then(() => {
+            console.log("Usuário anônimo autenticado com sucesso.");
+            // Habilita o botão de envio APÓS o login ser bem-sucedido
+            submitOrderBtn.disabled = false;
+            submitOrderBtn.textContent = 'ENVIAR COMPROVANTE E FINALIZAR';
+          })
+          .catch((error) => {
+            console.error("Falha na autenticação anônima:", error);
+            submitOrderBtn.textContent = 'ERRO DE AUTENTICAÇÃO';
+            // Mantém o botão desabilitado se o login falhar
+          });
+        // --- FIM DA CORREÇÃO ---
 
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
         const inscriptionSuccessDiv = document.getElementById('inscription-success');
         
-        // --- NOVO CÓDIGO DO KIT ---
+        // --- CÓDIGO DO KIT ---
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
@@ -716,7 +733,7 @@
         const kitTotalPrice = document.getElementById('kit-total-price');
         const goToPaymentBtn = document.getElementById('goToPaymentBtn');
         const backToCartBtn = document.getElementById('backToCartBtn');
-        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        // A constante submitOrderBtn já foi declarada acima para a correção
         const closeSuccessBtn = document.getElementById('close-success-btn');
         const receiptUploadInput = document.getElementById('receipt-upload');
         const pixTotalValue = document.getElementById('pix-total-value');
@@ -925,7 +942,7 @@
         });
 
 
-        // -- FIM NOVO CÓDIGO DO KIT --
+        // -- FIM CÓDIGO DO KIT --
 
         // Inscription form logic (original)
         inscriptionForm.addEventListener('submit', async function(e) {
