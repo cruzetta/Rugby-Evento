@@ -244,7 +244,6 @@
                         </div>
                     </div>
                     
-                    <!-- CAMPO DE TELEFONE REMOVIDO, APENAS CELULAR -->
                     <div>
                         <label for="celular" class="block text-amber-400 font-bold mb-2">Celular (com DDD)</label>
                         <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
@@ -623,7 +622,6 @@
             submitButton.disabled = true;
             submitButton.textContent = 'ENVIANDO...';
             const formData = new FormData(this);
-            // DADOS DE INSCRIÇÃO ATUALIZADOS SEM O CAMPO TELEFONE
             const inscriptionData = {
                 fullName: formData.get('fullName'),
                 nickname: formData.get('nickname'),
@@ -743,7 +741,8 @@
             const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
             const teamSelectionContainer = document.getElementById('teamSelectionContainer');
             const teamNameSelect = document.getElementById('teamName');
-            const teams = { 'Sim': ['Keep Walking', 'pelicanos', 'Jurassic pira', 'Jaguaras', 'desterrados'], 'Não': ['Misto 1', 'Misto 2', 'Misto 3'] };
+            // EQUIPES ATUALIZADAS AQUI
+            const teams = { 'Sim': ['Keep Walking', 'pelicanos', 'Jurassic pira', 'Jaguaras', 'desterrados', 'Velho Oeste', 'Old Rats'], 'Não': ['Misto 1', 'Misto 2', 'Misto 3'] };
             hasTeamRadios.forEach(radio => {
                 radio.addEventListener('change', (event) => {
                     const selectedValue = event.target.value;
