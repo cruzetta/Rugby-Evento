@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1º Encontro Rugby LEGENDS - Bonito MS 2026</title>
 
-    <!-- Metatags para Social Share (Open Graph) -->
     <meta property="og:title" content="1º Encontro Rugby LEGENDS - Bonito MS 2026">
     <meta property="og:description" content="Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.">
     <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20202935.png?alt=media&token=cfbeb1d8-92e8-4159-b12b-1de947e533b5">
@@ -51,11 +50,9 @@
         #kitModal {
             transition: opacity 0.3s ease-in-out;
         }
-        /* Adicionado para travar a rolagem do body quando o modal estiver aberto */
         body.overflow-hidden {
             overflow: hidden;
         }
-        /* Estilos para o input de arquivo customizado */
         .custom-file-upload {
             border: 2px dashed #4b5563; /* border-gray-600 */
             display: inline-block;
@@ -74,7 +71,6 @@
 </head>
 <body class="text-white">
 
-    <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-3xl tracking-wider text-amber-400">R<span class="text-white">UGBY</span> L<span class="text-white">EGENDS</span></h1>
@@ -86,11 +82,10 @@
                 <a href="#inscricao" class="hover:text-amber-400 transition duration-300">Inscrição</a>
                 <a href="#pacotes" class="hover:text-amber-400 transition duration-300">Pacotes</a>
             </nav>
-            <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md">GARANTA SUA VAGA</a>
+            <a href="#inscricao" id="header-cta-btn" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md">GARANTA SUA VAGA</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full z-0">
             <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
@@ -106,7 +101,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="sobre" class="py-20 bg-gray-800">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Uma Convocação Histórica</h2>
@@ -141,7 +135,6 @@
         </div>
     </section>
 
-    <!-- The Venue Section -->
     <section id="local" class="py-20 zagaia-bg">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
@@ -158,7 +151,6 @@
         </div>
     </section>
     
-    <!-- Bonito Section -->
     <section id="bonito" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center">
@@ -205,7 +197,6 @@
         </div>
     </section>
 
-    <!-- Kit Section -->
     <section id="kit" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -241,7 +232,6 @@
         </div>
     </section>
 
-    <!-- Inscription Section -->
     <section id="inscricao" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto text-center">
@@ -313,8 +303,7 @@
                     <div id="teamSelectionContainer" class="hidden">
                         <label for="teamName" class="block text-amber-400 font-bold mb-2">Selecione sua equipe</label>
                         <select id="teamName" name="teamName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
-                            <!-- Opções serão adicionadas via JavaScript -->
-                        </select>
+                            </select>
                     </div>
 
                     <div>
@@ -337,16 +326,10 @@
                     </div>
                      <div id="form-message" class="text-center font-bold mt-4"></div>
                 </form>
-                <div id="inscription-success" class="hidden text-center p-8 bg-gray-800 rounded-xl">
-                    <i data-lucide="check-circle-2" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                    <h3 class="text-3xl text-green-400 mb-2">Inscrição Enviada!</h3>
-                    <p class="text-lg text-gray-300">Obrigado por se inscrever. Seus dados foram recebidos.<br>Nos vemos em campo!</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Countdown Timer Section -->
     <section id="countdown-section" class="py-12 bg-amber-500 text-gray-900">
         <div class="container mx-auto text-center px-4">
             <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
@@ -372,7 +355,6 @@
         </div>
     </section>
 
-    <!-- Packages Section -->
     <section id="pacotes" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12">Pacotes de Hospedagem</h2>
@@ -380,7 +362,6 @@
                 A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
             </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
@@ -393,7 +374,6 @@
                     </div>
                     <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
@@ -406,7 +386,6 @@
                     </div>
                     <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
@@ -421,7 +400,6 @@
                 </div>
             </div>
             
-            <!-- Inclusions Section -->
             <div class="mt-16">
                 <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
                 <div class="grid lg:grid-cols-5 gap-8 items-stretch">
@@ -459,7 +437,6 @@
         </div>
     </section>
 
-    <!-- Booking Section -->
     <section id="reserva" class="py-20 bg-gray-800 border-t border-gray-700">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
@@ -486,7 +463,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black py-8">
         <div class="container mx-auto text-center text-gray-500">
             <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
@@ -500,7 +476,6 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
     <div id="whatsapp-container" class="fixed bottom-5 right-5 z-[100]">
         <div id="whatsapp-options" class="flex flex-col items-end mb-3 space-y-2 hidden">
             <a href="https://wa.me/5567996129961?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
@@ -517,13 +492,23 @@
         </button>
     </div>
 
-    <!-- Kit Purchase Modal -->
+    <!-- MODAL DO KIT COM A NOVA ETAPA DE BOAS-VINDAS -->
     <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-start justify-center overflow-y-auto p-4 pt-8 sm:pt-12">
         <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-2xl p-8 relative transform transition-all duration-300 scale-95 opacity-0">
             <button id="closeKitModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             
-            <!-- Step 1: Form and Cart -->
-            <div id="kit-step-1">
+            <!-- NOVA ETAPA DE BOAS-VINDAS (PÓS-INSCRIÇÃO) -->
+            <div id="kit-welcome-step" class="hidden text-center">
+                <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                <h3 id="kit-welcome-title" class="text-4xl text-amber-400 mb-4">Inscrição Confirmada, Lenda!</h3>
+                <p class="text-lg text-gray-300 mb-8">Agora o próximo passo é garantir seu manto sagrado. Monte o kit para você e toda a família e eternize esse encontro!</p>
+                <button type="button" id="startKitOrderBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
+                    MONTAR MEU KIT
+                </button>
+            </div>
+
+            <!-- ETAPA 1: MONTAGEM DO PEDIDO -->
+            <div id="kit-step-1" class="hidden">
                 <h3 class="text-4xl text-amber-400 mb-2 text-center">Monte seu Pedido de Kits</h3>
                 <p class="text-gray-300 mb-6 text-center">Adicione quantos kits (camiseta + copo) você precisar para sua família e amigos!</p>
                 
@@ -535,7 +520,6 @@
                 </div>
 
                 <form id="kitOrderForm" class="space-y-6 text-left">
-                    <!-- Buyer Info -->
                     <fieldset class="border-2 border-gray-700 p-4 rounded-lg">
                         <legend class="text-amber-400 font-bold px-2 text-xl">Seus Dados de Contato</legend>
                         <div class="grid md:grid-cols-2 gap-4">
@@ -550,7 +534,6 @@
                         </div>
                     </fieldset>
 
-                    <!-- Kit Adder Form -->
                     <fieldset class="border-2 border-dashed border-gray-600 p-4 rounded-lg">
                         <legend class="text-amber-400 font-bold px-2 text-xl">Adicionar Kit ao Pedido</legend>
                         <div class="grid md:grid-cols-2 gap-4">
@@ -592,7 +575,6 @@
                         </button>
                     </fieldset>
                     
-                    <!-- Order Summary -->
                     <div>
                         <h4 class="text-2xl text-white mt-6 mb-2">Resumo do Pedido</h4>
                         <div id="kit-summary-list" class="space-y-2">
@@ -609,7 +591,7 @@
                 </form>
             </div>
 
-            <!-- Step 2: Payment and Upload -->
+            <!-- ETAPA 2: PAGAMENTO -->
             <div id="kit-step-2" class="hidden text-center">
                 <h3 class="text-4xl text-amber-400 mb-4">Quase lá! Siga os passos abaixo:</h3>
                 
@@ -622,6 +604,7 @@
                             <p id="pix-total-value" class="text-3xl font-bold text-amber-400 mb-4">R$ 0,00</p>
                             <p class="text-sm text-gray-400">Chave PIX (CNPJ):</p>
                             <p id="pix-key" class="text-xl font-mono text-white tracking-widest break-all">07860029000192</p>
+                            <p class="text-sm text-gray-400 mt-2">Você está pagando para: <strong class="text-white">Campo Grande Rugby Clube</strong></p>
                             <button type="button" id="copyPixKeyBtn" class="mt-3 w-full bg-gray-700 hover:bg-gray-600 text-amber-400 font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
                                 <i data-lucide="copy" class="w-5 h-5 mr-2"></i> <span id="copy-btn-text">Copiar Chave PIX</span>
                             </button>
@@ -656,13 +639,13 @@
                 </div>
             </div>
 
-            <!-- Step 3: Success Message -->
+            <!-- ETAPA 3: SUCESSO DO PEDIDO -->
             <div id="kit-step-3" class="hidden text-center">
                  <i data-lucide="party-popper" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
                  <h3 class="text-4xl text-green-400 mb-4">Pedido Enviado com Sucesso!</h3>
                  <p class="text-lg text-gray-300 mb-6">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
                  <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                     Fechar
+                      Fechar
                  </button>
             </div>
             <div id="kit-form-message" class="text-center font-bold mt-4"></div>
@@ -670,7 +653,6 @@
     </div>
 
 
-    <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
@@ -681,9 +663,7 @@
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
             authDomain: "encontrorugbylegends.firebaseapp.com",
             projectId: "encontrorugbylegends",
-            // --- INÍCIO DA CORREÇÃO ---
-            storageBucket: "encontrorugbylegends.firebasestorage.app",
-            // --- FIM DA CORREÇÃO ---
+            storageBucket: "encontrorugbylegends.appspot.com",
             messagingSenderId: "228233608028",
             appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
             measurementId: "G-054DYF3Z1E"
@@ -696,34 +676,32 @@
         
         const submitOrderBtn = document.getElementById('submitOrderBtn');
         
-        // Desabilita o botão de envio assim que a página carrega
         submitOrderBtn.disabled = true;
         submitOrderBtn.innerHTML = '<span class="animate-pulse">AUTENTICANDO...</span>';
 
         signInAnonymously(auth)
           .then(() => {
             console.log("Usuário anônimo autenticado com sucesso.");
-            // Habilita o botão de envio APÓS o login ser bem-sucedido
             submitOrderBtn.disabled = false;
             submitOrderBtn.textContent = 'ENVIAR COMPROVANTE E FINALIZAR';
           })
           .catch((error) => {
             console.error("Falha na autenticação anônima:", error);
             submitOrderBtn.textContent = 'ERRO DE AUTENTICAÇÃO';
-            // Mantém o botão desabilitado se o login falhar
           });
 
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
-        const inscriptionSuccessDiv = document.getElementById('inscription-success');
         
-        // --- CÓDIGO DO KIT ---
+        // --- KIT MODAL LOGIC ---
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
         const closeKitModalButton = document.getElementById('closeKitModal');
         const kitOrderForm = document.getElementById('kitOrderForm');
         
+        const welcomeStep = document.getElementById('kit-welcome-step');
+        const startKitOrderBtn = document.getElementById('startKitOrderBtn');
         const step1 = document.getElementById('kit-step-1');
         const step2 = document.getElementById('kit-step-2');
         const step3 = document.getElementById('kit-step-3');
@@ -733,13 +711,12 @@
         const kitTotalPrice = document.getElementById('kit-total-price');
         const goToPaymentBtn = document.getElementById('goToPaymentBtn');
         const backToCartBtn = document.getElementById('backToCartBtn');
-        // A constante submitOrderBtn já foi declarada acima para a correção
         const closeSuccessBtn = document.getElementById('close-success-btn');
         const receiptUploadInput = document.getElementById('receipt-upload');
         const pixTotalValue = document.getElementById('pix-total-value');
         const copyPixKeyBtn = document.getElementById('copyPixKeyBtn');
 
-        let kitOrder = []; // Array para guardar os kits do pedido
+        let kitOrder = [];
         let currentKitPrice = 0;
 
         function getCurrentKitPrice() {
@@ -770,7 +747,7 @@
                     itemDiv.innerHTML = `
                         <div>
                             <p class="font-bold text-white">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
-                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber}</p>
+                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber || 'S/N'}</p>
                         </div>
                         <button type="button" data-index="${index}" class="remove-kit-item text-red-500 hover:text-red-400 p-2">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -785,23 +762,46 @@
             pixTotalValue.textContent = formatCurrency(total);
         }
 
+        function openKitModalWithWelcome(nickname) {
+            document.body.classList.add('overflow-hidden');
+            kitModal.classList.remove('hidden');
+            kitModal.classList.add('flex');
+            
+            welcomeStep.classList.remove('hidden');
+            step1.classList.add('hidden');
+            step2.classList.add('hidden');
+            step3.classList.add('hidden');
+
+            const welcomeTitle = document.getElementById('kit-welcome-title');
+            welcomeTitle.innerHTML = `Inscrição Confirmada, ${nickname}!`;
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                kitModalContent.classList.remove('scale-95', 'opacity-0');
+                kitModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
         function openKitModal() {
             document.body.classList.add('overflow-hidden');
             kitModal.classList.remove('hidden');
             kitModal.classList.add('flex');
             currentKitPrice = getCurrentKitPrice();
             
-            // Resetar modal para o estado inicial
             kitOrder = [];
             kitOrderForm.reset();
             updateOrderSummary();
+
+            welcomeStep.classList.add('hidden');
             step1.classList.remove('hidden');
             step2.classList.add('hidden');
             step3.classList.add('hidden');
+            
             receiptUploadInput.value = '';
             document.getElementById('file-upload-prompt').classList.remove('hidden');
-            document.getElementById('file-upload-name').classList.add('hidden');
-
+            const fileNameDiv = document.getElementById('file-upload-name');
+            fileNameDiv.classList.add('hidden');
+            fileNameDiv.classList.remove('flex');
 
             setTimeout(() => {
                 kitModalContent.classList.remove('scale-95', 'opacity-0');
@@ -818,6 +818,16 @@
             }, 300);
         }
 
+        startKitOrderBtn.addEventListener('click', () => {
+            welcomeStep.classList.add('hidden');
+            
+            currentKitPrice = getCurrentKitPrice();
+            kitOrder = [];
+            kitOrderForm.reset();
+            updateOrderSummary();
+            step1.classList.remove('hidden');
+        });
+
         addKitItemBtn.addEventListener('click', () => {
             const shirtName = document.getElementById('kitShirtName').value.trim();
             const shirtNumber = document.getElementById('kitShirtNumber').value;
@@ -832,7 +842,6 @@
             kitOrder.push({ shirtName, shirtNumber, gender, size });
             updateOrderSummary();
             
-            // Limpa os campos para adicionar o próximo
             document.getElementById('kitShirtName').value = '';
             document.getElementById('kitShirtNumber').value = '';
             document.getElementById('kitShirtSize').value = '';
@@ -883,7 +892,6 @@
                 fileNameDiv.querySelector('span').textContent = file.name;
                 fileNameDiv.classList.remove('hidden');
                 fileNameDiv.classList.add('flex');
-
             }
         });
 
@@ -907,14 +915,12 @@
             submitOrderBtn.textContent = 'ENVIANDO, AGUARDE...';
 
             try {
-                // 1. Upload do comprovante para o Storage
                 const timestamp = Date.now();
                 const uniqueFileName = `${timestamp}-${receiptFile.name}`;
                 const storageRef = ref(storage, `comprovantes/${uniqueFileName}`);
                 const uploadResult = await uploadBytes(storageRef, receiptFile);
                 const receiptUrl = await getDownloadURL(uploadResult.ref);
 
-                // 2. Salvar dados do pedido no Firestore
                 const orderData = {
                     buyerName: buyerName,
                     buyerCelular: buyerCelular,
@@ -941,18 +947,17 @@
             }
         });
 
-
-        // -- FIM CÓDIGO DO KIT --
-
-        // Inscription form logic (original)
+        // --- INSCRIPTION FORM LOGIC ---
         inscriptionForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             submitButton.disabled = true;
             submitButton.textContent = 'ENVIANDO...';
             const formData = new FormData(this);
+            const nickname = formData.get('nickname');
+
             const inscriptionData = {
                 fullName: formData.get('fullName'),
-                nickname: formData.get('nickname'),
+                nickname: nickname,
                 celular: formData.get('celular'),
                 cidadeEstado: formData.get('cidadeEstado'),
                 age: formData.get('age'),
@@ -963,14 +968,30 @@
                 purchaseType: 'inscription',
                 timestamp: serverTimestamp()
             };
+
             try {
                 await addDoc(collection(db, "inscriptions"), inscriptionData);
-                inscriptionForm.classList.add('hidden');
-                inscriptionSuccessDiv.classList.remove('hidden');
-                lucide.createIcons();
+                
+                const userData = {
+                    inscrito: true,
+                    apelido: nickname 
+                };
+                localStorage.setItem('rugbyLegendsUser', JSON.stringify(userData)); 
+                
+                const inscriptionWrapper = document.getElementById('inscription-wrapper');
+                inscriptionWrapper.style.transition = 'opacity 0.5s ease';
+                inscriptionWrapper.style.opacity = '0';
+                
+                setTimeout(() => {
+                    inscriptionWrapper.style.display = 'none';
+                    openKitModalWithWelcome(nickname);
+                }, 500);
+
             } catch (error) {
                 console.error("Error adding document: ", error);
+                alert('Houve um erro ao enviar sua inscrição. Tente novamente.')
                 submitButton.disabled = false;
+                submitButton.textContent = 'ENVIAR INSCRIÇÃO';
             }
         });
         
@@ -981,44 +1002,56 @@
     
     <script>
         lucide.createIcons();
-        const countdown = () => {
-            const countDate = new Date("November 27, 2025 23:59:59").getTime();
-            const now = new Date().getTime();
-            const gap = countDate - now;
-            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-            const textDay = Math.floor(gap / day), textHour = Math.floor((gap % day) / hour), textMinute = Math.floor((gap % hour) / minute), textSecond = Math.floor((gap % minute) / second);
-            if (document.getElementById('days')) {
-                document.getElementById('days').innerText = textDay < 10 ? '0' + textDay : textDay;
-                document.getElementById('hours').innerText = textHour < 10 ? '0' + textHour : textHour;
-                document.getElementById('minutes').innerText = textMinute < 10 ? '0' + textMinute : textMinute;
-                document.getElementById('seconds').innerText = textSecond < 10 ? '0' + textSecond : textSecond;
-            }
-            if (gap < 0) {
-                clearInterval(interval);
-                if(document.getElementById('countdown-section')) {
-                    document.getElementById('countdown-section').innerHTML = '<div class="container mx-auto text-center px-4"><h3 class="text-4xl">O prazo para a tarifa especial encerrou!</h3></div>';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userDataString = localStorage.getItem('rugbyLegendsUser');
+
+            if (userDataString) {
+                const userData = JSON.parse(userDataString);
+
+                if (userData.inscrito && userData.apelido) {
+                    const inscriptionWrapper = document.getElementById('inscription-wrapper');
+                    const inscriptionForm = document.getElementById('inscriptionForm');
+                    
+                    if(inscriptionForm) inscriptionForm.style.display = 'none';
+
+                    const alreadyRegisteredMessage = `
+                        <div class="text-center p-8 bg-gray-800 rounded-xl">
+                            <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                            <h3 class="text-3xl text-green-400 mb-2">Olá, ${userData.apelido}! Você já está no time.</h3>
+                            <p class="text-lg text-gray-300 mb-6">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
+                            <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                                GARANTIR MEU KIT
+                            </button>
+                        </div>
+                    `;
+                    if(inscriptionWrapper) inscriptionWrapper.innerHTML = alreadyRegisteredMessage;
+                    
+                    const kitButton = document.getElementById('showKitModalFromRegistered');
+                    if(kitButton) {
+                        kitButton.addEventListener('click', () => {
+                            document.getElementById('openKitModalBtn').click();
+                        });
+                    }
+
+                    const heroContent = document.querySelector('#hero .z-20.container');
+                    if(heroContent) {
+                        const welcomeMessage = document.createElement('div');
+                        welcomeMessage.className = 'bg-amber-500/90 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
+                        welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> Bem-vindo de volta, <span class="underline">${userData.apelido}</span>!`;
+                        heroContent.prepend(welcomeMessage);
+                    }
+
+                    const headerCta = document.getElementById('header-cta-btn');
+                    if(headerCta) {
+                        headerCta.textContent = `BEM-VINDO, ${userData.apelido.toUpperCase()}!`;
+                        headerCta.href = '#kit';
+                    }
                 }
             }
-        };
-        const interval = setInterval(countdown, 1000);
-        countdown();
-        const whatsappContainer = document.getElementById('whatsapp-container');
-        const whatsappToggle = document.getElementById('whatsapp-toggle');
-        const whatsappOptions = document.getElementById('whatsapp-options');
-        whatsappToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            whatsappContainer.classList.toggle('open');
-            whatsappOptions.classList.toggle('hidden');
-            whatsappOptions.classList.toggle('flex');
-        });
-        document.addEventListener('click', (e) => {
-            if (!whatsappContainer.contains(e.target) && whatsappContainer.classList.contains('open')) {
-                whatsappContainer.classList.remove('open');
-                whatsappOptions.classList.add('hidden');
-                whatsappOptions.classList.remove('flex');
-            }
-        });
-        document.addEventListener('DOMContentLoaded', () => {
+            
+            lucide.createIcons();
+
             const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
             const teamSelectionContainer = document.getElementById('teamSelectionContainer');
             const teamNameSelect = document.getElementById('teamName');
@@ -1042,6 +1075,45 @@
                     }
                 });
             });
+        });
+
+        const countdown = () => {
+            const countDate = new Date("November 27, 2025 23:59:59").getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
+            const textDay = Math.floor(gap / day), textHour = Math.floor((gap % day) / hour), textMinute = Math.floor((gap % hour) / minute), textSecond = Math.floor((gap % minute) / second);
+            if (document.getElementById('days')) {
+                document.getElementById('days').innerText = textDay < 10 ? '0' + textDay : textDay;
+                document.getElementById('hours').innerText = textHour < 10 ? '0' + textHour : textHour;
+                document.getElementById('minutes').innerText = textMinute < 10 ? '0' + textMinute : textMinute;
+                document.getElementById('seconds').innerText = textSecond < 10 ? '0' + textSecond : textSecond;
+            }
+            if (gap < 0) {
+                clearInterval(interval);
+                if(document.getElementById('countdown-section')) {
+                    document.getElementById('countdown-section').innerHTML = '<div class="container mx-auto text-center px-4"><h3 class="text-4xl">O prazo para a tarifa especial encerrou!</h3></div>';
+                }
+            }
+        };
+        const interval = setInterval(countdown, 1000);
+        countdown();
+
+        const whatsappContainer = document.getElementById('whatsapp-container');
+        const whatsappToggle = document.getElementById('whatsapp-toggle');
+        const whatsappOptions = document.getElementById('whatsapp-options');
+        whatsappToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappContainer.classList.toggle('open');
+            whatsappOptions.classList.toggle('hidden');
+            whatsappOptions.classList.toggle('flex');
+        });
+        document.addEventListener('click', (e) => {
+            if (!whatsappContainer.contains(e.target) && whatsappContainer.classList.contains('open')) {
+                whatsappContainer.classList.remove('open');
+                whatsappOptions.classList.add('hidden');
+                whatsappOptions.classList.remove('flex');
+            }
         });
     </script>
 
