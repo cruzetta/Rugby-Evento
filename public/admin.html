@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -21,8 +22,15 @@
             white-space: nowrap;
         }
         .table-container {
-            max-height: 60vh;
+            max-height: 70vh;
             overflow-y: auto;
+        }
+        /* Estilos do Modal de Detalhes */
+        #detailsModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #detailsModalContent {
+             transition: all 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -36,7 +44,32 @@
             </div>
         </header>
 
-        <!-- Athlete Inscriptions Section -->
+         <div class="mb-12">
+             <div class="flex items-center mb-4">
+                <h2 class="text-4xl text-cyan-400 border-b-2 border-cyan-400/50 pb-2">Pedidos de Kits</h2>
+                <span id="kitOrdersCount" class="ml-4 text-3xl font-bold bg-gray-700 text-cyan-400 px-3 py-1 rounded-lg">0</span>
+            </div>
+            <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
+                <table class="min-w-full">
+                    <thead class="bg-gray-900 sticky top-0">
+                        <tr>
+                            <th class="p-4 text-left text-cyan-400 tracking-wider">Data</th>
+                            <th class="p-4 text-left text-cyan-400 tracking-wider">Comprador</th>
+                            <th class="p-4 text-left text-cyan-400 tracking-wider">Celular</th>
+                            <th class="p-4 text-left text-cyan-400 tracking-wider">Valor Total</th>
+                            <th class="p-4 text-left text-cyan-400 tracking-wider">Kits</th>
+                            <th class="p-4 text-center text-cyan-400 tracking-wider">Status</th>
+                            <th class="p-4 text-center text-cyan-400 tracking-wider">Comprovante</th>
+                            <th class="p-4 text-center text-cyan-400 tracking-wider">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kitOrdersTableBody">
+                        </tbody>
+                </table>
+                <p id="no-kit-orders" class="text-center text-gray-400 py-8 text-lg hidden">Nenhum pedido de kit encontrado.</p>
+            </div>
+        </div>
+
         <div class="mb-12">
             <div class="flex items-center mb-4">
                 <h2 class="text-4xl text-amber-400 border-b-2 border-amber-400/50 pb-2">Inscrições de Atletas</h2>
@@ -49,7 +82,6 @@
                             <th class="p-4 text-left text-amber-400 tracking-wider">Data</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Nome Completo</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Apelido</th>
-                            <!-- COLUNA TELEFONE REMOVIDA -->
                             <th class="p-4 text-left text-amber-400 tracking-wider">Celular</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Idade</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Posição</th>
@@ -59,47 +91,25 @@
                         </tr>
                     </thead>
                     <tbody id="inscriptionsTableBody">
-                        <!-- Rows will be inserted here by JavaScript -->
-                    </tbody>
+                        </tbody>
                 </table>
                 <p id="no-inscriptions" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma inscrição de atleta encontrada.</p>
             </div>
         </div>
+    </div>
 
-        <!-- Kit Purchases Section -->
-        <div>
-             <div class="flex items-center mb-4">
-                <h2 class="text-4xl text-sky-400 border-b-2 border-sky-400/50 pb-2">Compras de Kit Avulso</h2>
-                <span id="kitsCount" class="ml-4 text-3xl font-bold bg-gray-700 text-sky-400 px-3 py-1 rounded-lg">0</span>
-            </div>
-            <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
-                <table class="min-w-full">
-                    <thead class="bg-gray-900 sticky top-0">
-                        <tr>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Data</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Nome Completo</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Celular</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Apelido</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Nome Camisa</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Nº Camisa</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Tamanho</th>
-                            <th class="p-4 text-left text-sky-400 tracking-wider">Valor Pago</th>
-                            <th class="p-4 text-center text-sky-400 tracking-wider">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="kitsTableBody">
-                        <!-- Rows will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
-                <p id="no-kits" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma compra de kit avulso encontrada.</p>
-            </div>
+    <div id="detailsModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4">
+        <div id="detailsModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-lg p-6 relative transform scale-95 opacity-0">
+             <button id="closeDetailsModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+             <h3 class="text-3xl text-cyan-400 mb-4">Detalhes do Pedido</h3>
+             <div id="modal-body" class="space-y-2 max-h-[60vh] overflow-y-auto">
+                </div>
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, query, orderBy, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -117,86 +127,125 @@
         const auth = getAuth(app);
 
         const inscriptionsTableBody = document.getElementById('inscriptionsTableBody');
-        const kitsTableBody = document.getElementById('kitsTableBody');
+        const kitOrdersTableBody = document.getElementById('kitOrdersTableBody');
         const noInscriptionsMessage = document.getElementById('no-inscriptions');
-        const noKitsMessage = document.getElementById('no-kits');
+        const noKitOrdersMessage = document.getElementById('no-kit-orders');
         const statusDiv = document.getElementById('status');
         const inscriptionsCountSpan = document.getElementById('inscriptionsCount');
-        const kitsCountSpan = document.getElementById('kitsCount');
+        const kitOrdersCountSpan = document.getElementById('kitOrdersCount');
 
-        window.handleDelete = async (docId, fullName) => {
-            const confirmationMessage = `Tem certeza ABSOLUTA que deseja excluir a inscrição de "${fullName}"?\n\nEsta ação não pode ser desfeita.`;
-            if (window.confirm(confirmationMessage)) {
+        const detailsModal = document.getElementById('detailsModal');
+        const detailsModalContent = document.getElementById('detailsModalContent');
+        const closeDetailsModalBtn = document.getElementById('closeDetailsModal');
+        const modalBody = document.getElementById('modal-body');
+
+        window.handleDelete = async (docId, name) => {
+            if (confirm(`Tem certeza que deseja excluir o registro de "${name}"? Esta ação não pode ser desfeita.`)) {
                 try {
                     await deleteDoc(doc(db, "inscriptions", docId));
-                    alert(`Inscrição de "${fullName}" excluída com sucesso!`);
                 } catch (error) {
                     console.error("Erro ao excluir o documento: ", error);
-                    alert(`Ocorreu um erro ao excluir a inscrição de "${fullName}". Tente novamente.`);
+                    alert(`Ocorreu um erro ao excluir o registro de "${name}".`);
                 }
-            } else {
-                console.log('Exclusão cancelada pelo usuário.');
             }
         };
 
-        window.handleEdit = (docId, fullName) => {
-            const confirmationMessage = `Você está prestes a editar os dados de "${fullName}". Deseja continuar?`;
-            if (window.confirm(confirmationMessage)) {
-                alert(`Função de edição chamada para: ${fullName} (ID: ${docId}).\n\nO próximo passo é implementar um formulário de edição.`);
-            } else {
-                console.log('Edição cancelada pelo usuário.');
+        window.approvePayment = async (docId, name) => {
+             if (confirm(`Confirmar o pagamento para o pedido de "${name}"?`)) {
+                try {
+                    const docRef = doc(db, "inscriptions", docId);
+                    await updateDoc(docRef, { paymentStatus: 'approved' });
+                } catch (error) {
+                    console.error("Erro ao aprovar pagamento: ", error);
+                    alert(`Ocorreu um erro ao aprovar o pagamento de "${name}".`);
+                }
             }
         };
         
+        window.showDetails = (kits) => {
+            modalBody.innerHTML = '';
+            const parsedKits = JSON.parse(decodeURIComponent(kits));
+            parsedKits.forEach(kit => {
+                const kitDetail = document.createElement('div');
+                kitDetail.className = 'bg-gray-900 p-3 rounded-lg';
+                kitDetail.innerHTML = `
+                    <p class="font-bold text-lg text-white">${kit.shirtName}</p>
+                    <p class="text-sm"><span class="text-gray-400">Número:</span> ${kit.shirtNumber || 'N/A'} | <span class="text-gray-400">Gênero:</span> ${kit.gender} | <span class="text-gray-400">Tamanho:</span> ${kit.size}</p>
+                `;
+                modalBody.appendChild(kitDetail);
+            });
+            detailsModal.classList.remove('hidden');
+            detailsModal.classList.add('flex');
+            setTimeout(() => {
+                detailsModalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        };
+        
+        function closeDetailsModal() {
+             detailsModalContent.classList.add('scale-95', 'opacity-0');
+             setTimeout(() => {
+                detailsModal.classList.add('hidden');
+                detailsModal.classList.remove('flex');
+             }, 300);
+        }
+        closeDetailsModalBtn.addEventListener('click', closeDetailsModal);
+
+
         signInAnonymously(auth).then(() => {
             const q = query(collection(db, "inscriptions"), orderBy("timestamp", "desc"));
 
             onSnapshot(q, (querySnapshot) => {
                 
                 inscriptionsTableBody.innerHTML = '';
-                kitsTableBody.innerHTML = '';
+                kitOrdersTableBody.innerHTML = '';
                 
                 let inscriptionsCounter = 0;
-                let kitsCounter = 0;
+                let kitOrdersCounter = 0;
 
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     const docId = doc.id;
                     const date = data.timestamp ? data.timestamp.toDate().toLocaleString('pt-BR') : 'N/A';
+                    const nameForActions = (data.fullName || data.buyerName).replace(/'/g, "\\'");
 
                     const actionsCell = `
                         <td class="p-4 text-center">
-                            <button onclick="handleEdit('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-blue-400 hover:text-blue-300 mr-4" title="Editar">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>
-                            </button>
-                            <button onclick="handleDelete('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-400" title="Excluir">
+                            <button onclick="handleDelete('${docId}', '${nameForActions}')" class="text-red-500 hover:text-red-400" title="Excluir">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" /></svg>
                             </button>
                         </td>
                     `;
 
-                    if (data.purchaseType === 'kit_only') {
-                        kitsCounter++;
+                    if (data.purchaseType === 'kit_order') {
+                        kitOrdersCounter++;
                         const row = document.createElement('tr');
                         row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
+                        const kitsJson = encodeURIComponent(JSON.stringify(data.kits));
+                        
+                        let statusHtml;
+                        if(data.paymentStatus === 'approved'){
+                            statusHtml = `<span class="bg-green-500 text-gray-900 font-bold text-xs py-1 px-3 rounded-full">Aprovado</span>`;
+                        } else {
+                            statusHtml = `<button onclick="approvePayment('${docId}', '${nameForActions}')" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold text-xs py-1 px-3 rounded-full transition-colors">Aprovar?</button>`;
+                        }
+
                         row.innerHTML = `
                             <td class="p-4 text-sm text-gray-400">${date}</td>
-                            <td class="p-4">${data.fullName}</td>
-                            <td class="p-4">${data.celular || '-'}</td>
-                            <td class="p-4">${data.nickname || '-'}</td>
-                            <td class="p-4">${data.kit_shirtName || '-'}</td>
-                            <td class="p-4">${data.kit_shirtNumber || '-'}</td>
-                            <td class="p-4">${data.kit_shirtSize || '-'}</td>
-                            <td class="p-4 font-bold text-green-400">R$ ${data.kit_price ? data.kit_price.toFixed(2).replace('.', ',') : 'N/A'}</td>
+                            <td class="p-4">${data.buyerName}</td>
+                            <td class="p-4">${data.buyerCelular || '-'}</td>
+                            <td class="p-4 font-bold text-green-400">R$ ${data.totalPrice.toFixed(2).replace('.', ',')}</td>
+                            <td class="p-4"><button onclick="showDetails('${kitsJson}')" class="text-cyan-400 hover:underline">${data.kits.length} kit(s) - Ver Detalhes</button></td>
+                            <td class="p-4 text-center">${statusHtml}</td>
+                            <td class="p-4 text-center"><a href="${data.receiptUrl}" target="_blank" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-1 px-3 rounded-lg text-sm">Ver</a></td>
                             ${actionsCell}
                         `;
-                        kitsTableBody.appendChild(row);
-                    } else {
+                        kitOrdersTableBody.appendChild(row);
+
+                    } else if (data.purchaseType === 'inscription') {
                         inscriptionsCounter++;
                         const packageStatusHtml = `<span class="${data.hasPackage === 'Sim' ? 'bg-green-500' : 'bg-yellow-500'} text-gray-900 font-bold text-xs py-1 px-3 rounded-full">${data.hasPackage || '-'}</span>`;
                         const row = document.createElement('tr');
                         row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
-                        // LINHA DA TABELA DE INSCRIÇÕES ATUALIZADA SEM TELEFONE
                         row.innerHTML = `
                             <td class="p-4 text-sm text-gray-400">${date}</td>
                             <td class="p-4">${data.fullName}</td>
@@ -214,10 +263,11 @@
                 
                 statusDiv.innerHTML = `<span class="text-green-400">Conectado e atualizando em tempo real.</span>`;
                 inscriptionsCountSpan.textContent = inscriptionsCounter;
-                kitsCountSpan.textContent = kitsCounter;
+                kitOrdersCountSpan.textContent = kitOrdersCounter;
 
                 noInscriptionsMessage.classList.toggle('hidden', inscriptionsCounter > 0);
-                noKitsMessage.classList.toggle('hidden', kitsCounter > 0);
+                noKitOrdersMessage.classList.toggle('hidden', kitOrdersCounter > 0);
+                lucide.createIcons();
 
             }, (error) => {
                 console.error("Error getting documents: ", error);
@@ -227,7 +277,6 @@
             console.error("Anonymous sign-in failed:", error);
             statusDiv.innerHTML = `<span class="text-red-500">Falha na autenticação. Não é possível ler os dados.</span>`;
         });
-
     </script>
 </body>
 </html>

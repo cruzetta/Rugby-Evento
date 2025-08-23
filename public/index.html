@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1º Encontro Rugby LEGENDS - Bonito MS 2026</title>
 
-    <!-- Metatags para Social Share (Open Graph) -->
     <meta property="og:title" content="1º Encontro Rugby LEGENDS - Bonito MS 2026">
     <meta property="og:description" content="Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.">
     <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20202935.png?alt=media&token=cfbeb1d8-92e8-4159-b12b-1de947e533b5">
@@ -55,11 +54,25 @@
         body.overflow-hidden {
             overflow: hidden;
         }
+        /* Estilos para o input de arquivo customizado */
+        .custom-file-upload {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            display: inline-block;
+            padding: 12px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: all 0.2s ease-in-out;
+        }
+        .custom-file-upload:hover {
+            border-color: #fBBF24; /* border-amber-400 */
+            background-color: #374151; /* bg-gray-700 */
+        }
     </style>
 </head>
 <body class="text-white">
 
-    <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-3xl tracking-wider text-amber-400">R<span class="text-white">UGBY</span> L<span class="text-white">EGENDS</span></h1>
@@ -75,7 +88,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full z-0">
             <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
@@ -91,7 +103,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="sobre" class="py-20 bg-gray-800">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Uma Convocação Histórica</h2>
@@ -126,7 +137,6 @@
         </div>
     </section>
 
-    <!-- The Venue Section -->
     <section id="local" class="py-20 zagaia-bg">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
@@ -143,7 +153,6 @@
         </div>
     </section>
     
-    <!-- Bonito Section -->
     <section id="bonito" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center">
@@ -190,14 +199,13 @@
         </div>
     </section>
 
-    <!-- Kit Section -->
     <section id="kit" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-center md:text-left">
                     <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
                     <p class="text-xl text-gray-300 mb-8">
-                        Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Mostre seu orgulho de ser uma lenda do rugby!
+                        Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
                     </p>
                     <div class="space-y-6">
                         <div class="flex items-center bg-gray-900 p-4 rounded-lg">
@@ -226,7 +234,6 @@
         </div>
     </section>
 
-    <!-- Inscription Section -->
     <section id="inscricao" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto text-center">
@@ -298,8 +305,7 @@
                     <div id="teamSelectionContainer" class="hidden">
                         <label for="teamName" class="block text-amber-400 font-bold mb-2">Selecione sua equipe</label>
                         <select id="teamName" name="teamName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
-                            <!-- Opções serão adicionadas via JavaScript -->
-                        </select>
+                            </select>
                     </div>
 
                     <div>
@@ -331,7 +337,6 @@
         </div>
     </section>
 
-    <!-- Countdown Timer Section -->
     <section id="countdown-section" class="py-12 bg-amber-500 text-gray-900">
         <div class="container mx-auto text-center px-4">
             <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
@@ -357,7 +362,6 @@
         </div>
     </section>
 
-    <!-- Packages Section -->
     <section id="pacotes" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12">Pacotes de Hospedagem</h2>
@@ -365,7 +369,6 @@
                 A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
             </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
@@ -378,7 +381,6 @@
                     </div>
                     <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
@@ -391,7 +393,6 @@
                     </div>
                     <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <!-- Pacote Card -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
@@ -406,7 +407,6 @@
                 </div>
             </div>
             
-            <!-- Inclusions Section -->
             <div class="mt-16">
                 <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
                 <div class="grid lg:grid-cols-5 gap-8 items-stretch">
@@ -444,7 +444,6 @@
         </div>
     </section>
 
-    <!-- Booking Section -->
     <section id="reserva" class="py-20 bg-gray-800 border-t border-gray-700">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
@@ -471,7 +470,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black py-8">
         <div class="container mx-auto text-center text-gray-500">
             <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
@@ -485,7 +483,6 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
     <div id="whatsapp-container" class="fixed bottom-5 right-5 z-[100]">
         <div id="whatsapp-options" class="flex flex-col items-end mb-3 space-y-2 hidden">
             <a href="https://wa.me/5567996129961?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
@@ -502,85 +499,157 @@
         </button>
     </div>
 
-    <!-- Kit Purchase Modal -->
-    <!-- ATUALIZADO: Adicionado overflow-y-auto, removido items-center, e adicionado padding no topo -->
     <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-start justify-center overflow-y-auto p-4 pt-8 sm:pt-12">
-        <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-lg p-8 relative transform transition-all duration-300 scale-95 opacity-0">
+        <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-2xl p-8 relative transform transition-all duration-300 scale-95 opacity-0">
             <button id="closeKitModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             
-            <!-- Step 1: Details Form -->
-            <div id="kit-details-step">
-                <h3 class="text-4xl text-amber-400 mb-4 text-center">Garanta seu Kit Lenda</h3>
-                <p class="text-lg text-gray-300 mb-6 text-center">Preencha seus dados para personalizar a camiseta e prosseguir.</p>
+            <div id="kit-step-1">
+                <h3 class="text-4xl text-amber-400 mb-2 text-center">Monte seu Pedido de Kits</h3>
+                <p class="text-gray-300 mb-6 text-center">Adicione quantos kits (camiseta + copo) você precisar para sua família e amigos!</p>
                 
                 <div class="bg-gray-900 p-4 rounded-lg mb-6 text-sm text-center">
-                    <p class="font-bold text-amber-400 mb-2">VALORES DOS LOTES:</p>
-                    <p><strong class="text-white">1º Lote:</strong> R$ 150,00 (até 22 de Setembro)</p>
-                    <p><strong class="text-white">2º Lote:</strong> R$ 180,00 (até 22 de Outubro)</p>
-                    <p><strong class="text-white">3º Lote:</strong> R$ 210,00 (até 10 de Novembro)</p>
+                     <p class="font-bold text-amber-400 mb-2">VALORES DOS LOTES (POR KIT):</p>
+                     <p><strong class="text-white">1º Lote:</strong> R$ 150,00 (até 22 de Setembro)</p>
+                     <p><strong class="text-white">2º Lote:</strong> R$ 180,00 (até 22 de Outubro)</p>
+                     <p><strong class="text-white">3º Lote:</strong> R$ 210,00 (até 10 de Novembro)</p>
                 </div>
-                
-                <form id="kitForm" class="space-y-4 text-left">
-                    <div>
-                        <label for="kitFullName" class="block text-amber-400 font-bold mb-2">Nome Completo</label>
-                        <input type="text" id="kitFullName" name="kitFullName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    </div>
-                    <div>
-                        <label for="kitCelular" class="block text-amber-400 font-bold mb-2">Celular (com DDD)</label>
-                        <input type="tel" id="kitCelular" name="kitCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    </div>
-                    <div>
-                        <label for="kitCidadeEstado" class="block text-amber-400 font-bold mb-2">De qual cidade está vindo? (Cidade / Estado)</label>
-                        <input type="text" id="kitCidadeEstado" name="kitCidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    </div>
-                    <div>
-                        <label for="kitNickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
-                        <input type="text" id="kitNickname" name="kitNickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    </div>
-                    <hr class="border-gray-600 my-4">
-                    <div>
-                        <label for="kitShirtName" class="block text-amber-400 font-bold mb-2">Qual nome colocar na camiseta?</label>
-                        <input type="text" id="kitShirtName" name="shirtName" placeholder="Seu apelido ou nome" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="kitShirtNumber" class="block text-amber-400 font-bold mb-2">Qual número?</label>
-                            <input type="number" id="kitShirtNumber" name="shirtNumber" min="1" max="99" placeholder="Ex: 10" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+
+                <form id="kitOrderForm" class="space-y-6 text-left">
+                    <fieldset class="border-2 border-gray-700 p-4 rounded-lg">
+                        <legend class="text-amber-400 font-bold px-2 text-xl">Seus Dados de Contato</legend>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="buyerName" class="block text-white font-bold mb-2">Nome Completo</label>
+                                <input type="text" id="buyerName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            </div>
+                            <div>
+                                <label for="buyerCelular" class="block text-white font-bold mb-2">Celular (com DDD)</label>
+                                <input type="tel" id="buyerCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            </div>
                         </div>
-                        <div>
-                            <label for="kitShirtSize" class="block text-amber-400 font-bold mb-2">Qual tamanho?</label>
-                            <select id="kitShirtSize" name="shirtSize" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                                <option value="">Selecione</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                                <option value="XG">XG</option>
-                            </select>
+                    </fieldset>
+
+                    <fieldset class="border-2 border-dashed border-gray-600 p-4 rounded-lg">
+                        <legend class="text-amber-400 font-bold px-2 text-xl">Adicionar Camiseta ao Pedido</legend>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                               <label for="kitShirtName" class="block text-white font-bold mb-2">Nome na Camiseta</label>
+                               <input type="text" id="kitShirtName" placeholder="Apelido ou nome" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            </div>
+                            <div>
+                                <label for="kitShirtNumber" class="block text-white font-bold mb-2">Número</label>
+                                <input type="number" id="kitShirtNumber" min="0" max="99" placeholder="Ex: 10" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                             <div>
+                                <label for="kitGender" class="block text-white font-bold mb-2">Gênero</label>
+                                <select id="kitGender" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino (Baby Look)</option>
+                                    <option value="Infantil">Infantil</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="kitShirtSize" class="block text-white font-bold mb-2">Tamanho</label>
+                                <select id="kitShirtSize" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                    <option value="">Selecione</option>
+                                    <option value="PP">PP</option>
+                                    <option value="P">P</option>
+                                    <option value="M">M</option>
+                                    <option value="G">G</option>
+                                    <option value="GG">GG</option>
+                                    <option value="XG">XG</option>
+                                    <option value="XXG">XXG</option>
+                                    <option value="XGG">XGG</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="addKitItemBtn" class="mt-4 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i> Adicionar Camiseta
+                        </button>
+                    </fieldset>
+                    
+                    <div>
+                        <h4 class="text-2xl text-white mt-6 mb-2">Resumo do Pedido</h4>
+                        <div id="kit-summary-list" class="space-y-2">
+                           <p class="text-gray-400 text-center p-4">Seu carrinho de kits está vazio.</p>
                         </div>
                     </div>
+
                     <div class="text-center pt-4">
-                        <h4 class="text-4xl text-white mb-6">Valor: <span id="kit-price-display" class="text-amber-400">R$ 0,00</span></h4>
-                        <button type="submit" id="kitSubmitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">
-                            ENVIAR DADOS
+                        <h4 class="text-4xl text-white mb-6">Valor Total: <span id="kit-total-price" class="text-amber-400">R$ 0,00</span></h4>
+                        <button type="submit" id="goToPaymentBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
+                            IR PARA PAGAMENTO
                         </button>
                     </div>
                 </form>
-                <div id="kit-form-message" class="text-center font-bold mt-4"></div>
             </div>
 
-            <!-- Step 2: Success Message -->
-            <div id="kit-success-step" class="hidden text-center">
-                 <!-- Conteúdo será inserido via JS -->
+            <div id="kit-step-2" class="hidden text-center">
+                <h3 class="text-4xl text-amber-400 mb-4">Quase lá! Siga os passos abaixo:</h3>
+                
+                <div class="bg-gray-900 p-6 rounded-lg text-left space-y-6">
+                    <div>
+                        <h4 class="text-2xl text-amber-400 flex items-center"><span class="bg-amber-400 text-gray-900 rounded-full h-8 w-8 flex items-center justify-center font-bold text-lg mr-3">1</span>Faça o Pagamento via PIX</h4>
+                        <p class="mt-2 ml-11 text-gray-300">Use a chave abaixo para pagar o valor total do seu pedido.</p>
+                        <div class="mt-4 ml-11 bg-gray-800 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400">Valor Total a Pagar:</p>
+                            <p id="pix-total-value" class="text-3xl font-bold text-amber-400 mb-4">R$ 0,00</p>
+                            <p class="text-sm text-gray-400">Chave PIX (CNPJ):</p>
+                            <p id="pix-key" class="text-xl font-mono text-white tracking-widest break-all">07860029000192</p>
+                            <button type="button" id="copyPixKeyBtn" class="mt-3 w-full bg-gray-700 hover:bg-gray-600 text-amber-400 font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                                <i data-lucide="copy" class="w-5 h-5 mr-2"></i> <span id="copy-btn-text">Copiar Chave PIX</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-2xl text-amber-400 flex items-center"><span class="bg-amber-400 text-gray-900 rounded-full h-8 w-8 flex items-center justify-center font-bold text-lg mr-3">2</span>Anexe o Comprovante</h4>
+                         <p class="mt-2 ml-11 text-gray-300">Isso é essencial para confirmarmos seu pagamento e seu pedido.</p>
+                         <div class="mt-4 ml-11">
+                             <input type="file" name="receipt" id="receipt-upload" class="hidden" accept="image/*,application/pdf">
+                             <label for="receipt-upload" class="custom-file-upload">
+                                 <div id="file-upload-prompt">
+                                     <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2 text-gray-400"></i>
+                                     <span class="font-bold text-white">Clique para escolher o arquivo</span>
+                                     <p class="text-sm text-gray-500">PNG, JPG, PDF, etc.</p>
+                                 </div>
+                                  <div id="file-upload-name" class="hidden items-center justify-center text-green-400">
+                                     <i data-lucide="check-circle" class="w-6 h-6 mr-2"></i>
+                                     <span class="font-bold"></span>
+                                 </div>
+                             </label>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <button type="button" id="backToCartBtn" class="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Voltar e Editar Pedido</button>
+                    <button type="button" id="submitOrderBtn" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 text-lg">
+                        ENVIAR COMPROVANTE E FINALIZAR
+                    </button>
+                </div>
             </div>
+
+            <div id="kit-step-3" class="hidden text-center">
+                 <i data-lucide="party-popper" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                 <h3 class="text-4xl text-green-400 mb-4">Pedido Enviado com Sucesso!</h3>
+                 <p class="text-lg text-gray-300 mb-6">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
+                 <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                     Fechar
+                 </button>
+            </div>
+            <div id="kit-form-message" class="text-center font-bold mt-4"></div>
         </div>
     </div>
 
-    <!-- Firebase SDK -->
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
@@ -595,6 +664,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
+        const storage = getStorage(app);
         
         signInAnonymously(auth).catch((error) => {
             console.error("Anonymous sign-in failed:", error);
@@ -603,19 +673,93 @@
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
         const inscriptionSuccessDiv = document.getElementById('inscription-success');
+        
+        // --- NOVO CÓDIGO DO KIT ---
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
-        const kitForm = document.getElementById('kitForm');
-        const kitSubmitButton = document.getElementById('kitSubmitButton');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
         const closeKitModalButton = document.getElementById('closeKitModal');
-        const kitDetailsStep = document.getElementById('kit-details-step');
+        const kitOrderForm = document.getElementById('kitOrderForm');
         
+        const step1 = document.getElementById('kit-step-1');
+        const step2 = document.getElementById('kit-step-2');
+        const step3 = document.getElementById('kit-step-3');
+
+        const addKitItemBtn = document.getElementById('addKitItemBtn');
+        const kitSummaryList = document.getElementById('kit-summary-list');
+        const kitTotalPrice = document.getElementById('kit-total-price');
+        const goToPaymentBtn = document.getElementById('goToPaymentBtn');
+        const backToCartBtn = document.getElementById('backToCartBtn');
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        const closeSuccessBtn = document.getElementById('close-success-btn');
+        const receiptUploadInput = document.getElementById('receipt-upload');
+        const pixTotalValue = document.getElementById('pix-total-value');
+        const copyPixKeyBtn = document.getElementById('copyPixKeyBtn');
+
+        let kitOrder = []; // Array para guardar os kits do pedido
+        let currentKitPrice = 0;
+
+        function getCurrentKitPrice() {
+            const now = new Date();
+            const lote1Date = new Date('2025-09-22T23:59:59');
+            const lote2Date = new Date('2025-10-22T23:59:59');
+            if (now <= lote1Date) return 150;
+            if (now <= lote2Date) return 180;
+            return 210;
+        }
+
+        function formatCurrency(value) {
+            return `R$ ${value.toFixed(2).replace('.', ',')}`;
+        }
+        
+        function updateOrderSummary() {
+            kitSummaryList.innerHTML = '';
+            if (kitOrder.length === 0) {
+                kitSummaryList.innerHTML = '<p class="text-gray-400 text-center p-4">Seu carrinho de kits está vazio.</p>';
+                goToPaymentBtn.disabled = true;
+                goToPaymentBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                 goToPaymentBtn.disabled = false;
+                 goToPaymentBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                kitOrder.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'bg-gray-900 p-3 rounded-lg flex justify-between items-center';
+                    itemDiv.innerHTML = `
+                        <div>
+                            <p class="font-bold text-white">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
+                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber}</p>
+                        </div>
+                        <button type="button" data-index="${index}" class="remove-kit-item text-red-500 hover:text-red-400 p-2">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    `;
+                    kitSummaryList.appendChild(itemDiv);
+                });
+                lucide.createIcons();
+            }
+            const total = kitOrder.length * currentKitPrice;
+            kitTotalPrice.textContent = formatCurrency(total);
+            pixTotalValue.textContent = formatCurrency(total);
+        }
+
         function openKitModal() {
-            document.body.classList.add('overflow-hidden'); // Trava a rolagem do body
+            document.body.classList.add('overflow-hidden');
             kitModal.classList.remove('hidden');
             kitModal.classList.add('flex');
-            updateKitPrice(); 
+            currentKitPrice = getCurrentKitPrice();
+            
+            // Resetar modal para o estado inicial
+            kitOrder = [];
+            kitOrderForm.reset();
+            updateOrderSummary();
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
+            step3.classList.add('hidden');
+            receiptUploadInput.value = '';
+            document.getElementById('file-upload-prompt').classList.remove('hidden');
+            document.getElementById('file-upload-name').classList.add('hidden');
+
+
             setTimeout(() => {
                 kitModalContent.classList.remove('scale-95', 'opacity-0');
                 kitModalContent.classList.add('scale-100', 'opacity-100');
@@ -623,7 +767,7 @@
         }
 
         function closeKitModal() {
-            document.body.classList.remove('overflow-hidden'); // Destrava a rolagem do body
+            document.body.classList.remove('overflow-hidden');
             kitModalContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 kitModal.classList.add('hidden');
@@ -631,8 +775,133 @@
             }, 300);
         }
 
-        closeKitModalButton.addEventListener('click', closeKitModal);
+        addKitItemBtn.addEventListener('click', () => {
+            const shirtName = document.getElementById('kitShirtName').value.trim();
+            const shirtNumber = document.getElementById('kitShirtNumber').value;
+            const gender = document.getElementById('kitGender').value;
+            const size = document.getElementById('kitShirtSize').value;
 
+            if (!shirtName || !size) {
+                alert('Por favor, preencha o Nome na Camiseta e o Tamanho para adicionar ao pedido.');
+                return;
+            }
+
+            kitOrder.push({ shirtName, shirtNumber, gender, size });
+            updateOrderSummary();
+            
+            // Limpa os campos para adicionar o próximo
+            document.getElementById('kitShirtName').value = '';
+            document.getElementById('kitShirtNumber').value = '';
+            document.getElementById('kitShirtSize').value = '';
+            document.getElementById('kitShirtName').focus();
+        });
+
+        kitSummaryList.addEventListener('click', (e) => {
+            const removeButton = e.target.closest('.remove-kit-item');
+            if (removeButton) {
+                const indexToRemove = parseInt(removeButton.dataset.index, 10);
+                kitOrder.splice(indexToRemove, 1);
+                updateOrderSummary();
+            }
+        });
+        
+        kitOrderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (kitOrder.length === 0) {
+                alert("Você precisa adicionar pelo menos uma camiseta ao pedido antes de prosseguir.");
+                return;
+            }
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
+        });
+
+        backToCartBtn.addEventListener('click', () => {
+            step2.classList.add('hidden');
+            step1.classList.remove('hidden');
+        });
+
+        copyPixKeyBtn.addEventListener('click', () => {
+            const pixKey = document.getElementById('pix-key').innerText;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const btnText = document.getElementById('copy-btn-text');
+                btnText.textContent = 'COPIADO!';
+                setTimeout(() => { btnText.textContent = 'Copiar Chave PIX'; }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar:', err);
+                alert("Não foi possível copiar a chave.");
+            });
+        });
+
+        receiptUploadInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('file-upload-prompt').classList.add('hidden');
+                const fileNameDiv = document.getElementById('file-upload-name');
+                fileNameDiv.querySelector('span').textContent = file.name;
+                fileNameDiv.classList.remove('hidden');
+                fileNameDiv.classList.add('flex');
+
+            }
+        });
+
+        submitOrderBtn.addEventListener('click', async () => {
+            const buyerName = document.getElementById('buyerName').value.trim();
+            const buyerCelular = document.getElementById('buyerCelular').value.trim();
+            const receiptFile = receiptUploadInput.files[0];
+
+            if (!buyerName || !buyerCelular) {
+                 alert('Por favor, volte e preencha seu Nome e Celular.');
+                 backToCartBtn.click();
+                 document.getElementById('buyerName').focus();
+                 return;
+            }
+            if (!receiptFile) {
+                alert('Por favor, anexe o comprovante de pagamento para finalizar.');
+                return;
+            }
+
+            submitOrderBtn.disabled = true;
+            submitOrderBtn.textContent = 'ENVIANDO, AGUARDE...';
+
+            try {
+                // 1. Upload do comprovante para o Storage
+                const timestamp = Date.now();
+                const uniqueFileName = `${timestamp}-${receiptFile.name}`;
+                const storageRef = ref(storage, `comprovantes/${uniqueFileName}`);
+                const uploadResult = await uploadBytes(storageRef, receiptFile);
+                const receiptUrl = await getDownloadURL(uploadResult.ref);
+
+                // 2. Salvar dados do pedido no Firestore
+                const orderData = {
+                    buyerName: buyerName,
+                    buyerCelular: buyerCelular,
+                    kits: kitOrder,
+                    totalPrice: kitOrder.length * currentKitPrice,
+                    receiptUrl: receiptUrl,
+                    purchaseType: 'kit_order',
+                    paymentStatus: 'pending_approval',
+                    timestamp: serverTimestamp()
+                };
+
+                await addDoc(collection(db, "inscriptions"), orderData);
+                
+                step2.classList.add('hidden');
+                step3.classList.remove('hidden');
+                lucide.createIcons();
+
+            } catch (error) {
+                console.error("Erro ao finalizar pedido:", error);
+                alert("Ocorreu um erro ao enviar seu pedido. Por favor, tente novamente.");
+            } finally {
+                submitOrderBtn.disabled = false;
+                submitOrderBtn.textContent = 'ENVIAR COMPROVANTE E FINALIZAR';
+            }
+        });
+
+
+        // -- FIM NOVO CÓDIGO DO KIT --
+
+        // Inscription form logic (original)
         inscriptionForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             submitButton.disabled = true;
@@ -661,59 +930,10 @@
                 submitButton.disabled = false;
             }
         });
-
-        openKitModalBtn.addEventListener('click', () => {
-            kitDetailsStep.classList.remove('hidden');
-            const successStep = document.getElementById('kit-success-step');
-            if(successStep) successStep.classList.add('hidden');
-            kitForm.reset();
-            openKitModal();
-        });
-
-        kitForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            kitSubmitButton.disabled = true;
-            kitSubmitButton.textContent = 'ENVIANDO...';
-            const formData = new FormData(this);
-            const kitPurchaseData = {
-                fullName: formData.get('kitFullName'),
-                celular: formData.get('kitCelular'),
-                cidadeEstado: formData.get('kitCidadeEstado'),
-                nickname: formData.get('kitNickname'),
-                kit_shirtName: formData.get('shirtName'),
-                kit_shirtNumber: formData.get('shirtNumber'),
-                kit_shirtSize: formData.get('shirtSize'),
-                kit_purchased: true,
-                kit_price: getCurrentKitPrice(),
-                purchaseType: 'kit_only',
-                payment_status: 'pending_contact',
-                timestamp: serverTimestamp()
-            };
-            
-            try {
-                await addDoc(collection(db, "inscriptions"), kitPurchaseData);
-                
-                kitDetailsStep.classList.add('hidden');
-                const successStep = document.getElementById('kit-success-step');
-                successStep.innerHTML = `
-                    <i data-lucide="check-circle-2" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                    <h3 class="text-4xl text-green-400 mb-4">Dados Enviados!</h3>
-                    <p class="text-lg text-gray-300 mb-6">Obrigado! Recebemos os detalhes para o seu Kit Lenda. Entraremos em contato em breve para combinar o pagamento.</p>
-                    <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                        Fechar
-                    </button>
-                `;
-                successStep.classList.remove('hidden');
-                lucide.createIcons();
-                document.getElementById('close-success-btn').addEventListener('click', closeKitModal);
-
-            } catch (error) {
-                console.error("Erro ao salvar dados do kit no Firebase:", error);
-                alert("Não foi possível registrar seu pedido. Tente novamente.");
-                kitSubmitButton.disabled = false;
-                kitSubmitButton.textContent = 'ENVIAR DADOS';
-            }
-        });
+        
+        openKitModalBtn.addEventListener('click', openKitModal);
+        closeKitModalButton.addEventListener('click', closeKitModal);
+        closeSuccessBtn.addEventListener('click', closeKitModal);
     </script>
     
     <script>
@@ -780,23 +1000,6 @@
                 });
             });
         });
-        function getCurrentKitPrice() {
-            const now = new Date();
-            const lote1Date = new Date('2025-09-22T23:59:59');
-            const lote2Date = new Date('2025-10-22T23:59:59');
-            const lote3Date = new Date('2025-11-10T23:59:59');
-            if (now <= lote1Date) return 150;
-            else if (now <= lote2Date) return 180;
-            else return 210;
-        }
-        function updateKitPrice() {
-            const price = getCurrentKitPrice();
-            const formattedPrice = `R$ ${price.toFixed(2).replace('.', ',')}`;
-            const kitPriceDisplay = document.getElementById('kit-price-display');
-            const pixAmountDisplay = document.getElementById('pix-amount-display');
-            if (kitPriceDisplay) kitPriceDisplay.textContent = formattedPrice;
-            if (pixAmountDisplay) pixAmountDisplay.textContent = formattedPrice;
-        }
     </script>
 
 </body>
