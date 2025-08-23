@@ -600,6 +600,8 @@
                         </div>
                     </div>
 
+                    <div id="kit-step1-message" class="text-center font-bold mt-4"></div>
+
                     <div class="text-center pt-4">
                         <h4 class="text-4xl text-white mb-6">Valor Total: <span id="kit-total-price" class="text-amber-400">R$ 0,00</span></h4>
                         <button type="submit" id="goToPaymentBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
@@ -647,6 +649,8 @@
                          </div>
                     </div>
                 </div>
+                
+                <div id="kit-step2-message" class="text-center font-bold mt-4"></div>
 
                 <div class="mt-8 flex flex-col sm:flex-row gap-4">
                     <button type="button" id="backToCartBtn" class="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Voltar e Editar Pedido</button>
@@ -665,7 +669,6 @@
                      Fechar
                  </button>
             </div>
-            <div id="kit-form-message" class="text-center font-bold mt-4"></div>
         </div>
     </div>
 
@@ -692,15 +695,20 @@
         const auth = getAuth(app);
         const storage = getStorage(app);
         
-        signInAnonymously(auth).catch((error) => {
-            console.error("Anonymous sign-in failed:", error);
-        });
+        console.log("Firebase App inicializado.");
+
+        signInAnonymously(auth)
+            .then(() => {
+                console.log("Login anónimo bem-sucedido. UID:", auth.currentUser.uid);
+            })
+            .catch((error) => {
+                console.error("Falha no login anónimo:", error);
+            });
 
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
         const inscriptionSuccessDiv = document.getElementById('inscription-success');
         
-        // --- NOVO CÓDIGO DO KIT ---
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
@@ -721,8 +729,10 @@
         const receiptUploadInput = document.getElementById('receipt-upload');
         const pixTotalValue = document.getElementById('pix-total-value');
         const copyPixKeyBtn = document.getElementById('copyPixKeyBtn');
+        const kitStep1Message = document.getElementById('kit-step1-message');
+        const kitStep2Message = document.getElementById('kit-step2-message');
 
-        let kitOrder = []; // Array para guardar os kits do pedido
+        let kitOrder = [];
         let currentKitPrice = 0;
 
         function getCurrentKitPrice() {
@@ -741,7 +751,7 @@
         function updateOrderSummary() {
             kitSummaryList.innerHTML = '';
             if (kitOrder.length === 0) {
-                kitSummaryList.innerHTML = '<p class="text-gray-400 text-center p-4">Seu carrinho de kits está vazio.</p>';
+                kitSummaryList.innerHTML = '<p class="text-gray-400 text-center p-4">O seu carrinho de kits está vazio.</p>';
                 goToPaymentBtn.disabled = true;
                 goToPaymentBtn.classList.add('opacity-50', 'cursor-not-allowed');
             } else {
@@ -753,7 +763,7 @@
                     itemDiv.innerHTML = `
                         <div>
                             <p class="font-bold text-white">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
-                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber}</p>
+                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber || 'S/N'}</p>
                         </div>
                         <button type="button" data-index="${index}" class="remove-kit-item text-red-500 hover:text-red-400 p-2">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -774,7 +784,6 @@
             kitModal.classList.add('flex');
             currentKitPrice = getCurrentKitPrice();
             
-            // Resetar modal para o estado inicial
             kitOrder = [];
             kitOrderForm.reset();
             updateOrderSummary();
@@ -784,7 +793,8 @@
             receiptUploadInput.value = '';
             document.getElementById('file-upload-prompt').classList.remove('hidden');
             document.getElementById('file-upload-name').classList.add('hidden');
-
+            kitStep1Message.innerHTML = '';
+            kitStep2Message.innerHTML = '';
 
             setTimeout(() => {
                 kitModalContent.classList.remove('scale-95', 'opacity-0');
@@ -808,14 +818,13 @@
             const size = document.getElementById('kitShirtSize').value;
 
             if (!shirtName || !size) {
-                alert('Por favor, preencha o Nome na Camiseta e o Tamanho para adicionar ao pedido.');
+                kitStep1Message.innerHTML = `<p class="text-yellow-400">Por favor, preencha o Nome na Camiseta e o Tamanho para adicionar.</p>`;
                 return;
             }
-
+            kitStep1Message.innerHTML = '';
             kitOrder.push({ shirtName, shirtNumber, gender, size });
             updateOrderSummary();
             
-            // Limpa os campos para adicionar o próximo
             document.getElementById('kitShirtName').value = '';
             document.getElementById('kitShirtNumber').value = '';
             document.getElementById('kitShirtSize').value = '';
@@ -834,9 +843,10 @@
         kitOrderForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (kitOrder.length === 0) {
-                alert("Você precisa adicionar pelo menos um kit ao pedido antes de prosseguir.");
+                kitStep1Message.innerHTML = `<p class="text-yellow-400">Precisa de adicionar pelo menos um kit ao pedido antes de prosseguir.</p>`;
                 return;
             }
+            kitStep1Message.innerHTML = '';
             step1.classList.add('hidden');
             step2.classList.remove('hidden');
         });
@@ -844,6 +854,7 @@
         backToCartBtn.addEventListener('click', () => {
             step2.classList.add('hidden');
             step1.classList.remove('hidden');
+            kitStep2Message.innerHTML = '';
         });
 
         copyPixKeyBtn.addEventListener('click', () => {
@@ -854,7 +865,7 @@
                 setTimeout(() => { btnText.textContent = 'Copiar Chave PIX'; }, 2000);
             }).catch(err => {
                 console.error('Erro ao copiar:', err);
-                alert("Não foi possível copiar a chave.");
+                kitStep2Message.innerHTML = `<p class="text-red-400">Não foi possível copiar a chave.</p>`;
             });
         });
 
@@ -866,7 +877,6 @@
                 fileNameDiv.querySelector('span').textContent = file.name;
                 fileNameDiv.classList.remove('hidden');
                 fileNameDiv.classList.add('flex');
-
             }
         });
 
@@ -876,28 +886,33 @@
             const receiptFile = receiptUploadInput.files[0];
 
             if (!buyerName || !buyerCelular) {
-                 alert('Por favor, volte e preencha seu Nome e Celular.');
+                 kitStep2Message.innerHTML = `<p class="text-red-400">Por favor, volte e preencha o seu Nome e Celular.</p>`;
                  backToCartBtn.click();
                  document.getElementById('buyerName').focus();
                  return;
             }
             if (!receiptFile) {
-                alert('Por favor, anexe o comprovante de pagamento para finalizar.');
+                kitStep2Message.innerHTML = `<p class="text-red-400">Por favor, anexe o comprovativo de pagamento para finalizar.</p>`;
                 return;
             }
-
+            
+            kitStep2Message.innerHTML = '';
             submitOrderBtn.disabled = true;
-            submitOrderBtn.textContent = 'ENVIANDO, AGUARDE...';
+            submitOrderBtn.textContent = 'A ENVIAR, AGUARDE...';
+            console.log("A iniciar o processo de envio...");
 
             try {
-                // 1. Upload do comprovante para o Storage
+                console.log("Passo 1: A fazer o upload do comprovativo para o Storage...");
                 const timestamp = Date.now();
                 const uniqueFileName = `${timestamp}-${receiptFile.name}`;
                 const storageRef = ref(storage, `comprovantes/${uniqueFileName}`);
                 const uploadResult = await uploadBytes(storageRef, receiptFile);
-                const receiptUrl = await getDownloadURL(uploadResult.ref);
+                console.log("Upload bem-sucedido:", uploadResult);
 
-                // 2. Salvar dados do pedido no Firestore
+                console.log("Passo 2: A obter o URL de download...");
+                const receiptUrl = await getDownloadURL(uploadResult.ref);
+                console.log("URL de download obtido:", receiptUrl);
+
                 const orderData = {
                     buyerName: buyerName,
                     buyerCelular: buyerCelular,
@@ -909,29 +924,31 @@
                     timestamp: serverTimestamp()
                 };
 
+                console.log("Passo 3: A guardar os dados do pedido no Firestore...", orderData);
                 await addDoc(collection(db, "inscriptions"), orderData);
+                console.log("Dados do pedido guardados com sucesso!");
                 
                 step2.classList.add('hidden');
                 step3.classList.remove('hidden');
                 lucide.createIcons();
 
             } catch (error) {
-                console.error("Erro ao finalizar pedido:", error);
-                alert("Ocorreu um erro ao enviar seu pedido. Por favor, tente novamente.");
+                console.error("ERRO AO FINALIZAR O PEDIDO:", error);
+                if (error.code === 'storage/unauthorized') {
+                    kitStep2Message.innerHTML = `<p class="text-red-400"><b>Erro de Permissão.</b> O envio foi bloqueado. Por favor, contacte o administrador do site e informe sobre este erro.</p>`;
+                } else {
+                    kitStep2Message.innerHTML = `<p class="text-red-400">Ocorreu um erro inesperado ao enviar o seu pedido. Tente novamente.</p>`;
+                }
             } finally {
                 submitOrderBtn.disabled = false;
-                submitOrderBtn.textContent = 'ENVIAR COMPROVANTE E FINALIZAR';
+                submitOrderBtn.textContent = 'ENVIAR COMPROVATIVO E FINALIZAR';
             }
         });
 
-
-        // -- FIM NOVO CÓDIGO DO KIT --
-
-        // Inscription form logic (original)
         inscriptionForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             submitButton.disabled = true;
-            submitButton.textContent = 'ENVIANDO...';
+            submitButton.textContent = 'A ENVIAR...';
             const formData = new FormData(this);
             const inscriptionData = {
                 fullName: formData.get('fullName'),
