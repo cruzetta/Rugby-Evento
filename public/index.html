@@ -587,7 +587,7 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
         // Inicializa o serviço de Functions
-        const functions = getFunctions(app);
+        const functions = getFunctions();
 
         // Autenticação anônima
         signInAnonymously(auth).catch((error) => {
@@ -801,31 +801,25 @@
         // Importa a ferramenta para chamar a Cloud Function
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-functions.js";
 
-        // ===================================================================================
-        // PASSO 1: SUA PUBLIC KEY FOI INSERIDA AQUI
-        // O Access Token SECRETO foi REMOVIDO daqui. Ele está seguro na sua Cloud Function.
-        // ===================================================================================
+        // SUA PUBLIC KEY ESTÁ AQUI
         const publicKey = 'APP_USR-6fc5333c-eb1a-442d-a6a9-af349b1aa134'; 
         
         // Inicializa o Mercado Pago com a sua Public Key
         const mp = new MercadoPago(publicKey);
-        const functions = getFunctions(); // Obtém a instância do Functions
-
-        // Prepara a chamada para a nossa "função-cofre"
-        const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
+        const functions = getFunctions();
 
         // Função que renderiza o componente de pagamento (o QR Code do PIX)
         async function createPaymentBrick(kitData, preferenceId) {
             const bricksBuilder = mp.bricks();
             const settings = {
                 initialization: {
-                    amount: kitData.kit_price, // Valor a ser pago
-                    preferenceId: preferenceId, // ID da preferência
+                    amount: kitData.kit_price,
+                    preferenceId: preferenceId,
                 },
                 customization: {
                     visual: {
                         style: {
-                            theme: 'dark', // Tema escuro para combinar com o site
+                            theme: 'dark',
                         }
                     }
                 },
@@ -833,9 +827,8 @@
                     onReady: () => {
                         console.log('Componente de pagamento pronto!');
                     },
-                    onSubmit: (formData) => {
-                        // Não é usado para PIX, pois o pagamento é externo (app do banco)
-                        // A confirmação real deve ser feita via Webhooks (uma melhoria futura)
+                    onSubmit: () => {
+                        // Callback para pagamentos via cartão, não usado para PIX
                     },
                     onError: (error) => {
                         console.error(error);
@@ -844,37 +837,31 @@
                 },
             };
 
-            // Renderiza o componente na tela 
             if (window.paymentBrick) {
                 window.paymentBrick.unmount();
             }
             window.paymentBrick = await bricksBuilder.create('payment', 'payment_container', settings);
         }
-
-        // Escuta o evento que é disparado quando o formulário do kit é enviado
-        document.addEventListener('createPayment', (event) => {
-            const kitData = event.detail;
-            createPaymentPreference(kitData);
-        });
-
+        
         // ===================================================================================
-        // FUNÇÃO DE PAGAMENTO CORRIGIDA
+        // FUNÇÃO DE PAGAMENTO CORRIGIDA PARA O ERRO DE CORS
         // ===================================================================================
-        // Função que chama a Cloud Function para criar a preferência de pagamento
         async function createPaymentPreference(kitData) {
             try {
-                // Prepara a chamada para a nossa nova função `onRequest`
+                // Prepara a chamada para a nossa função que agora permite conexões (CORS)
                 const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
 
+                // Chama a função passando os dados do kit
                 const result = await createPaymentPreferenceCallable({
                     price: kitData.kit_price,
                     title: `Kit Lenda - ${kitData.kit_shirtName} #${kitData.kit_shirtNumber}`,
                     payerName: kitData.fullName
                 });
                 
+                // Pega o ID da preferência que a função retornou
                 const preferenceId = result.data.preferenceId;
                 
-                // Renderiza o componente de pagamento com o ID recebido
+                // Usa o ID para renderizar o QR Code do PIX
                 createPaymentBrick(kitData, preferenceId);
 
                 document.getElementById('kit-details-step').classList.add('hidden');
@@ -882,8 +869,7 @@
 
             } catch (error) {
                 console.error("Erro ao chamar a Cloud Function:", error);
-                // Exibe a mensagem de erro que vem do servidor, se houver
-                const errorMessage = error.details ? error.details.error : 'Ocorreu um erro ao processar o pagamento. Tente novamente.';
+                const errorMessage = error.message || 'Ocorreu um erro ao processar o pagamento. Tente novamente.';
                 alert(errorMessage);
             } finally {
                 const kitSubmitButton = document.getElementById('kitSubmitButton');
@@ -891,6 +877,12 @@
                 kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
             }
         }
+
+        // Escuta o evento que é disparado quando o formulário do kit é enviado
+        document.addEventListener('createPayment', (event) => {
+            const kitData = event.detail;
+            createPaymentPreference(kitData);
+        });
     </script>
 </body>
 </html>
