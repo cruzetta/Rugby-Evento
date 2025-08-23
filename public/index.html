@@ -16,7 +16,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- SCRIPT DO MERCADO PAGO REMOVIDO POIS NÃO É MAIS NECESSÁRIO -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -244,6 +243,13 @@
                             <input type="text" id="nickname" name="nickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                         </div>
                     </div>
+                    
+                    <!-- CAMPO DE TELEFONE REMOVIDO, APENAS CELULAR -->
+                    <div>
+                        <label for="celular" class="block text-amber-400 font-bold mb-2">Celular (com DDD)</label>
+                        <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="age" class="block text-amber-400 font-bold mb-2">Idade</label>
@@ -511,6 +517,10 @@
                         <input type="text" id="kitFullName" name="kitFullName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                     </div>
                     <div>
+                        <label for="kitCelular" class="block text-amber-400 font-bold mb-2">Celular (com DDD)</label>
+                        <input type="tel" id="kitCelular" name="kitCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+                    <div>
                         <label for="kitNickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
                         <input type="text" id="kitNickname" name="kitNickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                     </div>
@@ -555,33 +565,28 @@
 
     <!-- Firebase SDK -->
     <script type="module">
-        // Importa as funções do Firebase que vamos usar
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
         
-        // Sua configuração do Firebase (sem mudanças)
         const firebaseConfig = {
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
             authDomain: "encontrorugbylegends.firebaseapp.com",
             projectId: "encontrorugbylegends",
-            storageBucket: "encontrorugbylegends.firebasestorage.app",
+            storageBucket: "encontrorugbylegends.appspot.com",
             messagingSenderId: "228233608028",
             appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
             measurementId: "G-054DYF3Z1E"
         };
 
-        // Inicializa o Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
         
-        // Autenticação anônima
         signInAnonymously(auth).catch((error) => {
             console.error("Anonymous sign-in failed:", error);
         });
 
-        // --- Lógica do site ---
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
         const inscriptionSuccessDiv = document.getElementById('inscription-success');
@@ -618,9 +623,11 @@
             submitButton.disabled = true;
             submitButton.textContent = 'ENVIANDO...';
             const formData = new FormData(this);
+            // DADOS DE INSCRIÇÃO ATUALIZADOS SEM O CAMPO TELEFONE
             const inscriptionData = {
                 fullName: formData.get('fullName'),
                 nickname: formData.get('nickname'),
+                celular: formData.get('celular'),
                 age: formData.get('age'),
                 position: formData.get('position'),
                 hasPackage: formData.get('hasPackage'),
@@ -655,6 +662,7 @@
             const formData = new FormData(this);
             const kitPurchaseData = {
                 fullName: formData.get('kitFullName'),
+                celular: formData.get('kitCelular'),
                 nickname: formData.get('kitNickname'),
                 kit_shirtName: formData.get('shirtName'),
                 kit_shirtNumber: formData.get('shirtNumber'),
@@ -693,7 +701,6 @@
     </script>
     
     <script>
-        // Lógica do site (sem mudanças)
         lucide.createIcons();
         const countdown = () => {
             const countDate = new Date("November 27, 2025 23:59:59").getTime();

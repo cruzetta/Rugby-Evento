@@ -49,11 +49,12 @@
                             <th class="p-4 text-left text-amber-400 tracking-wider">Data</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Nome Completo</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Apelido</th>
+                            <!-- COLUNA TELEFONE REMOVIDA -->
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Celular</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Idade</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Posição</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Equipe</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Pacote Hotel?</th>
-                            <!-- NOVA COLUNA DE AÇÕES -->
                             <th class="p-4 text-center text-amber-400 tracking-wider">Ações</th>
                         </tr>
                     </thead>
@@ -77,12 +78,12 @@
                         <tr>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Data</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Nome Completo</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Celular</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Apelido</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Nome Camisa</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Nº Camisa</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Tamanho</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Valor Pago</th>
-                             <!-- NOVA COLUNA DE AÇÕES -->
                             <th class="p-4 text-center text-sky-400 tracking-wider">Ações</th>
                         </tr>
                     </thead>
@@ -97,12 +98,10 @@
 
     <!-- Firebase SDK -->
     <script type="module">
-        // IMPORTS ATUALIZADOS: Adicionamos 'doc' e 'deleteDoc' para a função de excluir
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
-        // Sua configuração do Firebase (mantida igual)
         const firebaseConfig = {
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
             authDomain: "encontrorugbylegends.firebaseapp.com",
@@ -113,7 +112,6 @@
             measurementId: "G-054DYF3Z1E"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
@@ -126,47 +124,30 @@
         const inscriptionsCountSpan = document.getElementById('inscriptionsCount');
         const kitsCountSpan = document.getElementById('kitsCount');
 
-        // =====================================================================
-        // FUNÇÃO PARA EXCLUIR UM DOCUMENTO COM CONFIRMAÇÃO
-        // =====================================================================
         window.handleDelete = async (docId, fullName) => {
-            // Pergunta ao usuário se ele tem certeza absoluta
             const confirmationMessage = `Tem certeza ABSOLUTA que deseja excluir a inscrição de "${fullName}"?\n\nEsta ação não pode ser desfeita.`;
-            
             if (window.confirm(confirmationMessage)) {
                 try {
-                    // Se confirmar, tenta excluir o documento da coleção 'inscriptions'
                     await deleteDoc(doc(db, "inscriptions", docId));
                     alert(`Inscrição de "${fullName}" excluída com sucesso!`);
                 } catch (error) {
-                    // Se der erro, exibe uma mensagem
                     console.error("Erro ao excluir o documento: ", error);
                     alert(`Ocorreu um erro ao excluir a inscrição de "${fullName}". Tente novamente.`);
                 }
             } else {
-                // Se cancelar, informa que a ação foi cancelada
                 console.log('Exclusão cancelada pelo usuário.');
             }
         };
 
-        // =====================================================================
-        // FUNÇÃO PARA EDITAR UM DOCUMENTO COM CONFIRMAÇÃO
-        // =====================================================================
         window.handleEdit = (docId, fullName) => {
-            // Pergunta ao usuário se ele realmente quer editar
             const confirmationMessage = `Você está prestes a editar os dados de "${fullName}". Deseja continuar?`;
-            
             if (window.confirm(confirmationMessage)) {
-                // A LÓGICA DE EDIÇÃO REAL VIRIA AQUI.
-                // Por exemplo, abrir um formulário/modal com os dados do usuário.
-                // Por enquanto, apenas exibimos um alerta para confirmar que funciona.
                 alert(`Função de edição chamada para: ${fullName} (ID: ${docId}).\n\nO próximo passo é implementar um formulário de edição.`);
             } else {
                 console.log('Edição cancelada pelo usuário.');
             }
         };
         
-        // Sign in anonymously to allow reading from Firestore
         signInAnonymously(auth).then(() => {
             const q = query(collection(db, "inscriptions"), orderBy("timestamp", "desc"));
 
@@ -180,19 +161,15 @@
 
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    const docId = doc.id; // Pegamos o ID do documento, essencial para excluir/editar
+                    const docId = doc.id;
                     const date = data.timestamp ? data.timestamp.toDate().toLocaleString('pt-BR') : 'N/A';
 
-                    // Célula com os botões de ação (Editar e Excluir)
-                    // Usamos .replace(/'/g, "\\'") para evitar que nomes com apóstrofos quebrem o código
                     const actionsCell = `
                         <td class="p-4 text-center">
                             <button onclick="handleEdit('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-blue-400 hover:text-blue-300 mr-4" title="Editar">
-                                <!-- Ícone SVG de Editar -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>
                             </button>
                             <button onclick="handleDelete('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-400" title="Excluir">
-                                <!-- Ícone SVG de Excluir -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" /></svg>
                             </button>
                         </td>
@@ -205,6 +182,7 @@
                         row.innerHTML = `
                             <td class="p-4 text-sm text-gray-400">${date}</td>
                             <td class="p-4">${data.fullName}</td>
+                            <td class="p-4">${data.celular || '-'}</td>
                             <td class="p-4">${data.nickname || '-'}</td>
                             <td class="p-4">${data.kit_shirtName || '-'}</td>
                             <td class="p-4">${data.kit_shirtNumber || '-'}</td>
@@ -218,10 +196,12 @@
                         const packageStatusHtml = `<span class="${data.hasPackage === 'Sim' ? 'bg-green-500' : 'bg-yellow-500'} text-gray-900 font-bold text-xs py-1 px-3 rounded-full">${data.hasPackage || '-'}</span>`;
                         const row = document.createElement('tr');
                         row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
+                        // LINHA DA TABELA DE INSCRIÇÕES ATUALIZADA SEM TELEFONE
                         row.innerHTML = `
                             <td class="p-4 text-sm text-gray-400">${date}</td>
                             <td class="p-4">${data.fullName}</td>
                             <td class="p-4">${data.nickname || '-'}</td>
+                            <td class="p-4">${data.celular || '-'}</td>
                             <td class="p-4">${data.age || '-'}</td>
                             <td class="p-4">${data.position || '-'}</td>
                             <td class="p-4">${data.teamName || '-'}</td>
