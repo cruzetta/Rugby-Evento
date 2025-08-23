@@ -16,8 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- SCRIPT DO MERCADO PAGO -->
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <!-- SCRIPT DO MERCADO PAGO REMOVIDO POIS NÃO É MAIS NECESSÁRIO -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -540,24 +539,16 @@
                     <div class="text-center pt-4">
                         <h4 class="text-4xl text-white mb-6">Valor: <span id="kit-price-display" class="text-amber-400">R$ 0,00</span></h4>
                         <button type="submit" id="kitSubmitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">
-                            IR PARA PAGAMENTO
+                            ENVIAR DADOS
                         </button>
                     </div>
                 </form>
                 <div id="kit-form-message" class="text-center font-bold mt-4"></div>
             </div>
 
-            <!-- Step 2: Payment -->
-            <div id="kit-payment-step" class="hidden text-center">
-                 <h3 class="text-4xl text-amber-400 mb-4">Efetuar Pagamento</h3>
-                 <p class="text-lg text-gray-300 mb-6">Para finalizar, pague com PIX o valor de <strong id="pix-amount-display" class="text-white">R$ 0,00</strong>.</p>
-                 
-                 <!-- NOVO Container para o PIX (QR Code) -->
-                 <div id="payment_container" class="mt-6"></div>
-
-                 <button id="back-to-details-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                     Voltar e Editar Dados
-                 </button>
+            <!-- Step 2: Success Message -->
+            <div id="kit-success-step" class="hidden text-center">
+                 <!-- Conteúdo será inserido via JS -->
             </div>
         </div>
     </div>
@@ -568,9 +559,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-        // IMPORTANTE: Adiciona a ferramenta para chamar nossa Cloud Function
-        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-functions.js";
-
+        
         // Sua configuração do Firebase (sem mudanças)
         const firebaseConfig = {
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
@@ -586,31 +575,24 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
-        // Inicializa o serviço de Functions
-        const functions = getFunctions();
-
+        
         // Autenticação anônima
         signInAnonymously(auth).catch((error) => {
             console.error("Anonymous sign-in failed:", error);
         });
 
-        // --- Lógica do site (sem grandes mudanças) ---
+        // --- Lógica do site ---
         const inscriptionForm = document.getElementById('inscriptionForm');
-        const formMessage = document.getElementById('form-message');
         const submitButton = document.getElementById('submitButton');
         const inscriptionSuccessDiv = document.getElementById('inscription-success');
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
         const kitForm = document.getElementById('kitForm');
         const kitSubmitButton = document.getElementById('kitSubmitButton');
-        const kitFormMessage = document.getElementById('kit-form-message');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
         const closeKitModalButton = document.getElementById('closeKitModal');
         const kitDetailsStep = document.getElementById('kit-details-step');
-        const kitPaymentStep = document.getElementById('kit-payment-step');
-        const backToDetailsBtn = document.getElementById('back-to-details-btn');
-        window.kitPurchaseData = {};
-
+        
         function openKitModal() {
             kitModal.classList.remove('hidden');
             kitModal.classList.add('flex');
@@ -660,25 +642,18 @@
 
         openKitModalBtn.addEventListener('click', () => {
             kitDetailsStep.classList.remove('hidden');
-            kitPaymentStep.classList.add('hidden');
+            const successStep = document.getElementById('kit-success-step');
+            if(successStep) successStep.classList.add('hidden');
             kitForm.reset();
-            kitFormMessage.textContent = '';
-            document.getElementById('payment_container').innerHTML = '';
             openKitModal();
-        });
-
-        backToDetailsBtn.addEventListener('click', () => {
-            kitPaymentStep.classList.add('hidden');
-            kitDetailsStep.classList.remove('hidden');
-            document.getElementById('payment_container').innerHTML = '';
         });
 
         kitForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             kitSubmitButton.disabled = true;
-            kitSubmitButton.textContent = 'PROCESSANDO...';
+            kitSubmitButton.textContent = 'ENVIANDO...';
             const formData = new FormData(this);
-            window.kitPurchaseData = {
+            const kitPurchaseData = {
                 fullName: formData.get('kitFullName'),
                 nickname: formData.get('kitNickname'),
                 kit_shirtName: formData.get('shirtName'),
@@ -687,27 +662,34 @@
                 kit_purchased: true,
                 kit_price: getCurrentKitPrice(),
                 purchaseType: 'kit_only',
-                payment_status: 'pending',
+                payment_status: 'pending_contact',
                 timestamp: serverTimestamp()
             };
             
             try {
-                // Salva o pedido no Firebase primeiro com status 'pending'
-                await window.saveKitDataToFirebase(window.kitPurchaseData);
-                // Se salvar com sucesso, dispara o evento para criar o pagamento
-                document.dispatchEvent(new CustomEvent('createPayment', { detail: window.kitPurchaseData }));
+                await addDoc(collection(db, "inscriptions"), kitPurchaseData);
+                
+                kitDetailsStep.classList.add('hidden');
+                const successStep = document.getElementById('kit-success-step');
+                successStep.innerHTML = `
+                    <i data-lucide="check-circle-2" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                    <h3 class="text-4xl text-green-400 mb-4">Dados Enviados!</h3>
+                    <p class="text-lg text-gray-300 mb-6">Obrigado! Recebemos os detalhes para o seu Kit Lenda. Entraremos em contato em breve para combinar o pagamento.</p>
+                    <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                        Fechar
+                    </button>
+                `;
+                successStep.classList.remove('hidden');
+                lucide.createIcons();
+                document.getElementById('close-success-btn').addEventListener('click', closeKitModal);
+
             } catch (error) {
-                console.error("Erro ao salvar pré-compra no Firebase:", error);
+                console.error("Erro ao salvar dados do kit no Firebase:", error);
                 alert("Não foi possível registrar seu pedido. Tente novamente.");
                 kitSubmitButton.disabled = false;
-                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
+                kitSubmitButton.textContent = 'ENVIAR DADOS';
             }
         });
-
-        window.saveKitDataToFirebase = async (data) => {
-            await addDoc(collection(db, "inscriptions"), data);
-            console.log("Dados do kit salvos no Firebase com sucesso!");
-        };
     </script>
     
     <script>
@@ -794,95 +776,5 @@
         }
     </script>
 
-    <!-- ==================================================== -->
-    <!--     NOVO SCRIPT SEGURO PARA PAGAMENTO COM PIX        -->
-    <!-- ==================================================== -->
-    <script type="module">
-        // Importa a ferramenta para chamar a Cloud Function
-        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-functions.js";
-
-        // SUA PUBLIC KEY ESTÁ AQUI
-        const publicKey = 'APP_USR-6fc5333c-eb1a-442d-a6a9-af349b1aa134'; 
-        
-        // Inicializa o Mercado Pago com a sua Public Key
-        const mp = new MercadoPago(publicKey);
-        const functions = getFunctions();
-
-        // Função que renderiza o componente de pagamento (o QR Code do PIX)
-        async function createPaymentBrick(kitData, preferenceId) {
-            const bricksBuilder = mp.bricks();
-            const settings = {
-                initialization: {
-                    amount: kitData.kit_price,
-                    preferenceId: preferenceId,
-                },
-                customization: {
-                    visual: {
-                        style: {
-                            theme: 'dark',
-                        }
-                    }
-                },
-                callbacks: {
-                    onReady: () => {
-                        console.log('Componente de pagamento pronto!');
-                    },
-                    onSubmit: () => {
-                        // Callback para pagamentos via cartão, não usado para PIX
-                    },
-                    onError: (error) => {
-                        console.error(error);
-                        alert('Ocorreu um erro com o módulo de pagamento.');
-                    },
-                },
-            };
-
-            if (window.paymentBrick) {
-                window.paymentBrick.unmount();
-            }
-            window.paymentBrick = await bricksBuilder.create('payment', 'payment_container', settings);
-        }
-        
-        // ===================================================================================
-        // FUNÇÃO DE PAGAMENTO CORRIGIDA PARA O ERRO DE CORS
-        // ===================================================================================
-        async function createPaymentPreference(kitData) {
-            try {
-                // Prepara a chamada para a nossa função que agora permite conexões (CORS)
-                const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
-
-                // Chama a função passando os dados do kit
-                const result = await createPaymentPreferenceCallable({
-                    price: kitData.kit_price,
-                    title: `Kit Lenda - ${kitData.kit_shirtName} #${kitData.kit_shirtNumber}`,
-                    payerName: kitData.fullName
-                });
-                
-                // Pega o ID da preferência que a função retornou
-                const preferenceId = result.data.preferenceId;
-                
-                // Usa o ID para renderizar o QR Code do PIX
-                createPaymentBrick(kitData, preferenceId);
-
-                document.getElementById('kit-details-step').classList.add('hidden');
-                document.getElementById('kit-payment-step').classList.remove('hidden');
-
-            } catch (error) {
-                console.error("Erro ao chamar a Cloud Function:", error);
-                const errorMessage = error.message || 'Ocorreu um erro ao processar o pagamento. Tente novamente.';
-                alert(errorMessage);
-            } finally {
-                const kitSubmitButton = document.getElementById('kitSubmitButton');
-                kitSubmitButton.disabled = false;
-                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
-            }
-        }
-
-        // Escuta o evento que é disparado quando o formulário do kit é enviado
-        document.addEventListener('createPayment', (event) => {
-            const kitData = event.detail;
-            createPaymentPreference(kitData);
-        });
-    </script>
 </body>
 </html>
