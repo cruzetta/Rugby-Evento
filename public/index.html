@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1º Encontro Rugby LEGENDS - Bonito MS 2026</title>
+
+    <!-- Metatags para Social Share (Open Graph) -->
+    <meta property="og:title" content="1º Encontro Rugby LEGENDS - Bonito MS 2026">
+    <meta property="og:description" content="Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.">
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20202935.png?alt=media&token=cfbeb1d8-92e8-4159-b12b-1de947e533b5">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- SCRIPT DO MERCADO PAGO -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Bebas Neue', cursive;
+        }
+        .zagaia-bg {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201507.png?alt=media&token=9f04fcfe-a72f-464f-ac63-a1c6fd6d9565');
+            background-size: cover;
+            background-position: center;
+        }
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #hero video {
+            object-fit: cover;
+        }
+        #whatsapp-options a {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #whatsapp-container.open #whatsapp-options a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #whatsapp-options a:nth-child(1) { transition-delay: 0.1s; }
+        #whatsapp-options a:nth-child(2) { transition-delay: 0.2s; }
+        #kitModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-3xl tracking-wider text-amber-400">R<span class="text-white">UGBY</span> L<span class="text-white">EGENDS</span></h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#sobre" class="hover:text-amber-400 transition duration-300">O Encontro</a>
+                <a href="#local" class="hover:text-amber-400 transition duration-300">O Local</a>
+                <a href="#bonito" class="hover:text-amber-400 transition duration-300">Explore Bonito</a>
+                <a href="#kit" class="hover:text-amber-400 transition duration-300">Kit Atleta</a>
+                <a href="#inscricao" class="hover:text-amber-400 transition duration-300">Inscrição</a>
+                <a href="#pacotes" class="hover:text-amber-400 transition duration-300">Pacotes</a>
+            </nav>
+            <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md">GARANTA SUA VAGA</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full z-0">
+            <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="absolute inset-0 bg-black/70 z-10"></div>
+        <div class="relative z-20 container mx-auto px-4 pt-20">
+            <h2 class="text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight">SAVE THE DATE</h2>
+            <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4">06 a 08 de Fevereiro de 2026</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">1º Encontro Rugby LEGENDS</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
+            <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">INSCREVA-SE AGORA</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-gray-800">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Uma Convocação Histórica</h2>
+            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6">
+                Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
+            </p>
+            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12">
+                O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas. As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se para reviver a glória dos velhos tempos!
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300 flex flex-col">
+                    <i data-lucide="shield-half" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                    <h3 class="text-3xl mb-2">Rugby Para Todos</h3>
+                    <p class="text-gray-400 flex-grow text-left">
+                        <strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).
+                        <strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma atividade leve para que esposas, filhos e amigos possam se divertir em campo.
+                        <strong class="text-amber-400 block mt-3 mb-2"> • Jogo de Confraternização (XV):</strong> Para fechar, uma partida aberta de XV, unindo jogadores de todas as idades.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="heart-handshake" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                    <h3 class="text-3xl mb-2">Família</h3>
+                    <p class="text-gray-400">Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="palmtree" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                    <h3 class="text-3xl mb-2">Resort</h3>
+                    <p class="text-gray-400">Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.</p>
+                </div>
+            </div>
+             <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">QUERO FAZER PARTE DE UM TIME!</a>
+        </div>
+    </section>
+
+    <!-- The Venue Section -->
+    <section id="local" class="py-20 zagaia-bg">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
+            <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
+            <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12">
+                Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201602.png?alt=media&token=912d7f53-3bf2-4215-adfa-2f4cbccf184c" alt="Piscina do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201716.png?alt=media&token=85f943d4-9179-4213-9c02-f5d2b8cbd717" alt="Apartamento do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201651.png?alt=media&token=bf6a5c9b-1eea-432a-bbee-532ad5aeb26d" alt="Área Verde do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201830.png?alt=media&token=257b2f25-983e-4720-9b7d-71a49314f3e0" alt="Restaurante do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bonito Section -->
+    <section id="bonito" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
+                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12">
+                    Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4 mb-12">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093623.png?alt=media&token=3b9a7e6a-b4ed-483b-86c3-2698c1b24b65" alt="Flutuação em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093400.png?alt=media&token=eb160464-b8bd-436b-b850-5adf7116ac19" alt="Gruta do Lago Azul em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093725.png?alt=media&token=ca98e9d4-577d-4639-9963-1bdcd041e208" alt="Mergulho em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 text-left bg-gray-800 p-8 rounded-xl">
+                <div>
+                    <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="map-pin" class="w-8 h-8 mr-3 text-amber-400"></i>Como Chegar</h3>
+                    <p class="text-gray-300 mb-4">O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.</p>
+                    <p class="text-gray-300">Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="handshake" class="w-8 h-8 mr-3 text-amber-400"></i>Agências Parceiras</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start">
+                            <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
+                            <div>
+                                <strong>PNGTur (Agência)</strong><br>
+                                <a href="tel:+551148838899" class="hover:text-amber-400">Telefone: 11 4883-8899</a><br>
+                                <a href="https://wa.me/5511940190054" target="_blank" class="hover:text-amber-400">WhatsApp: 11 94019-0054</a><br>
+                                <a href="mailto:alima@pngtur.com.br" class="hover:text-amber-400">Email: alima@pngtur.com.br</a>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
+                            <div>
+                                <strong>Crisval Tur (Agência)</strong><br>
+                                <a href="https://wa.me/5567999863298" target="_blank" class="hover:text-amber-400">WhatsApp: +55 67 99986-3298</a><br>
+                                <a href="mailto:gerencia@crisval.com.br" class="hover:text-amber-400">Email: gerencia@crisval.com.br</a><br>
+                                <a href="https://crisval.com.br/" target="_blank" class="hover:text-amber-400">Website: crisval.com.br</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kit Section -->
+    <section id="kit" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Mostre seu orgulho de ser uma lenda do rugby!
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center bg-gray-900 p-4 rounded-lg">
+                            <i data-lucide="shirt" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-2xl text-white">Camiseta Premium do Evento</h4>
+                                <p class="text-gray-400">Design exclusivo, personalizada com seu nome e número.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-gray-900 p-4 rounded-lg">
+                            <i data-lucide="beer" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-2xl text-white">Copo Térmico Personalizado</h4>
+                                <p class="text-gray-400">Mantenha sua bebida na temperatura ideal durante a resenha.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="mt-10">
+                         <button id="openKitModalBtn" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">QUERO MEU KIT!</button>
+                     </div>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo" alt="Kit Rugby Legends" class="rounded-xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscription Section -->
+    <section id="inscricao" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!
+                </p>
+            </div>
+            <div id="inscription-wrapper" class="max-w-2xl mx-auto">
+                <form id="inscriptionForm" class="bg-gray-800 p-8 rounded-xl shadow-lg space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="fullName" class="block text-amber-400 font-bold mb-2">Nome Completo</label>
+                            <input type="text" id="fullName" name="fullName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        </div>
+                        <div>
+                            <label for="nickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
+                            <input type="text" id="nickname" name="nickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="age" class="block text-amber-400 font-bold mb-2">Idade</label>
+                            <input type="number" id="age" name="age" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        </div>
+                        <div>
+                            <label for="position" class="block text-amber-400 font-bold mb-2">Posição Principal</label>
+                            <select id="position" name="position" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <option value="">Selecione...</option>
+                                <option value="Pilar">Pilar</option>
+                                <option value="Hooker">Hooker</option>
+                                <option value="Segunda Linha">Segunda Linha</option>
+                                <option value="Asa">Asa</option>
+                                <option value="Oitavo">Oitavo</option>
+                                <option value="Scrum-half">Scrum-half</option>
+                                <option value="Abertura">Abertura</option>
+                                <option value="Centro">Centro</option>
+                                <option value="Ponta">Ponta</option>
+                                <option value="Fullback">Fullback</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="block text-amber-400 font-bold mb-2">Você já tem uma equipe?</span>
+                        <div class="flex items-center space-x-6 mt-2">
+                            <label class="flex items-center text-white cursor-pointer">
+                                <input type="radio" name="hasTeam" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400" required>
+                                <span class="ml-2">Sim</span>
+                            </label>
+                            <label class="flex items-center text-white cursor-pointer">
+                                <input type="radio" name="hasTeam" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400">
+                                <span class="ml-2">Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="teamSelectionContainer" class="hidden">
+                        <label for="teamName" class="block text-amber-400 font-bold mb-2">Selecione sua equipe</label>
+                        <select id="teamName" name="teamName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            <!-- Opções serão adicionadas via JavaScript -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <span class="block text-amber-400 font-bold mb-2">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
+                        <div class="flex items-center space-x-6 mt-2">
+                            <label class="flex items-center text-white cursor-pointer">
+                                <input type="radio" name="hasPackage" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400" required>
+                                <span class="ml-2">Sim</span>
+                            </label>
+                            <label class="flex items-center text-white cursor-pointer">
+                                <input type="radio" name="hasPackage" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400">
+                                <span class="ml-2">Não, preciso reservar</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" id="submitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                            ENVIAR INSCRIÇÃO
+                        </button>
+                    </div>
+                     <div id="form-message" class="text-center font-bold mt-4"></div>
+                </form>
+                <div id="inscription-success" class="hidden text-center p-8 bg-gray-800 rounded-xl">
+                    <i data-lucide="check-circle-2" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
+                    <h3 class="text-3xl text-green-400 mb-2">Inscrição Enviada!</h3>
+                    <p class="text-lg text-gray-300">Obrigado por se inscrever. Seus dados foram recebidos.<br>Nos vemos em campo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Timer Section -->
+    <section id="countdown-section" class="py-12 bg-amber-500 text-gray-900">
+        <div class="container mx-auto text-center px-4">
+            <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
+            <p class="text-lg mb-6">A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
+            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
+                    <span id="days" class="text-5xl font-bold">00</span>
+                    <p class="text-sm">Dias</p>
+                </div>
+                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
+                    <span id="hours" class="text-5xl font-bold">00</span>
+                    <p class="text-sm">Horas</p>
+                </div>
+                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
+                    <span id="minutes" class="text-5xl font-bold">00</span>
+                    <p class="text-sm">Minutos</p>
+                </div>
+                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
+                    <span id="seconds" class="text-5xl font-bold">00</span>
+                    <p class="text-sm">Segundos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="pacotes" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12">Pacotes de Hospedagem</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12">
+                A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pacote Card -->
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><span class="font-bold text-white">Single:</span> R$ 2.503,00</li>
+                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.224,00</li>
+                            <li><span class="font-bold text-white">Triplo:</span> R$ 3.943,00</li>
+                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 4.697,00</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                </div>
+                <!-- Pacote Card -->
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><span class="font-bold text-white">Single:</span> R$ 2.852,00</li>
+                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.506,00</li>
+                            <li><span class="font-bold text-white">Triplo:</span> R$ 4.259,00</li>
+                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.050,00</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                </div>
+                <!-- Pacote Card -->
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><span class="font-bold text-white">Single:</span> R$ 3.030,00</li>
+                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.821,00</li>
+                            <li><span class="font-bold text-white">Triplo:</span> R$ 4.612,00</li>
+                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.446,00</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                </div>
+            </div>
+            
+            <!-- Inclusions Section -->
+            <div class="mt-16">
+                <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
+                <div class="grid lg:grid-cols-5 gap-8 items-stretch">
+                    <div class="bg-gray-900 p-8 rounded-xl lg:col-span-3">
+                        <h4 class="text-3xl text-amber-400 mb-6">Refeições e Hospedagem</h4>
+                        <ul class="space-y-4 text-lg text-gray-300">
+                            <li class="flex items-start">
+                                <i data-lucide="calendar-days" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="coffee" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>Café da Manhã e Jantar:</strong> Inclusos durante toda a estadia.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="utensils-crossed" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>Almoço Especial de Sábado:</strong> Para recarregar as energias (07/02).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-500 text-gray-900 p-8 rounded-xl shadow-2xl border-4 border-amber-300 transform lg:scale-105 flex flex-col justify-center items-center lg:col-span-2">
+                         <div class="flex items-center justify-center mb-4">
+                            <i data-lucide="beer" class="w-12 h-12 md:w-16 md:h-16 text-gray-900"></i>
+                            <i data-lucide="martini" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4"></i>
+                        </div>
+                        <h4 class="text-4xl md:text-5xl text-center font-bold">OPEN BAR</h4>
+                        <p class="text-center text-xl font-semibold mb-2">SÁBADO, 07/02</p>
+                        <p class="text-center text-lg font-bold mb-4">(das 11h às 23h)</p>
+                        <p class="text-center text-base md:text-lg">
+                            Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para celebrar o dia todo!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="reserva" class="py-20 bg-gray-800 border-t border-gray-700">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12">
+                As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg text-center">
+                    <i data-lucide="phone" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
+                    <h3 class="text-3xl mb-2">Telefone</h3>
+                    <a href="tel:+556732555534" class="text-2xl text-white hover:text-amber-400 transition duration-300">(67) 3255-5534</a>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-lg text-center">
+                    <i data-lucide="mail" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
+                    <h3 class="text-3xl mb-2">E-mail</h3>
+                    <a href="mailto:comercial@zagaia.com.br" class="text-2xl text-white hover:text-amber-400 transition duration-300">comercial@zagaia.com.br</a>
+                </div>
+            </div>
+            <div class="mt-12">
+                <h4 class="text-2xl text-amber-400 mb-4">Formas de Pagamento da Hospedagem</h4>
+                <p class="text-gray-300">Opção 1: Sinal de 30% + saldo em 3x no check-in.</p>
+                <p class="text-gray-300">Opção 2: Parcelado em 10x no cartão no ato da reserva.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto text-center text-gray-500">
+            <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
+            <p class="mb-4">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
+            <p>&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.</p>
+            <p class="mt-4 text-sm">
+                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
+                    Criado por Victor Cruzetta
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div id="whatsapp-container" class="fixed bottom-5 right-5 z-[100]">
+        <div id="whatsapp-options" class="flex flex-col items-end mb-3 space-y-2 hidden">
+            <a href="https://wa.me/5567996129961?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
+                <span class="font-bold mr-2">Falar com Roberto</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            </a>
+            <a href="https://wa.me/5567992002916?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
+                <span class="font-bold mr-2">Falar com Rodrigo</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            </a>
+        </div>
+        <button id="whatsapp-toggle" class="bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-transform transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </button>
+    </div>
+
+    <!-- Kit Purchase Modal -->
+    <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-4">
+        <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-lg p-8 relative transform transition-all duration-300 scale-95 opacity-0">
+            <button id="closeKitModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            
+            <!-- Step 1: Details Form -->
+            <div id="kit-details-step">
+                <h3 class="text-4xl text-amber-400 mb-4 text-center">Garanta seu Kit Lenda</h3>
+                <p class="text-lg text-gray-300 mb-6 text-center">Preencha seus dados para personalizar a camiseta e prosseguir.</p>
+                
+                <div class="bg-gray-900 p-4 rounded-lg mb-6 text-sm text-center">
+                    <p class="font-bold text-amber-400 mb-2">VALORES DOS LOTES:</p>
+                    <p><strong class="text-white">1º Lote:</strong> R$ 150,00 (até 22 de Setembro)</p>
+                    <p><strong class="text-white">2º Lote:</strong> R$ 180,00 (até 22 de Outubro)</p>
+                    <p><strong class="text-white">3º Lote:</strong> R$ 210,00 (até 10 de Novembro)</p>
+                </div>
+                
+                <form id="kitForm" class="space-y-4 text-left">
+                    <div>
+                        <label for="kitFullName" class="block text-amber-400 font-bold mb-2">Nome Completo</label>
+                        <input type="text" id="kitFullName" name="kitFullName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+                    <div>
+                        <label for="kitNickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
+                        <input type="text" id="kitNickname" name="kitNickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+                    <hr class="border-gray-600 my-4">
+                    <div>
+                        <label for="kitShirtName" class="block text-amber-400 font-bold mb-2">Qual nome colocar na camiseta?</label>
+                        <input type="text" id="kitShirtName" name="shirtName" placeholder="Seu apelido ou nome" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="kitShirtNumber" class="block text-amber-400 font-bold mb-2">Qual número?</label>
+                            <input type="number" id="kitShirtNumber" name="shirtNumber" min="1" max="99" placeholder="Ex: 10" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        </div>
+                        <div>
+                            <label for="kitShirtSize" class="block text-amber-400 font-bold mb-2">Qual tamanho?</label>
+                            <select id="kitShirtSize" name="shirtSize" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <option value="">Selecione</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                                <option value="XG">XG</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center pt-4">
+                        <h4 class="text-4xl text-white mb-6">Valor: <span id="kit-price-display" class="text-amber-400">R$ 0,00</span></h4>
+                        <button type="submit" id="kitSubmitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">
+                            IR PARA PAGAMENTO
+                        </button>
+                    </div>
+                </form>
+                <div id="kit-form-message" class="text-center font-bold mt-4"></div>
+            </div>
+
+            <!-- Step 2: Payment -->
+            <div id="kit-payment-step" class="hidden text-center">
+                 <h3 class="text-4xl text-amber-400 mb-4">Efetuar Pagamento</h3>
+                 <p class="text-lg text-gray-300 mb-6">Para finalizar, pague com PIX o valor de <strong id="pix-amount-display" class="text-white">R$ 0,00</strong>.</p>
+                 
+                 <!-- NOVO Container para o PIX (QR Code) -->
+                 <div id="payment_container" class="mt-6"></div>
+
+                 <button id="back-to-details-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                     Voltar e Editar Dados
+                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Importa as funções do Firebase que vamos usar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        // IMPORTANTE: Adiciona a ferramenta para chamar nossa Cloud Function
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-functions.js";
+
+        // Sua configuração do Firebase (sem mudanças)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
+            authDomain: "encontrorugbylegends.firebaseapp.com",
+            projectId: "encontrorugbylegends",
+            storageBucket: "encontrorugbylegends.firebasestorage.app",
+            messagingSenderId: "228233608028",
+            appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
+            measurementId: "G-054DYF3Z1E"
+        };
+
+        // Inicializa o Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        // Inicializa o serviço de Functions
+        const functions = getFunctions(app);
+
+        // Autenticação anônima
+        signInAnonymously(auth).catch((error) => {
+            console.error("Anonymous sign-in failed:", error);
+        });
+
+        // --- Lógica do site (sem grandes mudanças) ---
+        const inscriptionForm = document.getElementById('inscriptionForm');
+        const formMessage = document.getElementById('form-message');
+        const submitButton = document.getElementById('submitButton');
+        const inscriptionSuccessDiv = document.getElementById('inscription-success');
+        const kitModal = document.getElementById('kitModal');
+        const kitModalContent = document.getElementById('kitModalContent');
+        const kitForm = document.getElementById('kitForm');
+        const kitSubmitButton = document.getElementById('kitSubmitButton');
+        const kitFormMessage = document.getElementById('kit-form-message');
+        const openKitModalBtn = document.getElementById('openKitModalBtn');
+        const closeKitModalButton = document.getElementById('closeKitModal');
+        const kitDetailsStep = document.getElementById('kit-details-step');
+        const kitPaymentStep = document.getElementById('kit-payment-step');
+        const backToDetailsBtn = document.getElementById('back-to-details-btn');
+        window.kitPurchaseData = {};
+
+        function openKitModal() {
+            kitModal.classList.remove('hidden');
+            kitModal.classList.add('flex');
+            updateKitPrice(); 
+            setTimeout(() => {
+                kitModalContent.classList.remove('scale-95', 'opacity-0');
+                kitModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeKitModal() {
+            kitModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                kitModal.classList.add('hidden');
+                kitModal.classList.remove('flex');
+            }, 300);
+        }
+
+        closeKitModalButton.addEventListener('click', closeKitModal);
+
+        inscriptionForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitButton.disabled = true;
+            submitButton.textContent = 'ENVIANDO...';
+            const formData = new FormData(this);
+            const inscriptionData = {
+                fullName: formData.get('fullName'),
+                nickname: formData.get('nickname'),
+                age: formData.get('age'),
+                position: formData.get('position'),
+                hasPackage: formData.get('hasPackage'),
+                hasTeam: formData.get('hasTeam'),
+                teamName: formData.get('teamName'),
+                purchaseType: 'inscription',
+                timestamp: serverTimestamp()
+            };
+            try {
+                await addDoc(collection(db, "inscriptions"), inscriptionData);
+                inscriptionForm.classList.add('hidden');
+                inscriptionSuccessDiv.classList.remove('hidden');
+                lucide.createIcons();
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                submitButton.disabled = false;
+            }
+        });
+
+        openKitModalBtn.addEventListener('click', () => {
+            kitDetailsStep.classList.remove('hidden');
+            kitPaymentStep.classList.add('hidden');
+            kitForm.reset();
+            kitFormMessage.textContent = '';
+            document.getElementById('payment_container').innerHTML = '';
+            openKitModal();
+        });
+
+        backToDetailsBtn.addEventListener('click', () => {
+            kitPaymentStep.classList.add('hidden');
+            kitDetailsStep.classList.remove('hidden');
+            document.getElementById('payment_container').innerHTML = '';
+        });
+
+        kitForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            kitSubmitButton.disabled = true;
+            kitSubmitButton.textContent = 'PROCESSANDO...';
+            const formData = new FormData(this);
+            window.kitPurchaseData = {
+                fullName: formData.get('kitFullName'),
+                nickname: formData.get('kitNickname'),
+                kit_shirtName: formData.get('shirtName'),
+                kit_shirtNumber: formData.get('shirtNumber'),
+                kit_shirtSize: formData.get('shirtSize'),
+                kit_purchased: true,
+                kit_price: getCurrentKitPrice(),
+                purchaseType: 'kit_only',
+                payment_status: 'pending',
+                timestamp: serverTimestamp()
+            };
+            
+            try {
+                // Salva o pedido no Firebase primeiro com status 'pending'
+                await window.saveKitDataToFirebase(window.kitPurchaseData);
+                // Se salvar com sucesso, dispara o evento para criar o pagamento
+                document.dispatchEvent(new CustomEvent('createPayment', { detail: window.kitPurchaseData }));
+            } catch (error) {
+                console.error("Erro ao salvar pré-compra no Firebase:", error);
+                alert("Não foi possível registrar seu pedido. Tente novamente.");
+                kitSubmitButton.disabled = false;
+                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
+            }
+        });
+
+        window.saveKitDataToFirebase = async (data) => {
+            await addDoc(collection(db, "inscriptions"), data);
+            console.log("Dados do kit salvos no Firebase com sucesso!");
+        };
+    </script>
+    
+    <script>
+        // Lógica do site (sem mudanças)
+        lucide.createIcons();
+        const countdown = () => {
+            const countDate = new Date("November 27, 2025 23:59:59").getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
+            const textDay = Math.floor(gap / day), textHour = Math.floor((gap % day) / hour), textMinute = Math.floor((gap % hour) / minute), textSecond = Math.floor((gap % minute) / second);
+            if (document.getElementById('days')) {
+                document.getElementById('days').innerText = textDay < 10 ? '0' + textDay : textDay;
+                document.getElementById('hours').innerText = textHour < 10 ? '0' + textHour : textHour;
+                document.getElementById('minutes').innerText = textMinute < 10 ? '0' + textMinute : textMinute;
+                document.getElementById('seconds').innerText = textSecond < 10 ? '0' + textSecond : textSecond;
+            }
+            if (gap < 0) {
+                clearInterval(interval);
+                if(document.getElementById('countdown-section')) {
+                    document.getElementById('countdown-section').innerHTML = '<div class="container mx-auto text-center px-4"><h3 class="text-4xl">O prazo para a tarifa especial encerrou!</h3></div>';
+                }
+            }
+        };
+        const interval = setInterval(countdown, 1000);
+        countdown();
+        const whatsappContainer = document.getElementById('whatsapp-container');
+        const whatsappToggle = document.getElementById('whatsapp-toggle');
+        const whatsappOptions = document.getElementById('whatsapp-options');
+        whatsappToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappContainer.classList.toggle('open');
+            whatsappOptions.classList.toggle('hidden');
+            whatsappOptions.classList.toggle('flex');
+        });
+        document.addEventListener('click', (e) => {
+            if (!whatsappContainer.contains(e.target) && whatsappContainer.classList.contains('open')) {
+                whatsappContainer.classList.remove('open');
+                whatsappOptions.classList.add('hidden');
+                whatsappOptions.classList.remove('flex');
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
+            const teamSelectionContainer = document.getElementById('teamSelectionContainer');
+            const teamNameSelect = document.getElementById('teamName');
+            const teams = { 'Sim': ['Keep Walking', 'pelicanos', 'Jurassic pira', 'Jaguaras', 'desterrados'], 'Não': ['Misto 1', 'Misto 2', 'Misto 3'] };
+            hasTeamRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    const selectedValue = event.target.value;
+                    teamNameSelect.innerHTML = ''; 
+                    if (teams[selectedValue]) {
+                        teams[selectedValue].forEach(team => {
+                            const option = document.createElement('option');
+                            option.value = team;
+                            option.textContent = team;
+                            teamNameSelect.appendChild(option);
+                        });
+                        teamSelectionContainer.classList.remove('hidden');
+                        teamNameSelect.required = true;
+                    } else {
+                        teamSelectionContainer.classList.add('hidden');
+                        teamNameSelect.required = false;
+                    }
+                });
+            });
+        });
+        function getCurrentKitPrice() {
+            const now = new Date();
+            const lote1Date = new Date('2025-09-22T23:59:59');
+            const lote2Date = new Date('2025-10-22T23:59:59');
+            const lote3Date = new Date('2025-11-10T23:59:59');
+            if (now <= lote1Date) return 150;
+            else if (now <= lote2Date) return 180;
+            else return 210;
+        }
+        function updateKitPrice() {
+            const price = getCurrentKitPrice();
+            const formattedPrice = `R$ ${price.toFixed(2).replace('.', ',')}`;
+            const kitPriceDisplay = document.getElementById('kit-price-display');
+            const pixAmountDisplay = document.getElementById('pix-amount-display');
+            if (kitPriceDisplay) kitPriceDisplay.textContent = formattedPrice;
+            if (pixAmountDisplay) pixAmountDisplay.textContent = formattedPrice;
+        }
+    </script>
+
+    <!-- ==================================================== -->
+    <!--     NOVO SCRIPT SEGURO PARA PAGAMENTO COM PIX        -->
+    <!-- ==================================================== -->
+    <script type="module">
+        // Importa a ferramenta para chamar a Cloud Function
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-functions.js";
+
+        // ===================================================================================
+        // PASSO 1: SUBSTITUA SUA PUBLIC KEY AQUI
+        // Cole sua Public Key (a chave segura) que você pegou no painel do Mercado Pago.
+        // O Access Token SECRETO foi REMOVIDO daqui. Ele está seguro na sua Cloud Function.
+        // ===================================================================================
+        const publicKey = 'SUA_PUBLIC_KEY_AQUI'; 
+        
+        // Inicializa o Mercado Pago com a sua Public Key
+        const mp = new MercadoPago(publicKey);
+        const functions = getFunctions(); // Obtém a instância do Functions
+
+        // Prepara a chamada para a nossa "função-cofre"
+        const createPaymentPreferenceCallable = httpsCallable(functions, 'createPaymentPreference');
+
+        // Função que chama a Cloud Function para criar a preferência de pagamento
+        async function createPaymentPreference(kitData) {
+            try {
+                const dataToSend = {
+                    price: kitData.kit_price,
+                    title: `Kit Lenda - ${kitData.kit_shirtName} #${kitData.kit_shirtNumber}`,
+                    payerName: kitData.fullName
+                };
+
+                const result = await createPaymentPreferenceCallable(dataToSend);
+                const preferenceId = result.data.preferenceId;
+                
+                // Renderiza o componente de pagamento com o ID recebido
+                createPaymentBrick(kitData, preferenceId);
+
+                document.getElementById('kit-details-step').classList.add('hidden');
+                document.getElementById('kit-payment-step').classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Erro ao chamar a Cloud Function:", error);
+                alert('Ocorreu um erro ao processar o pagamento. Tente novamente.');
+            } finally {
+                const kitSubmitButton = document.getElementById('kitSubmitButton');
+                kitSubmitButton.disabled = false;
+                kitSubmitButton.textContent = 'IR PARA PAGAMENTO';
+            }
+        }
+
+        // Função que renderiza o componente de pagamento (o QR Code do PIX)
+        async function createPaymentBrick(kitData, preferenceId) {
+            const bricksBuilder = mp.bricks();
+            const settings = {
+                initialization: {
+                    amount: kitData.kit_price, // Valor a ser pago
+                    preferenceId: preferenceId, // ID da preferência
+                },
+                customization: {
+                    visual: {
+                        style: {
+                            theme: 'dark', // Tema escuro para combinar com o site
+                        }
+                    }
+                },
+                callbacks: {
+                    onReady: () => {
+                        console.log('Componente de pagamento pronto!');
+                    },
+                    onSubmit: (formData) => {
+                        // Não é usado para PIX, pois o pagamento é externo (app do banco)
+                        // A confirmação real deve ser feita via Webhooks (uma melhoria futura)
+                    },
+                    onError: (error) => {
+                        console.error(error);
+                        alert('Ocorreu um erro com o módulo de pagamento.');
+                    },
+                },
+            };
+
+            // Renderiza o componente na tela
+            if (window.paymentBrick) {
+                window.paymentBrick.unmount();
+            }
+            window.paymentBrick = await bricksBuilder.create('payment', 'payment_container', settings);
+        }
+
+        // Escuta o evento que é disparado quando o formulário do kit é enviado
+        document.addEventListener('createPayment', (event) => {
+            const kitData = event.detail;
+            createPaymentPreference(kitData);
+        });
+    </script>
+</body>
+</html>

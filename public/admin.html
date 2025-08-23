@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Inscrições Rugby LEGENDS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #f3f4f6; /* text-gray-100 */
+        }
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', cursive;
+        }
+        th, td {
+            white-space: nowrap;
+        }
+        .table-container {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="container mx-auto">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-8">
+            <h1 class="text-5xl text-amber-400 mb-4 md:mb-0">Painel de Controle</h1>
+            <div id="status" class="text-lg text-right">
+                <span class="text-yellow-400">Conectando ao banco de dados...</span>
+            </div>
+        </header>
+
+        <!-- Athlete Inscriptions Section -->
+        <div class="mb-12">
+            <div class="flex items-center mb-4">
+                <h2 class="text-4xl text-amber-400 border-b-2 border-amber-400/50 pb-2">Inscrições de Atletas</h2>
+                <span id="inscriptionsCount" class="ml-4 text-3xl font-bold bg-gray-700 text-amber-400 px-3 py-1 rounded-lg">0</span>
+            </div>
+            <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
+                <table class="min-w-full">
+                    <thead class="bg-gray-900 sticky top-0">
+                        <tr>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Data</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Nome Completo</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Apelido</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Idade</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Posição</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Equipe</th>
+                            <th class="p-4 text-left text-amber-400 tracking-wider">Pacote Hotel?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inscriptionsTableBody">
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+                <p id="no-inscriptions" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma inscrição de atleta encontrada.</p>
+            </div>
+        </div>
+
+        <!-- Kit Purchases Section -->
+        <div>
+             <div class="flex items-center mb-4">
+                <h2 class="text-4xl text-sky-400 border-b-2 border-sky-400/50 pb-2">Compras de Kit Avulso</h2>
+                <span id="kitsCount" class="ml-4 text-3xl font-bold bg-gray-700 text-sky-400 px-3 py-1 rounded-lg">0</span>
+            </div>
+            <div class="table-container overflow-x-auto bg-gray-800 p-4 rounded-xl shadow-lg">
+                <table class="min-w-full">
+                    <thead class="bg-gray-900 sticky top-0">
+                        <tr>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Data</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Nome Completo</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Apelido</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Nome Camisa</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Nº Camisa</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Tamanho</th>
+                            <th class="p-4 text-left text-sky-400 tracking-wider">Valor Pago</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kitsTableBody">
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+                <p id="no-kits" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma compra de kit avulso encontrada.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
+            authDomain: "encontrorugbylegends.firebaseapp.com",
+            projectId: "encontrorugbylegends",
+            storageBucket: "encontrorugbylegends.firebasestorage.app",
+            messagingSenderId: "228233608028",
+            appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
+            measurementId: "G-054DYF3Z1E"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        const inscriptionsTableBody = document.getElementById('inscriptionsTableBody');
+        const kitsTableBody = document.getElementById('kitsTableBody');
+        const noInscriptionsMessage = document.getElementById('no-inscriptions');
+        const noKitsMessage = document.getElementById('no-kits');
+        const statusDiv = document.getElementById('status');
+        const inscriptionsCountSpan = document.getElementById('inscriptionsCount');
+        const kitsCountSpan = document.getElementById('kitsCount');
+        
+        // Sign in anonymously to allow reading from Firestore
+        signInAnonymously(auth).then(() => {
+            const q = query(collection(db, "inscriptions"), orderBy("timestamp", "desc"));
+
+            onSnapshot(q, (querySnapshot) => {
+                
+                // Clear tables before populating
+                inscriptionsTableBody.innerHTML = '';
+                kitsTableBody.innerHTML = '';
+                
+                let inscriptionsCounter = 0;
+                let kitsCounter = 0;
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const date = data.timestamp ? data.timestamp.toDate().toLocaleString('pt-BR') : 'N/A';
+
+                    if (data.purchaseType === 'kit_only') {
+                        // This is a kit-only purchase
+                        kitsCounter++;
+                        const row = document.createElement('tr');
+                        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
+                        row.innerHTML = `
+                            <td class="p-4 text-sm text-gray-400">${date}</td>
+                            <td class="p-4">${data.fullName}</td>
+                            <td class="p-4">${data.nickname || '-'}</td>
+                            <td class="p-4">${data.kit_shirtName || '-'}</td>
+                            <td class="p-4">${data.kit_shirtNumber || '-'}</td>
+                            <td class="p-4">${data.kit_shirtSize || '-'}</td>
+                            <td class="p-4 font-bold text-green-400">R$ ${data.kit_price ? data.kit_price.toFixed(2).replace('.', ',') : 'N/A'}</td>
+                        `;
+                        kitsTableBody.appendChild(row);
+                    } else {
+                        // This is a full athlete inscription
+                        inscriptionsCounter++;
+                        const packageStatusHtml = `
+                            <span class="${data.hasPackage === 'Sim' ? 'bg-green-500' : 'bg-yellow-500'} text-gray-900 font-bold text-xs py-1 px-3 rounded-full">
+                                ${data.hasPackage || '-'}
+                            </span>`;
+                        
+                        const row = document.createElement('tr');
+                        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
+                        row.innerHTML = `
+                            <td class="p-4 text-sm text-gray-400">${date}</td>
+                            <td class="p-4">${data.fullName}</td>
+                            <td class="p-4">${data.nickname || '-'}</td>
+                            <td class="p-4">${data.age || '-'}</td>
+                            <td class="p-4">${data.position || '-'}</td>
+                            <td class="p-4">${data.teamName || '-'}</td>
+                            <td class="p-4">${packageStatusHtml}</td>
+                        `;
+                        inscriptionsTableBody.appendChild(row);
+                    }
+                });
+                
+                // Update status and individual counters
+                statusDiv.innerHTML = `<span class="text-green-400">Conectado e atualizando em tempo real.</span>`;
+                inscriptionsCountSpan.textContent = inscriptionsCounter;
+                kitsCountSpan.textContent = kitsCounter;
+
+
+                // Show or hide the "no data" messages
+                noInscriptionsMessage.classList.toggle('hidden', inscriptionsCounter > 0);
+                noKitsMessage.classList.toggle('hidden', kitsCounter > 0);
+
+            }, (error) => {
+                console.error("Error getting documents: ", error);
+                statusDiv.innerHTML = `<span class="text-red-500">Erro de conexão com o banco de dados.</span>`;
+            });
+        }).catch((error) => {
+            console.error("Anonymous sign-in failed:", error);
+            statusDiv.innerHTML = `<span class="text-red-500">Falha na autenticação. Não é possível ler os dados.</span>`;
+        });
+
+    </script>
+</body>
+</html>
