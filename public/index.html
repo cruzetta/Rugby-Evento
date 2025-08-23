@@ -51,6 +51,10 @@
         #kitModal {
             transition: opacity 0.3s ease-in-out;
         }
+        /* Adicionado para travar a rolagem do body quando o modal estiver aberto */
+        body.overflow-hidden {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -499,7 +503,8 @@
     </div>
 
     <!-- Kit Purchase Modal -->
-    <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-4">
+    <!-- ATUALIZADO: Adicionado overflow-y-auto, removido items-center, e adicionado padding no topo -->
+    <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-start justify-center overflow-y-auto p-4 pt-8 sm:pt-12">
         <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-lg p-8 relative transform transition-all duration-300 scale-95 opacity-0">
             <button id="closeKitModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             
@@ -607,6 +612,7 @@
         const kitDetailsStep = document.getElementById('kit-details-step');
         
         function openKitModal() {
+            document.body.classList.add('overflow-hidden'); // Trava a rolagem do body
             kitModal.classList.remove('hidden');
             kitModal.classList.add('flex');
             updateKitPrice(); 
@@ -617,6 +623,7 @@
         }
 
         function closeKitModal() {
+            document.body.classList.remove('overflow-hidden'); // Destrava a rolagem do body
             kitModalContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 kitModal.classList.add('hidden');
