@@ -681,7 +681,9 @@
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
             authDomain: "encontrorugbylegends.firebaseapp.com",
             projectId: "encontrorugbylegends",
-            storageBucket: "encontrorugbylegends.appspot.com",
+            // --- INÍCIO DA CORREÇÃO ---
+            storageBucket: "encontrorugbylegends.firebasestorage.app",
+            // --- FIM DA CORREÇÃO ---
             messagingSenderId: "228233608028",
             appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
             measurementId: "G-054DYF3Z1E"
@@ -692,7 +694,6 @@
         const auth = getAuth(app);
         const storage = getStorage(app);
         
-        // --- INÍCIO DA CORREÇÃO ---
         const submitOrderBtn = document.getElementById('submitOrderBtn');
         
         // Desabilita o botão de envio assim que a página carrega
@@ -711,7 +712,6 @@
             submitOrderBtn.textContent = 'ERRO DE AUTENTICAÇÃO';
             // Mantém o botão desabilitado se o login falhar
           });
-        // --- FIM DA CORREÇÃO ---
 
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
