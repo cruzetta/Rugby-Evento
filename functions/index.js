@@ -6,24 +6,30 @@ const fetch = require("node-fetch");
 admin.initializeApp();
 
 // ===================================================================================
-// IMPORTANTE: Seu Access Token já foi configurado de forma segura com o comando
-// firebase functions:config:set e está sendo lido pela linha abaixo.
+// MUDANÇA IMPORTANTE: Migração do functions.config() para variáveis de ambiente.
+// O Access Token agora é lido de forma segura do ambiente da função (process.env).
+// Para deploy, o Firebase CLI usará o arquivo .env.<project_id>.
 // ===================================================================================
-const accessToken = functions.config().mercadopago.token;
+const accessToken = process.env.MERCADOPAGO_TOKEN;
 
-// ===================================================================================
-// CORREÇÃO: Forçando a função a rodar em São Paulo (southamerica-east1)
-// e especificando o Node.js 18 para máxima compatibilidade.
-// ===================================================================================
 exports.createPaymentPreference = functions
-  .region("southamerica-east1") // <-- Adicionado para definir a região
-  .runWith({ node: "18" }) // Mantido para garantir a versão do Node.js
+  .region("southamerica-east1")
+  .runWith({ node: "18" })
   .https.onCall(async (data, context) => {
-    // Verificando se os dados essenciais foram recebidos
+    // Verificação inicial se o Access Token foi carregado no ambiente da nuvem
+    if (!accessToken) {
+      console.error("ERRO CRÍTICO: MERCADOPAGO_TOKEN não foi encontrado nas variáveis de ambiente da função. Verifique se o deploy incluiu o arquivo .env.<project_id>.");
+      throw new functions.https.HttpsError(
+        "internal",
+        "A configuração de pagamento do servidor está incompleta."
+      );
+    }
+
+    // Verificando se os dados essenciais foram recebidos do site
     if (!data.price || !data.title) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "A função precisa receber 'price' e 'title'.",
+        "A função precisa receber 'price' e 'title' do site."
       );
     }
 
@@ -31,7 +37,6 @@ exports.createPaymentPreference = functions
     const kitTitle = data.title;
     const payerName = data.payerName;
 
-    // Objeto com os detalhes do produto
     const item = {
       title: kitTitle,
       description: "Kit Lenda para o evento Rugby Legends",
@@ -40,13 +45,11 @@ exports.createPaymentPreference = functions
       unit_price: kitPrice,
     };
 
-    // Objeto com os dados do comprador
     const payer = {
       name: payerName,
       email: "pagamento@rugbylegends.com", // E-mail genérico
     };
 
-    // Corpo da requisição para a API do Mercado Pago
     const body = {
       items: [item],
       payer: payer,
@@ -59,8 +62,6 @@ exports.createPaymentPreference = functions
         ],
         installments: 1,
       },
-      // Você pode adicionar uma URL de notificação aqui se precisar
-      // notification_url: 'https://sua-outra-funcao.com/notificacao',
     };
 
     try {
@@ -68,30 +69,33 @@ exports.createPaymentPreference = functions
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`, // Usando o token seguro!
+          "Authorization": `Bearer ${accessToken}`,
         },
         body: JSON.stringify(body),
       });
 
       if (!response.ok) {
         const errorBody = await response.json();
-        console.error("Erro do Mercado Pago:", errorBody);
+        // Log mais detalhado do erro vindo do Mercado Pago
+        console.error("Erro retornado pela API do Mercado Pago:", JSON.stringify(errorBody, null, 2));
         throw new functions.https.HttpsError(
           "internal",
-          "Falha ao criar preferência de pagamento.",
+          `Falha ao criar preferência de pagamento: ${errorBody.message || 'Verifique os logs da função.'}`
         );
       }
 
       const preference = await response.json();
-
-      // Retornando apenas o ID da preferência para o site (frontend)
       return { preferenceId: preference.id };
 
     } catch (error) {
-      console.error("Erro ao chamar a API do Mercado Pago:", error);
+      // Log detalhado de erros de rede ou outros problemas
+      console.error("Erro catastrófico ao tentar se comunicar com a API do Mercado Pago:", error);
+      if (error instanceof functions.https.HttpsError) {
+        throw error; // Re-lança o erro que já formatamos acima
+      }
       throw new functions.https.HttpsError(
         "unknown",
-        "Ocorreu um erro inesperado.",
+        "Ocorreu um erro inesperado no servidor. Verifique os logs da função para mais detalhes."
       );
     }
   });
