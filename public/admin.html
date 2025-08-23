@@ -36,7 +36,6 @@
             </div>
         </header>
 
-        <!-- Athlete Inscriptions Section -->
         <div class="mb-12">
             <div class="flex items-center mb-4">
                 <h2 class="text-4xl text-amber-400 border-b-2 border-amber-400/50 pb-2">Inscrições de Atletas</h2>
@@ -53,17 +52,16 @@
                             <th class="p-4 text-left text-amber-400 tracking-wider">Posição</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Equipe</th>
                             <th class="p-4 text-left text-amber-400 tracking-wider">Pacote Hotel?</th>
+                            <th class="p-4 text-center text-amber-400 tracking-wider">Ações</th>
                         </tr>
                     </thead>
                     <tbody id="inscriptionsTableBody">
-                        <!-- Rows will be inserted here by JavaScript -->
-                    </tbody>
+                        </tbody>
                 </table>
                 <p id="no-inscriptions" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma inscrição de atleta encontrada.</p>
             </div>
         </div>
 
-        <!-- Kit Purchases Section -->
         <div>
              <div class="flex items-center mb-4">
                 <h2 class="text-4xl text-sky-400 border-b-2 border-sky-400/50 pb-2">Compras de Kit Avulso</h2>
@@ -80,29 +78,29 @@
                             <th class="p-4 text-left text-sky-400 tracking-wider">Nº Camisa</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Tamanho</th>
                             <th class="p-4 text-left text-sky-400 tracking-wider">Valor Pago</th>
+                             <th class="p-4 text-center text-sky-400 tracking-wider">Ações</th>
                         </tr>
                     </thead>
                     <tbody id="kitsTableBody">
-                        <!-- Rows will be inserted here by JavaScript -->
-                    </tbody>
+                        </tbody>
                 </table>
                 <p id="no-kits" class="text-center text-gray-400 py-8 text-lg hidden">Nenhuma compra de kit avulso encontrada.</p>
             </div>
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
+        // IMPORTS ATUALIZADOS: Adicionamos 'doc' e 'deleteDoc' para a função de excluir
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
-        // Your web app's Firebase configuration
+        // Sua configuração do Firebase (mantida igual)
         const firebaseConfig = {
             apiKey: "AIzaSyDkR9qaY8xzektPr0DninTxaFOhP3PX_Qo",
             authDomain: "encontrorugbylegends.firebaseapp.com",
             projectId: "encontrorugbylegends",
-            storageBucket: "encontrorugbylegends.firebasestorage.app",
+            storageBucket: "encontrorugbylegends.appspot.com",
             messagingSenderId: "228233608028",
             appId: "1:228233608028:web:952e04b9ef63aa70d15f99",
             measurementId: "G-054DYF3Z1E"
@@ -120,6 +118,46 @@
         const statusDiv = document.getElementById('status');
         const inscriptionsCountSpan = document.getElementById('inscriptionsCount');
         const kitsCountSpan = document.getElementById('kitsCount');
+
+        // =====================================================================
+        // FUNÇÃO PARA EXCLUIR UM DOCUMENTO
+        // =====================================================================
+        window.handleDelete = async (docId, fullName) => {
+            // Pergunta ao usuário se ele tem certeza absoluta
+            const confirmationMessage = `Tem certeza ABSOLUTA que deseja excluir a inscrição de "${fullName}"?\n\nEsta ação não pode ser desfeita.`;
+            
+            if (window.confirm(confirmationMessage)) {
+                try {
+                    // Se confirmar, tenta excluir o documento da coleção 'inscriptions'
+                    await deleteDoc(doc(db, "inscriptions", docId));
+                    alert(`Inscrição de "${fullName}" excluída com sucesso!`);
+                } catch (error) {
+                    // Se der erro, exibe uma mensagem
+                    console.error("Erro ao excluir o documento: ", error);
+                    alert(`Ocorreu um erro ao excluir a inscrição de "${fullName}". Tente novamente.`);
+                }
+            } else {
+                // Se cancelar, informa que a ação foi cancelada
+                console.log('Exclusão cancelada pelo usuário.');
+            }
+        };
+
+        // =====================================================================
+        // FUNÇÃO PARA EDITAR UM DOCUMENTO (ATUALMENTE APENAS UM ALERTA)
+        // =====================================================================
+        window.handleEdit = (docId, fullName) => {
+            // Pergunta ao usuário se ele realmente quer editar
+            const confirmationMessage = `Você está prestes a editar os dados de "${fullName}". Deseja continuar?`;
+            
+            if (window.confirm(confirmationMessage)) {
+                // A LÓGICA DE EDIÇÃO VIRIA AQUI.
+                // Por exemplo, abrir um formulário/modal com os dados do usuário.
+                // Por enquanto, apenas exibimos um alerta.
+                alert(`Função de edição chamada para: ${fullName} (ID: ${docId}).\nImplemente aqui a lógica para abrir um formulário de edição.`);
+            } else {
+                console.log('Edição cancelada pelo usuário.');
+            }
+        };
         
         // Sign in anonymously to allow reading from Firestore
         signInAnonymously(auth).then(() => {
@@ -127,7 +165,6 @@
 
             onSnapshot(q, (querySnapshot) => {
                 
-                // Clear tables before populating
                 inscriptionsTableBody.innerHTML = '';
                 kitsTableBody.innerHTML = '';
                 
@@ -136,10 +173,22 @@
 
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
+                    const docId = doc.id; // Pegamos o ID do documento, essencial para excluir/editar
                     const date = data.timestamp ? data.timestamp.toDate().toLocaleString('pt-BR') : 'N/A';
 
+                    // Célula com os botões de ação
+                    const actionsCell = `
+                        <td class="p-4 text-center">
+                            <button onclick="handleEdit('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-blue-400 hover:text-blue-300 mr-4" title="Editar">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>
+                            </button>
+                            <button onclick="handleDelete('${docId}', '${data.fullName.replace(/'/g, "\\'")}')" class="text-red-500 hover:text-red-400" title="Excluir">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" /></svg>
+                            </button>
+                        </td>
+                    `;
+
                     if (data.purchaseType === 'kit_only') {
-                        // This is a kit-only purchase
                         kitsCounter++;
                         const row = document.createElement('tr');
                         row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
@@ -151,16 +200,12 @@
                             <td class="p-4">${data.kit_shirtNumber || '-'}</td>
                             <td class="p-4">${data.kit_shirtSize || '-'}</td>
                             <td class="p-4 font-bold text-green-400">R$ ${data.kit_price ? data.kit_price.toFixed(2).replace('.', ',') : 'N/A'}</td>
+                            ${actionsCell}
                         `;
                         kitsTableBody.appendChild(row);
                     } else {
-                        // This is a full athlete inscription
                         inscriptionsCounter++;
-                        const packageStatusHtml = `
-                            <span class="${data.hasPackage === 'Sim' ? 'bg-green-500' : 'bg-yellow-500'} text-gray-900 font-bold text-xs py-1 px-3 rounded-full">
-                                ${data.hasPackage || '-'}
-                            </span>`;
-                        
+                        const packageStatusHtml = `<span class="${data.hasPackage === 'Sim' ? 'bg-green-500' : 'bg-yellow-500'} text-gray-900 font-bold text-xs py-1 px-3 rounded-full">${data.hasPackage || '-'}</span>`;
                         const row = document.createElement('tr');
                         row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-700/50');
                         row.innerHTML = `
@@ -171,18 +216,16 @@
                             <td class="p-4">${data.position || '-'}</td>
                             <td class="p-4">${data.teamName || '-'}</td>
                             <td class="p-4">${packageStatusHtml}</td>
+                            ${actionsCell}
                         `;
                         inscriptionsTableBody.appendChild(row);
                     }
                 });
                 
-                // Update status and individual counters
                 statusDiv.innerHTML = `<span class="text-green-400">Conectado e atualizando em tempo real.</span>`;
                 inscriptionsCountSpan.textContent = inscriptionsCounter;
                 kitsCountSpan.textContent = kitsCounter;
 
-
-                // Show or hide the "no data" messages
                 noInscriptionsMessage.classList.toggle('hidden', inscriptionsCounter > 0);
                 noKitsMessage.classList.toggle('hidden', kitsCounter > 0);
 
