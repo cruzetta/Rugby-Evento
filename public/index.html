@@ -27,9 +27,9 @@
             --rugby-dark: #0f172a; /* Slate-900 - Um tom escuro mais moderno */
         }
         html, body {
-            /* CORREÇÃO: Impede a rolagem horizontal */
-            overflow-x: hidden;
+            /* CORREÇÃO: Impede a rolagem horizontal em todo o documento */
             width: 100%;
+            overflow-x: hidden;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -199,503 +199,506 @@
         </div>
     </header>
 
-    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full z-0">
-            <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-        </video>
-        <div class="absolute inset-0 bg-black/75 z-10"></div>
-        <div class="relative z-20 container mx-auto px-4 pt-20">
-            <!-- CORREÇÃO: Fontes responsivas para evitar overflow em telas pequenas -->
-            <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight" data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
-            <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4" data-aos="fade-up" data-aos-delay="600">06 a 08 de Fevereiro de 2026</p>
-            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">1º Encontro Rugby LEGENDS</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300 font-roboto" data-aos="fade-up" data-aos-delay="1000">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
-            <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-110 shadow-xl" data-aos="zoom-in" data-aos-delay="1200">INSCREVA-SE AGORA</a>
-        </div>
-    </section>
-
-    <!-- Seção Modificada: Cor de fundo alterada para Slate-800 e AOS adicionado -->
-    <section id="sobre" class="py-20 bg-slate-800">
-        <div class="container mx-auto text-center px-4">
-            <!-- CORREÇÃO: Fontes responsivas -->
-            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">Uma Convocação Histórica</h2>
-            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left">
-                Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
-            </p>
-            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-left" data-aos-delay="200">
-                O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas. As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se para reviver a glória dos velhos tempos!
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <!-- Cartões Modificados: Adicionada classe 'card-mud' e AOS -->
-                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud flex flex-col" data-aos="zoom-in-up" data-aos-delay="100">
-                    <i data-lucide="shield-half" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                    <h3 class="text-3xl mb-2">Rugby Para Todos</h3>
-                    <p class="text-gray-400 flex-grow text-left font-roboto">
-                        <strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).
-                        <strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma atividade leve para que esposas, filhos e amigos possam se divertir em campo.
-                        <strong class="text-amber-400 block mt-3 mb-2"> • Jogo de Confraternização (XV):</strong> Para fechar, uma partida aberta de XV, unindo jogadores de todas as idades.
-                    </p>
-                </div>
-                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="300">
-                    <i data-lucide="heart-handshake" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                    <h3 class="text-3xl mb-2">Família</h3>
-                    <p class="text-gray-400 font-roboto">Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.</p>
-                </div>
-                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="500">
-                    <i data-lucide="palmtree" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                    <h3 class="text-3xl mb-2">Resort</h3>
-                    <p class="text-gray-400 font-roboto">Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.</p>
-                </div>
+    <!-- AJUSTE: Wrapper principal para conter o fluxo do conteúdo e evitar rolagem horizontal -->
+    <main class="w-full overflow-x-hidden">
+        <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+            <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full z-0">
+                <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+            <div class="absolute inset-0 bg-black/75 z-10"></div>
+            <div class="relative z-20 container mx-auto px-4 pt-20">
+                <!-- CORREÇÃO: Fontes responsivas para evitar overflow em telas pequenas -->
+                <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight" data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
+                <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4" data-aos="fade-up" data-aos-delay="600">06 a 08 de Fevereiro de 2026</p>
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">1º Encontro Rugby LEGENDS</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300 font-roboto" data-aos="fade-up" data-aos-delay="1000">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
+                <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-110 shadow-xl" data-aos="zoom-in" data-aos-delay="1200">INSCREVA-SE AGORA</a>
             </div>
-             <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50" data-aos="flip-up">QUERO FAZER PARTE DE UM TIME!</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Esta seção agora tem um fundo fixo (Parallax) definido no CSS -->
-    <section id="local" class="py-20 zagaia-bg">
-        <div class="container mx-auto text-center px-4" data-aos="fade-up">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
-            <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
-            <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto">
-                Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.
-            </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <!-- Imagens Modificadas: Adicionado efeito de hover e AOS -->
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201602.png?alt=media&token=912d7f53-3bf2-4215-adfa-2f4cbccf184c" alt="Piscina do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201716.png?alt=media&token=85f943d4-9179-4213-9c02-f5d2b8cbd717" alt="Apartamento do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201651.png?alt=media&token=bf6a5c9b-1eea-432a-bbee-532ad5aeb26d" alt="Área Verde do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201830.png?alt=media&token=257b2f25-983e-4720-9b7d-71a49314f3e0" alt="Restaurante do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
-            </div>
-        </div>
-    </section>
-    
-    <!-- NOVA SEÇÃO: Programação do Evento -->
-    <section id="programacao" class="py-20 bg-slate-900">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
-            <div class="grid lg:grid-cols-5 gap-12">
-                <!-- Coluna da Sexta-feira -->
-                <div class="lg:col-span-2" data-aos="fade-right">
-                    <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sexta, 05/02</h3>
-                    <div class="bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud h-full">
-                        <div class="flex items-center">
-                            <i data-lucide="clock-4" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0"></i>
-                            <div>
-                                <p class="text-2xl font-bold text-white">16:00 - 18:00</p>
-                                <p class="text-lg text-gray-300">Touch Sunset</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc list-inside text-gray-400 pl-4 space-y-2 font-roboto">
-                            <li>Idade livre</li>
-                            <li>Times até XV</li>
-                            <li>Todos contra todos</li>
-                            <li>Tempo de 10 min ou 2 tries</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <!-- Coluna do Sábado -->
-                <div class="lg:col-span-3" data-aos="fade-left">
-                    <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sábado, 06/02</h3>
-                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
-                        <!-- Abas para selecionar o número de times -->
-                        <div class="mb-6 flex justify-center border-b border-slate-700">
-                            <button data-target="tabela-6-times" class="schedule-tab active-tab text-lg font-bold py-3 px-6">6 Times</button>
-                            <button data-target="tabela-5-times" class="schedule-tab text-lg font-bold py-3 px-6">5 Times</button>
-                            <button data-target="tabela-4-times" class="schedule-tab text-lg font-bold py-3 px-6">4 Times</button>
-                        </div>
-    
-                        <!-- Conteúdo das Tabelas -->
-                        <div class="text-left space-y-3 font-roboto">
-                            <!-- Tabela para 6 Times (Padrão) -->
-                            <div id="tabela-6-times" class="schedule-content space-y-3">
-                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 6</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 3 vs Time 6</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 2 vs Time 6</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 3 vs Time 5</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                            </div>
-                            <!-- Tabela para 5 Times -->
-                            <div id="tabela-5-times" class="schedule-content hidden space-y-3">
-                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 1</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 4 vs Time 5</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 4 vs Time 1</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                            </div>
-                            <!-- Tabela para 4 Times -->
-                            <div id="tabela-4-times" class="schedule-content hidden space-y-3">
-                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
-                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
-                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="bonito" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
-                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
-                    Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.
+        <!-- Seção Modificada: Cor de fundo alterada para Slate-800 e AOS adicionado -->
+        <section id="sobre" class="py-20 bg-slate-800">
+            <div class="container mx-auto text-center px-4">
+                <!-- CORREÇÃO: Fontes responsivas -->
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">Uma Convocação Histórica</h2>
+                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left">
+                    Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
                 </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-4 mb-12">
-                <!-- Imagens Modificadas: Adicionada animação 'flip' -->
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093623.png?alt=media&token=3b9a7e6a-b4ed-483b-86c3-2698c1b24b65" alt="Flutuação em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093400.png?alt=media&token=eb160464-b8bd-436b-b850-5adf7116ac19" alt="Gruta do Lago Azul em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093725.png?alt=media&token=ca98e9d4-577d-4639-9963-1bdcd041e208" alt="Mergulho em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
-            </div>
-            <div class="grid md:grid-cols-2 gap-12 text-left bg-slate-900 p-8 rounded-xl" data-aos="fade-up">
-                <div>
-                    <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="map-pin" class="w-8 h-8 mr-3 text-amber-400"></i>Como Chegar</h3>
-                    <p class="text-gray-300 mb-4 font-roboto">O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.</p>
-                    <p class="text-gray-300 font-roboto">Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.</p>
-                </div>
-                <div>
-                    <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="handshake" class="w-8 h-8 mr-3 text-amber-400"></i>Agências Parceiras</h3>
-                    <ul class="space-y-4 text-gray-300 font-roboto">
-                        <li class="flex items-start">
-                            <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
-                            <div>
-                                <strong>PNGTur (Agência)</strong><br>
-                                <a href="tel:+551148838899" class="hover:text-amber-400">Telefone: 11 4883-8899</a><br>
-                                <a href="https://wa.me/5511940190054" target="_blank" class="hover:text-amber-400">WhatsApp: 11 94019-0054</a><br>
-                                <a href="mailto:alima@pngtur.com.br" class="hover:text-amber-400">Email: alima@pngtur.com.br</a>
-                            </div>
-                        </li>
-                         <li class="flex items-start">
-                            <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
-                            <div>
-                                <strong>Crisval Tur (Agência)</strong><br>
-                                <a href="https://wa.me/5567999863298" target="_blank" class="hover:text-amber-400">WhatsApp: +55 67 99986-3298</a><br>
-                                <a href="mailto:gerencia@crisval.com.br" class="hover:text-amber-400">Email: gerencia@crisval.com.br</a><br>
-                                <a href="https://crisval.com.br/" target="_blank" class="hover:text-amber-400">Website: crisval.com.br</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="kit" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left" data-aos="fade-right">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
-                    <p class="text-xl text-gray-300 mb-8 font-roboto">
-                        Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
-                    </p>
-                    <div class="space-y-6">
-                        <!-- Adicionado efeito de hover nos itens do kit -->
-                        <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
-                            <i data-lucide="shirt" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
-                            <div>
-                                <h4 class="text-2xl text-white">Camiseta Premium do Evento</h4>
-                                <p class="text-gray-400 font-roboto">Design exclusivo, personalizada com seu nome e número.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
-                            <i data-lucide="beer" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
-                            <div>
-                                <h4 class="text-2xl text-white">Copo Térmico Personalizado</h4>
-                                <p class="text-gray-400 font-roboto">Mantenha sua bebida na temperatura ideal durante a resenha.</p>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="mt-10">
-                         <button id="openKitModalBtn" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg">QUERO MEU KIT!</button>
-                     </div>
-                </div>
-                <!-- IMAGEM DO KIT RESTAURADA PARA A ORIGINAL -->
-                <div data-aos="fade-left" class="perspective-1000">
-                    <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo" alt="Kit Rugby Legends" class="rounded-xl shadow-2xl w-full transition-transform duration-700 hover:rotate-y-12 hover:shadow-amber-500/30">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="inscricao" class="py-20 bg-slate-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
-                <p class="text-xl text-gray-300 mb-8 font-roboto">
-                    As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!
+                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-left" data-aos-delay="200">
+                    O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas. As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se para reviver a glória dos velhos tempos!
                 </p>
-            </div>
-            <div id="inscription-wrapper" class="max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
-                <!-- Formulário Modificado: Estilos de input ajustados para o tema Slate -->
-                <form id="inscriptionForm" class="bg-slate-800 p-8 rounded-xl shadow-lg space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="fullName" class="block text-amber-400 font-bold mb-2 font-roboto">Nome Completo</label>
-                            <input type="text" id="fullName" name="fullName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                        </div>
-                        <div>
-                            <label for="nickname" class="block text-amber-400 font-bold mb-2 font-roboto">Apelido (de campo)</label>
-                            <input type="text" id="nickname" name="nickname" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label for="celular" class="block text-amber-400 font-bold mb-2 font-roboto">Celular (com DDD)</label>
-                        <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                    </div>
-
-                    <div>
-                        <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2 font-roboto">De qual cidade está vindo? (Cidade / Estado)</label>
-                        <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="age" class="block text-amber-400 font-bold mb-2 font-roboto">Idade</label>
-                            <input type="number" id="age" name="age" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                        </div>
-                        <div>
-                            <label for="position" class="block text-amber-400 font-bold mb-2 font-roboto">Posição Principal</label>
-                            <select id="position" name="position" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
-                                <option value="">Selecione...</option>
-                                <option value="Pilar">Pilar</option>
-                                <option value="Hooker">Hooker</option>
-                                <option value="Segunda Linha">Segunda Linha</option>
-                                <option value="Asa">Asa</option>
-                                <option value="Oitavo">Oitavo</option>
-                                <option value="Scrum-half">Scrum-half</option>
-                                <option value="Abertura">Abertura</option>
-                                <option value="Centro">Centro</option>
-                                <option value="Ponta">Ponta</option>
-                                <option value="Fullback">Fullback</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <span class="block text-amber-400 font-bold mb-2 font-roboto">Você já tem uma equipe?</span>
-                        <div class="flex items-center space-x-6 mt-2">
-                            <label class="flex items-center text-white cursor-pointer font-roboto">
-                                <input type="radio" name="hasTeam" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
-                                <span class="ml-2">Sim</span>
-                            </label>
-                            <label class="flex items-center text-white cursor-pointer font-roboto">
-                                <input type="radio" name="hasTeam" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
-                                <span class="ml-2">Não</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div id="teamSelectionContainer" class="hidden">
-                        <label for="teamName" class="block text-amber-400 font-bold mb-2 font-roboto">Selecione sua equipe</label>
-                        <select id="teamName" name="teamName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600">
-                            </select>
-                    </div>
-
-                    <div>
-                        <span class="block text-amber-400 font-bold mb-2 font-roboto">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
-                        <div class="flex items-center space-x-6 mt-2">
-                            <label class="flex items-center text-white cursor-pointer font-roboto">
-                                <input type="radio" name="hasPackage" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
-                                <span class="ml-2">Sim</span>
-                            </label>
-                            <label class="flex items-center text-white cursor-pointer font-roboto">
-                                <input type="radio" name="hasPackage" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
-                                <span class="ml-2">Não, preciso reservar</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="pt-4">
-                        <button type="submit" id="submitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/50">
-                            ENVIAR INSCRIÇÃO
-                        </button>
-                    </div>
-                     <div id="form-message" class="text-center font-bold mt-4"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contagem Regressiva Modificada: Fundo alterado para um verde Emerald vibrante (Gramado) -->
-    <section id="countdown-section" class="py-12 bg-emerald-700 text-white">
-        <div class="container mx-auto text-center px-4" data-aos="fade-up">
-            <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
-            <p class="text-lg mb-6 font-roboto">A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
-            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
-                    <span id="days" class="text-5xl font-bold block">00</span>
-                    <p class="text-sm font-roboto">Dias</p>
-                </div>
-                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
-                    <span id="hours" class="text-5xl font-bold block">00</span>
-                    <p class="text-sm font-roboto">Horas</p>
-                </div>
-                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
-                    <span id="minutes" class="text-5xl font-bold block">00</span>
-                    <p class="text-sm font-roboto">Minutos</p>
-                </div>
-                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
-                    <span id="seconds" class="text-5xl font-bold block">00</span>
-                    <p class="text-sm font-roboto">Segundos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pacotes" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
-            <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-up" data-aos-delay="100">
-                A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
-            </p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cartões de Pacote Modificados: Adicionado 'card-mud' e AOS -->
-                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
-                        <ul class="space-y-2 text-gray-300 font-roboto">
-                            <li><span class="font-bold text-white">Single:</span> R$ 2.503,00</li>
-                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.224,00</li>
-                            <li><span class="font-bold text-white">Triplo:</span> R$ 3.943,00</li>
-                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 4.697,00</li>
-                        </ul>
-                    </div>
-                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
-                </div>
-                <!-- NOVO: Pacote do meio destacado -->
-                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud border-4 border-amber-400 transform lg:scale-105" data-aos="zoom-in" data-aos-delay="200">
-                   <div class="bg-amber-400 text-gray-900 text-center py-2 font-bold">MAIS POPULAR</div>
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
-                        <ul class="space-y-2 text-gray-300 font-roboto">
-                            <li><span class="font-bold text-white">Single:</span> R$ 2.852,00</li>
-                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.506,00</li>
-                            <li><span class="font-bold text-white">Triplo:</span> R$ 4.259,00</li>
-                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.050,00</li>
-                        </ul>
-                    </div>
-                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
-                </div>
-                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
-                        <ul class="space-y-2 text-gray-300 font-roboto">
-                            <li><span class="font-bold text-white">Single:</span> R$ 3.030,00</li>
-                            <li><span class="font-bold text-white">Duplo:</span> R$ 3.821,00</li>
-                            <li><span class="font-bold text-white">Triplo:</span> R$ 4.612,00</li>
-                            <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.446,00</li>
-                        </ul>
-                    </div>
-                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
-                </div>
-            </div>
-            
-            <div class="mt-16" data-aos="fade-up">
-                <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
-                <div class="grid lg:grid-cols-5 gap-8 items-stretch">
-                    <div class="bg-slate-900 p-8 rounded-xl lg:col-span-3">
-                        <h4 class="text-3xl text-amber-400 mb-6">Refeições e Hospedagem</h4>
-                        <ul class="space-y-4 text-lg text-gray-300 font-roboto">
-                            <li class="flex items-start">
-                                <i data-lucide="calendar-days" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
-                                <span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-lucide="coffee" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
-                                <span><strong>Café da Manhã e Jantar:</strong> Inclusos durante toda a estadia.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-lucide="utensils-crossed" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
-                                <span><strong>Almoço Especial de Sábado:</strong> Para recarregar as energias (07/02).</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Cartão Open Bar Modificado: Design mais impactante e ícones rotacionados -->
-                    <div class="bg-amber-500 text-gray-900 p-8 rounded-xl shadow-2xl border-4 border-amber-300 transform lg:scale-105 flex flex-col justify-center items-center lg:col-span-2 hover:shadow-amber-500/50 transition duration-300">
-                         <div class="flex items-center justify-center mb-4">
-                            <i data-lucide="beer" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 transform rotate-12"></i>
-                            <i data-lucide="martini" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4 transform -rotate-12"></i>
-                         </div>
-                        <h4 class="text-4xl md:text-5xl text-center font-bold">OPEN BAR</h4>
-                        <p class="text-center text-xl font-semibold mb-2 font-roboto">SÁBADO, 07/02</p>
-                        <p class="text-center text-lg font-bold mb-4 font-roboto">(das 11h às 23h)</p>
-                        <p class="text-center text-base md:text-lg font-roboto">
-                            Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para celebrar o dia todo!
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Cartões Modificados: Adicionada classe 'card-mud' e AOS -->
+                    <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud flex flex-col" data-aos="zoom-in-up" data-aos-delay="100">
+                        <i data-lucide="shield-half" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                        <h3 class="text-3xl mb-2">Rugby Para Todos</h3>
+                        <p class="text-gray-400 flex-grow text-left font-roboto">
+                            <strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).
+                            <strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma atividade leve para que esposas, filhos e amigos possam se divertir em campo.
+                            <strong class="text-amber-400 block mt-3 mb-2"> • Jogo de Confraternização (XV):</strong> Para fechar, uma partida aberta de XV, unindo jogadores de todas as idades.
                         </p>
                     </div>
+                    <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="300">
+                        <i data-lucide="heart-handshake" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                        <h3 class="text-3xl mb-2">Família</h3>
+                        <p class="text-gray-400 font-roboto">Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.</p>
+                    </div>
+                    <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="500">
+                        <i data-lucide="palmtree" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
+                        <h3 class="text-3xl mb-2">Resort</h3>
+                        <p class="text-gray-400 font-roboto">Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.</p>
+                    </div>
                 </div>
+                 <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50" data-aos="flip-up">QUERO FAZER PARTE DE UM TIME!</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="reserva" class="py-20 bg-slate-800 border-t border-slate-700">
-        <div class="container mx-auto text-center px-4" data-aos="fade-up">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
-            <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
-                As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!
-            </p>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-                <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
-                    <i data-lucide="phone" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
-                    <h3 class="text-3xl mb-2">Telefone</h3>
-                    <a href="tel:+556732555534" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">(67) 3255-5534</a>
-                </div>
-                <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
-                    <i data-lucide="mail" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
-                    <h3 class="text-3xl mb-2">E-mail</h3>
-                    <a href="mailto:comercial@zagaia.com.br" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">comercial@zagaia.com.br</a>
+        <!-- Esta seção agora tem um fundo fixo (Parallax) definido no CSS -->
+        <section id="local" class="py-20 zagaia-bg">
+            <div class="container mx-auto text-center px-4" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
+                <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
+                <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto">
+                    Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Imagens Modificadas: Adicionado efeito de hover e AOS -->
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201602.png?alt=media&token=912d7f53-3bf2-4215-adfa-2f4cbccf184c" alt="Piscina do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201716.png?alt=media&token=85f943d4-9179-4213-9c02-f5d2b8cbd717" alt="Apartamento do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201651.png?alt=media&token=bf6a5c9b-1eea-432a-bbee-532ad5aeb26d" alt="Área Verde do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201830.png?alt=media&token=257b2f25-983e-4720-9b7d-71a49314f3e0" alt="Restaurante do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
                 </div>
             </div>
-            <div class="mt-12">
-                <h4 class="text-2xl text-amber-400 mb-4">Formas de Pagamento da Hospedagem</h4>
-                <p class="text-gray-300 font-roboto">Opção 1: Sinal de 30% + saldo em 3x no check-in.</p>
-                <p class="text-gray-300 font-roboto">Opção 2: Parcelado em 10x no cartão no ato da reserva.</p>
+        </section>
+        
+        <!-- NOVA SEÇÃO: Programação do Evento -->
+        <section id="programacao" class="py-20 bg-slate-900">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
+                <div class="grid lg:grid-cols-5 gap-12">
+                    <!-- Coluna da Sexta-feira -->
+                    <div class="lg:col-span-2" data-aos="fade-right">
+                        <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sexta, 05/02</h3>
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud h-full">
+                            <div class="flex items-center">
+                                <i data-lucide="clock-4" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0"></i>
+                                <div>
+                                    <p class="text-2xl font-bold text-white">16:00 - 18:00</p>
+                                    <p class="text-lg text-gray-300">Touch Sunset</p>
+                                </div>
+                            </div>
+                            <ul class="list-disc list-inside text-gray-400 pl-4 space-y-2 font-roboto">
+                                <li>Idade livre</li>
+                                <li>Times até XV</li>
+                                <li>Todos contra todos</li>
+                                <li>Tempo de 10 min ou 2 tries</li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <!-- Coluna do Sábado -->
+                    <div class="lg:col-span-3" data-aos="fade-left">
+                        <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sábado, 06/02</h3>
+                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <!-- Abas para selecionar o número de times -->
+                            <div class="mb-6 flex justify-center border-b border-slate-700">
+                                <button data-target="tabela-6-times" class="schedule-tab active-tab text-lg font-bold py-3 px-6">6 Times</button>
+                                <button data-target="tabela-5-times" class="schedule-tab text-lg font-bold py-3 px-6">5 Times</button>
+                                <button data-target="tabela-4-times" class="schedule-tab text-lg font-bold py-3 px-6">4 Times</button>
+                            </div>
+        
+                            <!-- Conteúdo das Tabelas -->
+                            <div class="text-left space-y-3 font-roboto">
+                                <!-- Tabela para 6 Times (Padrão) -->
+                                <div id="tabela-6-times" class="schedule-content space-y-3">
+                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 6</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 3 vs Time 6</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 2 vs Time 6</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 3 vs Time 5</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                </div>
+                                <!-- Tabela para 5 Times -->
+                                <div id="tabela-5-times" class="schedule-content hidden space-y-3">
+                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 1</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 4 vs Time 5</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 4 vs Time 1</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                </div>
+                                <!-- Tabela para 4 Times -->
+                                <div id="tabela-4-times" class="schedule-content hidden space-y-3">
+                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
+                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
+                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-black py-8">
-        <div class="container mx-auto text-center text-gray-500">
-            <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
-            <p class="mb-4 font-roboto">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
-            <p class="font-roboto">&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.</p>
-            <p class="mt-4 text-sm font-roboto">
-                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
-                    Criado por Victor Cruzetta
-                </a>
-            </p>
-        </div>
-    </footer>
+        <section id="bonito" class="py-20 bg-slate-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
+                    <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
+                        Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 mb-12">
+                    <!-- Imagens Modificadas: Adicionada animação 'flip' -->
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093623.png?alt=media&token=3b9a7e6a-b4ed-483b-86c3-2698c1b24b65" alt="Flutuação em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093400.png?alt=media&token=eb160464-b8bd-436b-b850-5adf7116ac19" alt="Gruta do Lago Azul em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093725.png?alt=media&token=ca98e9d4-577d-4639-9963-1bdcd041e208" alt="Mergulho em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 text-left bg-slate-900 p-8 rounded-xl" data-aos="fade-up">
+                    <div>
+                        <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="map-pin" class="w-8 h-8 mr-3 text-amber-400"></i>Como Chegar</h3>
+                        <p class="text-gray-300 mb-4 font-roboto">O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.</p>
+                        <p class="text-gray-300 font-roboto">Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="handshake" class="w-8 h-8 mr-3 text-amber-400"></i>Agências Parceiras</h3>
+                        <ul class="space-y-4 text-gray-300 font-roboto">
+                            <li class="flex items-start">
+                                <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
+                                <div>
+                                    <strong>PNGTur (Agência)</strong><br>
+                                    <a href="tel:+551148838899" class="hover:text-amber-400">Telefone: 11 4883-8899</a><br>
+                                    <a href="https://wa.me/5511940190054" target="_blank" class="hover:text-amber-400">WhatsApp: 11 94019-0054</a><br>
+                                    <a href="mailto:alima@pngtur.com.br" class="hover:text-amber-400">Email: alima@pngtur.com.br</a>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
+                                <div>
+                                    <strong>Crisval Tur (Agência)</strong><br>
+                                    <a href="https://wa.me/5567999863298" target="_blank" class="hover:text-amber-400">WhatsApp: +55 67 99986-3298</a><br>
+                                    <a href="mailto:gerencia@crisval.com.br" class="hover:text-amber-400">Email: gerencia@crisval.com.br</a><br>
+                                    <a href="https://crisval.com.br/" target="_blank" class="hover:text-amber-400">Website: crisval.com.br</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kit" class="py-20 bg-slate-800">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left" data-aos="fade-right">
+                        <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
+                        <p class="text-xl text-gray-300 mb-8 font-roboto">
+                            Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
+                        </p>
+                        <div class="space-y-6">
+                            <!-- Adicionado efeito de hover nos itens do kit -->
+                            <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
+                                <i data-lucide="shirt" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="text-2xl text-white">Camiseta Premium do Evento</h4>
+                                    <p class="text-gray-400 font-roboto">Design exclusivo, personalizada com seu nome e número.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
+                                <i data-lucide="beer" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="text-2xl text-white">Copo Térmico Personalizado</h4>
+                                    <p class="text-gray-400 font-roboto">Mantenha sua bebida na temperatura ideal durante a resenha.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="mt-10">
+                             <button id="openKitModalBtn" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg">QUERO MEU KIT!</button>
+                         </div>
+                    </div>
+                    <!-- IMAGEM DO KIT RESTAURADA PARA A ORIGINAL -->
+                    <div data-aos="fade-left" class="perspective-1000">
+                        <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo" alt="Kit Rugby Legends" class="rounded-xl shadow-2xl w-full transition-transform duration-700 hover:rotate-y-12 hover:shadow-amber-500/30">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inscricao" class="py-20 bg-slate-900">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
+                    <p class="text-xl text-gray-300 mb-8 font-roboto">
+                        As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!
+                    </p>
+                </div>
+                <div id="inscription-wrapper" class="max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+                    <!-- Formulário Modificado: Estilos de input ajustados para o tema Slate -->
+                    <form id="inscriptionForm" class="bg-slate-800 p-8 rounded-xl shadow-lg space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-amber-400 font-bold mb-2 font-roboto">Nome Completo</label>
+                                <input type="text" id="fullName" name="fullName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                            </div>
+                            <div>
+                                <label for="nickname" class="block text-amber-400 font-bold mb-2 font-roboto">Apelido (de campo)</label>
+                                <input type="text" id="nickname" name="nickname" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="celular" class="block text-amber-400 font-bold mb-2 font-roboto">Celular (com DDD)</label>
+                            <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                        </div>
+
+                        <div>
+                            <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2 font-roboto">De qual cidade está vindo? (Cidade / Estado)</label>
+                            <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="age" class="block text-amber-400 font-bold mb-2 font-roboto">Idade</label>
+                                <input type="number" id="age" name="age" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                            </div>
+                            <div>
+                                <label for="position" class="block text-amber-400 font-bold mb-2 font-roboto">Posição Principal</label>
+                                <select id="position" name="position" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Pilar">Pilar</option>
+                                    <option value="Hooker">Hooker</option>
+                                    <option value="Segunda Linha">Segunda Linha</option>
+                                    <option value="Asa">Asa</option>
+                                    <option value="Oitavo">Oitavo</option>
+                                    <option value="Scrum-half">Scrum-half</option>
+                                    <option value="Abertura">Abertura</option>
+                                    <option value="Centro">Centro</option>
+                                    <option value="Ponta">Ponta</option>
+                                    <option value="Fullback">Fullback</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="block text-amber-400 font-bold mb-2 font-roboto">Você já tem uma equipe?</span>
+                            <div class="flex items-center space-x-6 mt-2">
+                                <label class="flex items-center text-white cursor-pointer font-roboto">
+                                    <input type="radio" name="hasTeam" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
+                                    <span class="ml-2">Sim</span>
+                                </label>
+                                <label class="flex items-center text-white cursor-pointer font-roboto">
+                                    <input type="radio" name="hasTeam" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
+                                    <span class="ml-2">Não</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="teamSelectionContainer" class="hidden">
+                            <label for="teamName" class="block text-amber-400 font-bold mb-2 font-roboto">Selecione sua equipe</label>
+                            <select id="teamName" name="teamName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600">
+                            </select>
+                        </div>
+
+                        <div>
+                            <span class="block text-amber-400 font-bold mb-2 font-roboto">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
+                            <div class="flex items-center space-x-6 mt-2">
+                                <label class="flex items-center text-white cursor-pointer font-roboto">
+                                    <input type="radio" name="hasPackage" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
+                                    <span class="ml-2">Sim</span>
+                                </label>
+                                <label class="flex items-center text-white cursor-pointer font-roboto">
+                                    <input type="radio" name="hasPackage" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
+                                    <span class="ml-2">Não, preciso reservar</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" id="submitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/50">
+                                ENVIAR INSCRIÇÃO
+                            </button>
+                        </div>
+                         <div id="form-message" class="text-center font-bold mt-4"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contagem Regressiva Modificada: Fundo alterado para um verde Emerald vibrante (Gramado) -->
+        <section id="countdown-section" class="py-12 bg-emerald-700 text-white">
+            <div class="container mx-auto text-center px-4" data-aos="fade-up">
+                <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
+                <p class="text-lg mb-6 font-roboto">A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
+                <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                    <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                        <span id="days" class="text-5xl font-bold block">00</span>
+                        <p class="text-sm font-roboto">Dias</p>
+                    </div>
+                    <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                        <span id="hours" class="text-5xl font-bold block">00</span>
+                        <p class="text-sm font-roboto">Horas</p>
+                    </div>
+                    <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                        <span id="minutes" class="text-5xl font-bold block">00</span>
+                        <p class="text-sm font-roboto">Minutos</p>
+                    </div>
+                    <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                        <span id="seconds" class="text-5xl font-bold block">00</span>
+                        <p class="text-sm font-roboto">Segundos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pacotes" class="py-20 bg-slate-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
+                <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-up" data-aos-delay="100">
+                    A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cartões de Pacote Modificados: Adicionado 'card-mud' e AOS -->
+                    <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
+                            <ul class="space-y-2 text-gray-300 font-roboto">
+                                <li><span class="font-bold text-white">Single:</span> R$ 2.503,00</li>
+                                <li><span class="font-bold text-white">Duplo:</span> R$ 3.224,00</li>
+                                <li><span class="font-bold text-white">Triplo:</span> R$ 3.943,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 4.697,00</li>
+                            </ul>
+                        </div>
+                        <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    </div>
+                    <!-- NOVO: Pacote do meio destacado -->
+                    <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud border-4 border-amber-400 transform lg:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                       <div class="bg-amber-400 text-gray-900 text-center py-2 font-bold">MAIS POPULAR</div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
+                            <ul class="space-y-2 text-gray-300 font-roboto">
+                                <li><span class="font-bold text-white">Single:</span> R$ 2.852,00</li>
+                                <li><span class="font-bold text-white">Duplo:</span> R$ 3.506,00</li>
+                                <li><span class="font-bold text-white">Triplo:</span> R$ 4.259,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.050,00</li>
+                            </ul>
+                        </div>
+                        <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    </div>
+                    <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
+                            <ul class="space-y-2 text-gray-300 font-roboto">
+                                <li><span class="font-bold text-white">Single:</span> R$ 3.030,00</li>
+                                <li><span class="font-bold text-white">Duplo:</span> R$ 3.821,00</li>
+                                <li><span class="font-bold text-white">Triplo:</span> R$ 4.612,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.446,00</li>
+                            </ul>
+                        </div>
+                        <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    </div>
+                </div>
+                
+                <div class="mt-16" data-aos="fade-up">
+                    <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
+                    <div class="grid lg:grid-cols-5 gap-8 items-stretch">
+                        <div class="bg-slate-900 p-8 rounded-xl lg:col-span-3">
+                            <h4 class="text-3xl text-amber-400 mb-6">Refeições e Hospedagem</h4>
+                            <ul class="space-y-4 text-lg text-gray-300 font-roboto">
+                                <li class="flex items-start">
+                                    <i data-lucide="calendar-days" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="coffee" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span><strong>Café da Manhã e Jantar:</strong> Inclusos durante toda a estadia.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="utensils-crossed" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span><strong>Almoço Especial de Sábado:</strong> Para recarregar as energias (07/02).</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Cartão Open Bar Modificado: Design mais impactante e ícones rotacionados -->
+                        <div class="bg-amber-500 text-gray-900 p-8 rounded-xl shadow-2xl border-4 border-amber-300 transform lg:scale-105 flex flex-col justify-center items-center lg:col-span-2 hover:shadow-amber-500/50 transition duration-300">
+                             <div class="flex items-center justify-center mb-4">
+                                <i data-lucide="beer" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 transform rotate-12"></i>
+                                <i data-lucide="martini" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4 transform -rotate-12"></i>
+                             </div>
+                            <h4 class="text-4xl md:text-5xl text-center font-bold">OPEN BAR</h4>
+                            <p class="text-center text-xl font-semibold mb-2 font-roboto">SÁBADO, 07/02</p>
+                            <p class="text-center text-lg font-bold mb-4 font-roboto">(das 11h às 23h)</p>
+                            <p class="text-center text-base md:text-lg font-roboto">
+                                Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para celebrar o dia todo!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reserva" class="py-20 bg-slate-800 border-t border-slate-700">
+            <div class="container mx-auto text-center px-4" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
+                    As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
+                        <i data-lucide="phone" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
+                        <h3 class="text-3xl mb-2">Telefone</h3>
+                        <a href="tel:+556732555534" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">(67) 3255-5534</a>
+                    </div>
+                    <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
+                        <i data-lucide="mail" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
+                        <h3 class="text-3xl mb-2">E-mail</h3>
+                        <a href="mailto:comercial@zagaia.com.br" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">comercial@zagaia.com.br</a>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <h4 class="text-2xl text-amber-400 mb-4">Formas de Pagamento da Hospedagem</h4>
+                    <p class="text-gray-300 font-roboto">Opção 1: Sinal de 30% + saldo em 3x no check-in.</p>
+                    <p class="text-gray-300 font-roboto">Opção 2: Parcelado em 10x no cartão no ato da reserva.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-black py-8">
+            <div class="container mx-auto text-center text-gray-500">
+                <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
+                <p class="mb-4 font-roboto">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
+                <p class="font-roboto">&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.</p>
+                <p class="mt-4 text-sm font-roboto">
+                    <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
+                        Criado por Victor Cruzetta
+                    </a>
+                </p>
+            </div>
+        </footer>
+    </main>
 
     <!-- Botão WhatsApp (Funcionalidade inalterada) -->
     <div id="whatsapp-container" class="fixed bottom-5 right-5 z-[100]">
@@ -869,7 +872,7 @@
                  <h3 class="text-4xl text-green-400 mb-4">Pedido Enviado com Sucesso!</h3>
                  <p class="text-lg text-gray-300 mb-6 font-roboto">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
                  <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                       Fechar
+                     Fechar
                  </button>
             </div>
             <div id="kit-form-message" class="text-center font-bold mt-4"></div>
