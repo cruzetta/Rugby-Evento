@@ -26,11 +26,14 @@
             --rugby-gold: #fBBF24; /* Amber-400 */
             --rugby-dark: #0f172a; /* Slate-900 - Um tom escuro mais moderno */
         }
+        html, body {
+            /* CORREÇÃO: Impede a rolagem horizontal */
+            overflow-x: hidden;
+            width: 100%;
+        }
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--rugby-dark);
-            /* CORREÇÃO: Impede a rolagem horizontal */
-            overflow-x: hidden;
             /* NOVO: Cursor Personalizado de Bola de Rugby */
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 30"><ellipse cx="25" cy="15" rx="24" ry="14" fill="%238B4513" stroke="black" stroke-width="1"/><path d="M25 1 L25 29" stroke="white" stroke-width="1" stroke-dasharray="3,3"/></svg>') 14 14, auto;
         }
@@ -203,10 +206,10 @@
         </video>
         <div class="absolute inset-0 bg-black/75 z-10"></div>
         <div class="relative z-20 container mx-auto px-4 pt-20">
-            <!-- Efeito Glitch Removido -->
-            <h2 class="text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight" data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
+            <!-- CORREÇÃO: Fontes responsivas para evitar overflow em telas pequenas -->
+            <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight" data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
             <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4" data-aos="fade-up" data-aos-delay="600">06 a 08 de Fevereiro de 2026</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">1º Encontro Rugby LEGENDS</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">1º Encontro Rugby LEGENDS</h1>
             <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300 font-roboto" data-aos="fade-up" data-aos-delay="1000">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
             <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-110 shadow-xl" data-aos="zoom-in" data-aos-delay="1200">INSCREVA-SE AGORA</a>
         </div>
@@ -215,7 +218,8 @@
     <!-- Seção Modificada: Cor de fundo alterada para Slate-800 e AOS adicionado -->
     <section id="sobre" class="py-20 bg-slate-800">
         <div class="container mx-auto text-center px-4">
-            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">Uma Convocação Histórica</h2>
+            <!-- CORREÇÃO: Fontes responsivas -->
+            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">Uma Convocação Histórica</h2>
             <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left">
                 Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
             </p>
@@ -251,7 +255,7 @@
     <!-- Esta seção agora tem um fundo fixo (Parallax) definido no CSS -->
     <section id="local" class="py-20 zagaia-bg">
         <div class="container mx-auto text-center px-4" data-aos="fade-up">
-            <h2 class="text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
             <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
             <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto">
                 Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.
@@ -269,7 +273,7 @@
     <!-- NOVA SEÇÃO: Programação do Evento -->
     <section id="programacao" class="py-20 bg-slate-900">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
             <div class="grid lg:grid-cols-5 gap-12">
                 <!-- Coluna da Sexta-feira -->
                 <div class="lg:col-span-2" data-aos="fade-right">
@@ -362,7 +366,7 @@
     <section id="bonito" class="py-20 bg-slate-800">
         <div class="container mx-auto px-4">
             <div class="text-center" data-aos="fade-up">
-                <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
                 <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                     Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.
                 </p>
@@ -410,7 +414,7 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-center md:text-left" data-aos="fade-right">
-                    <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
                     <p class="text-xl text-gray-300 mb-8 font-roboto">
                         Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
                     </p>
@@ -446,7 +450,7 @@
     <section id="inscricao" class="py-20 bg-slate-900">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
                 <p class="text-xl text-gray-300 mb-8 font-roboto">
                     As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!
                 </p>
@@ -570,7 +574,7 @@
 
     <section id="pacotes" class="py-20 bg-slate-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
             <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-up" data-aos-delay="100">
                 A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
             </p>
@@ -656,7 +660,7 @@
 
     <section id="reserva" class="py-20 bg-slate-800 border-t border-slate-700">
         <div class="container mx-auto text-center px-4" data-aos="fade-up">
-            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
             <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                 As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!
             </p>
