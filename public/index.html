@@ -13,29 +13,108 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- NOVA FONTE: Bowlby One SC para impacto esportivo -->
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- NOVA BIBLIOTECA: AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <style>
+        /* --- Global Styles & Theme --- */
+        :root {
+            --rugby-gold: #fBBF24; /* Amber-400 */
+            --rugby-dark: #0f172a; /* Slate-900 - Um tom escuro mais moderno */
+        }
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
+            background-color: var(--rugby-dark);
+            /* NOVO: Cursor Personalizado de Bola de Rugby */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 30"><ellipse cx="25" cy="15" rx="24" ry="14" fill="%238B4513" stroke="black" stroke-width="1"/><path d="M25 1 L25 29" stroke="white" stroke-width="1" stroke-dasharray="3,3"/></svg>') 14 14, auto;
         }
         h1, h2, h3, h4 {
-            font-family: 'Bebas Neue', cursive;
+            /* NOVA FONTE: Esportiva e robusta */
+            font-family: 'Bowlby One SC', cursive;
+            letter-spacing: 0.05em;
         }
+
+        /* --- Estilos Existentes (Modificados) --- */
         .zagaia-bg {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201507.png?alt=media&token=9f04fcfe-a72f-464f-ac63-a1c6fd6d9565');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201507.png?alt=media&token=9f04fcfe-a72f-464f-ac63-a1c6fd6d9565');
             background-size: cover;
             background-position: center;
+            /* NOVO: Efeito Parallax */
+            background-attachment: fixed;
         }
         .countdown-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            /* NOVO: Animação para números da contagem regressiva */
+            transition: transform 0.2s ease-out;
         }
         #hero video {
             object-fit: cover;
         }
+
+        /* --- BOLA VOADORA (O Interceptor) --- */
+        #interceptor-ball {
+            position: fixed;
+            width: 80px; /* Tamanho ajustado para a imagem */
+            height: 80px;
+            z-index: 9998; /* Abaixo do header/modal */
+            cursor: pointer;
+            transition: transform 0.1s ease-out, top 2.5s ease-in-out, left 2.5s ease-in-out;
+            user-select: none;
+        }
+        #interceptor-ball img { /* Alvo alterado de SVG para IMG */
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Garante que a imagem caiba sem distorcer */
+            /* Animação giratória */
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- NOVO: Efeito de Scroll no Header --- */
+        header.scrolled {
+            background-color: var(--rugby-dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* --- NOVO: Efeito "Respingos de Lama" nos Cartões --- */
+        .card-mud {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .card-mud:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+        }
+        .card-mud::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 80px;
+            height: 80px;
+            /* SVG simples simulando lama/grama */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23543d26" d="M10 80 Q15 70 20 80 Q25 90 30 80 M40 60 Q45 50 50 60 M5 95 Q10 85 15 95"/></svg>');
+            background-size: contain;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+        .card-mud:hover::after {
+            opacity: 0.8;
+        }
+
+        /* --- Estilos do Botão WhatsApp (Inalterados) --- */
         #whatsapp-options a {
             opacity: 0;
             transform: translateY(10px);
@@ -47,6 +126,8 @@
         }
         #whatsapp-options a:nth-child(1) { transition-delay: 0.1s; }
         #whatsapp-options a:nth-child(2) { transition-delay: 0.2s; }
+
+        /* --- Estilos do Modal (Inalterados) --- */
         #kitModal {
             transition: opacity 0.3s ease-in-out;
         }
@@ -54,35 +135,62 @@
             overflow: hidden;
         }
         .custom-file-upload {
-            border: 2px dashed #4b5563; /* border-gray-600 */
+            border: 2px dashed #4b5563;
             display: inline-block;
             padding: 12px 20px;
             cursor: pointer;
             width: 100%;
             text-align: center;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
             transition: all 0.2s ease-in-out;
         }
         .custom-file-upload:hover {
-            border-color: #fBBF24; /* border-amber-400 */
-            background-color: #374151; /* bg-gray-700 */
+            border-color: var(--rugby-gold);
+            background-color: #334155; /* Slate-700 */
         }
+
+        /* Classes auxiliares para o efeito 3D na imagem do kit */
+        .perspective-1000 { perspective: 1000px; }
+        .hover\:rotate-y-12:hover { transform: rotateY(12deg); }
+        
+        /* --- NOVOS ESTILOS: Abas da Programação --- */
+        .schedule-tab {
+            color: #94a3b8; /* gray-400 */
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .schedule-tab:hover {
+            color: #fde047; /* yellow-300 */
+        }
+        .schedule-tab.active-tab {
+            color: var(--rugby-gold); /* #fBBF24 */
+            border-bottom-color: var(--rugby-gold);
+        }
+
     </style>
 </head>
 <body class="text-white">
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
-        <div class="container mx-auto flex justify-between items-center p-4">
+    <!-- BOLA VOADORA (O Interceptor) - AGORA COM A IMAGEM PEDIDA -->
+    <div id="interceptor-ball" title="Tenta pegar!">
+        <img src="https://firebasestorage.googleapis.com/v0/b/encontrorugbylegends.firebasestorage.app/o/Design%20sem%20nome%20(23).png?alt=media&token=bc9b1966-78f9-4611-a7ac-55cbc0d596b2" alt="Bola voadora">
+    </div>
+
+    <!-- Header Modificado: Adicionadas classes de transição e novo link de navegação -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg transition-all duration-300 p-4">
+        <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl tracking-wider text-amber-400">R<span class="text-white">UGBY</span> L<span class="text-white">EGENDS</span></h1>
-            <nav class="hidden md:flex space-x-6">
+            <nav class="hidden md:flex space-x-6 font-roboto">
                 <a href="#sobre" class="hover:text-amber-400 transition duration-300">O Encontro</a>
                 <a href="#local" class="hover:text-amber-400 transition duration-300">O Local</a>
+                <a href="#programacao" class="hover:text-amber-400 transition duration-300">Programação</a>
                 <a href="#bonito" class="hover:text-amber-400 transition duration-300">Explore Bonito</a>
                 <a href="#kit" class="hover:text-amber-400 transition duration-300">Kit Atleta</a>
                 <a href="#inscricao" class="hover:text-amber-400 transition duration-300">Inscrição</a>
                 <a href="#pacotes" class="hover:text-amber-400 transition duration-300">Pacotes</a>
             </nav>
-            <a href="#inscricao" id="header-cta-btn" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md">GARANTA SUA VAGA</a>
+            <!-- Botão Modificado: Adicionado efeito de hover intenso com brilho -->
+            <a href="#inscricao" id="header-cta-btn" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-xl hover:shadow-amber-500/50 transform hover:scale-105">GARANTA SUA VAGA</a>
         </div>
     </header>
 
@@ -91,88 +199,187 @@
             <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FRugby%20video%20de%20entrada.mp4?alt=media&token=b0df7f32-fce2-4f75-9a7d-222123ecad74" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
-        <div class="absolute inset-0 bg-black/70 z-10"></div>
+        <div class="absolute inset-0 bg-black/75 z-10"></div>
         <div class="relative z-20 container mx-auto px-4 pt-20">
-            <h2 class="text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight">SAVE THE DATE</h2>
-            <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4">06 a 08 de Fevereiro de 2026</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">1º Encontro Rugby LEGENDS</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
-            <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">INSCREVA-SE AGORA</a>
+            <!-- Efeito Glitch Removido -->
+            <h2 class="text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight" data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
+            <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4" data-aos="fade-up" data-aos-delay="600">06 a 08 de Fevereiro de 2026</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">1º Encontro Rugby LEGENDS</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300 font-roboto" data-aos="fade-up" data-aos-delay="1000">Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.</p>
+            <a href="#inscricao" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-110 shadow-xl" data-aos="zoom-in" data-aos-delay="1200">INSCREVA-SE AGORA</a>
         </div>
     </section>
 
-    <section id="sobre" class="py-20 bg-gray-800">
+    <!-- Seção Modificada: Cor de fundo alterada para Slate-800 e AOS adicionado -->
+    <section id="sobre" class="py-20 bg-slate-800">
         <div class="container mx-auto text-center px-4">
-            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Uma Convocação Histórica</h2>
-            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6">
+            <h2 class="text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">Uma Convocação Histórica</h2>
+            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left">
                 Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
             </p>
-            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12">
+            <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-left" data-aos-delay="200">
                 O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas. As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se para reviver a glória dos velhos tempos!
             </p>
             <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300 flex flex-col">
+                <!-- Cartões Modificados: Adicionada classe 'card-mud' e AOS -->
+                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud flex flex-col" data-aos="zoom-in-up" data-aos-delay="100">
                     <i data-lucide="shield-half" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
                     <h3 class="text-3xl mb-2">Rugby Para Todos</h3>
-                    <p class="text-gray-400 flex-grow text-left">
+                    <p class="text-gray-400 flex-grow text-left font-roboto">
                         <strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).
                         <strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma atividade leve para que esposas, filhos e amigos possam se divertir em campo.
                         <strong class="text-amber-400 block mt-3 mb-2"> • Jogo de Confraternização (XV):</strong> Para fechar, uma partida aberta de XV, unindo jogadores de todas as idades.
                     </p>
                 </div>
-                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300">
+                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="300">
                     <i data-lucide="heart-handshake" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
                     <h3 class="text-3xl mb-2">Família</h3>
-                    <p class="text-gray-400">Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.</p>
+                    <p class="text-gray-400 font-roboto">Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.</p>
                 </div>
-                <div class="bg-gray-900 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition duration-300">
+                <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up" data-aos-delay="500">
                     <i data-lucide="palmtree" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
                     <h3 class="text-3xl mb-2">Resort</h3>
-                    <p class="text-gray-400">Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.</p>
+                    <p class="text-gray-400 font-roboto">Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.</p>
                 </div>
             </div>
-             <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">QUERO FAZER PARTE DE UM TIME!</a>
+             <a href="#inscricao" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50" data-aos="flip-up">QUERO FAZER PARTE DE UM TIME!</a>
         </div>
     </section>
 
+    <!-- Esta seção agora tem um fundo fixo (Parallax) definido no CSS -->
     <section id="local" class="py-20 zagaia-bg">
-        <div class="container mx-auto text-center px-4">
+        <div class="container mx-auto text-center px-4" data-aos="fade-up">
             <h2 class="text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
             <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
-            <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12">
+            <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto">
                 Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.
             </p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201602.png?alt=media&token=912d7f53-3bf2-4215-adfa-2f4cbccf184c" alt="Piscina do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201716.png?alt=media&token=85f943d4-9179-4213-9c02-f5d2b8cbd717" alt="Apartamento do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201651.png?alt=media&token=bf6a5c9b-1eea-432a-bbee-532ad5aeb26d" alt="Área Verde do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201830.png?alt=media&token=257b2f25-983e-4720-9b7d-71a49314f3e0" alt="Restaurante do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-105 transition duration-300">
+                <!-- Imagens Modificadas: Adicionado efeito de hover e AOS -->
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201602.png?alt=media&token=912d7f53-3bf2-4215-adfa-2f4cbccf184c" alt="Piscina do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201716.png?alt=media&token=85f943d4-9179-4213-9c02-f5d2b8cbd717" alt="Apartamento do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201651.png?alt=media&token=bf6a5c9b-1eea-432a-bbee-532ad5aeb26d" alt="Área Verde do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-14%20201830.png?alt=media&token=257b2f25-983e-4720-9b7d-71a49314f3e0" alt="Restaurante do Resort" class="rounded-lg shadow-lg aspect-video object-cover transform hover:scale-110 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
             </div>
         </div>
     </section>
     
-    <section id="bonito" class="py-20 bg-gray-900">
+    <!-- NOVA SEÇÃO: Programação do Evento -->
+    <section id="programacao" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
+            <div class="grid lg:grid-cols-5 gap-12">
+                <!-- Coluna da Sexta-feira -->
+                <div class="lg:col-span-2" data-aos="fade-right">
+                    <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sexta, 05/02</h3>
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud h-full">
+                        <div class="flex items-center">
+                            <i data-lucide="clock-4" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <p class="text-2xl font-bold text-white">16:00 - 18:00</p>
+                                <p class="text-lg text-gray-300">Touch Sunset</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-400 pl-4 space-y-2 font-roboto">
+                            <li>Idade livre</li>
+                            <li>Times até XV</li>
+                            <li>Todos contra todos</li>
+                            <li>Tempo de 10 min ou 2 tries</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Coluna do Sábado -->
+                <div class="lg:col-span-3" data-aos="fade-left">
+                    <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sábado, 06/02</h3>
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <!-- Abas para selecionar o número de times -->
+                        <div class="mb-6 flex justify-center border-b border-slate-700">
+                            <button data-target="tabela-6-times" class="schedule-tab active-tab text-lg font-bold py-3 px-6">6 Times</button>
+                            <button data-target="tabela-5-times" class="schedule-tab text-lg font-bold py-3 px-6">5 Times</button>
+                            <button data-target="tabela-4-times" class="schedule-tab text-lg font-bold py-3 px-6">4 Times</button>
+                        </div>
+    
+                        <!-- Conteúdo das Tabelas -->
+                        <div class="text-left space-y-3 font-roboto">
+                            <!-- Tabela para 6 Times (Padrão) -->
+                            <div id="tabela-6-times" class="schedule-content space-y-3">
+                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 6</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 3 vs Time 6</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 2 vs Time 6</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 3 vs Time 5</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            </div>
+                            <!-- Tabela para 5 Times -->
+                            <div id="tabela-5-times" class="schedule-content hidden space-y-3">
+                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 1</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 4 vs Time 5</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 4 vs Time 1</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            </div>
+                            <!-- Tabela para 4 Times -->
+                            <div id="tabela-4-times" class="schedule-content hidden space-y-3">
+                                <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
+                                <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                                <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
+                                <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
+                                <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bonito" class="py-20 bg-slate-800">
         <div class="container mx-auto px-4">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up">
                 <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Explore Bonito, um Paraíso Natural</h2>
-                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12">
+                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                     Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.
                 </p>
             </div>
             <div class="grid md:grid-cols-3 gap-4 mb-12">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093623.png?alt=media&token=3b9a7e6a-b4ed-483b-86c3-2698c1b24b65" alt="Flutuação em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093400.png?alt=media&token=eb160464-b8bd-436b-b850-5adf7116ac19" alt="Gruta do Lago Azul em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
-                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093725.png?alt=media&token=ca98e9d4-577d-4639-9963-1bdcd041e208" alt="Mergulho em Bonito" class="rounded-lg shadow-lg aspect-video object-cover">
+                <!-- Imagens Modificadas: Adicionada animação 'flip' -->
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093623.png?alt=media&token=3b9a7e6a-b4ed-483b-86c3-2698c1b24b65" alt="Flutuação em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093400.png?alt=media&token=eb160464-b8bd-436b-b850-5adf7116ac19" alt="Gruta do Lago Azul em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/Rugby%2FCaptura%20de%20tela%202025-08-21%20093725.png?alt=media&token=ca98e9d4-577d-4639-9963-1bdcd041e208" alt="Mergulho em Bonito" class="rounded-lg shadow-lg aspect-video object-cover" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
             </div>
-            <div class="grid md:grid-cols-2 gap-12 text-left bg-gray-800 p-8 rounded-xl">
+            <div class="grid md:grid-cols-2 gap-12 text-left bg-slate-900 p-8 rounded-xl" data-aos="fade-up">
                 <div>
                     <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="map-pin" class="w-8 h-8 mr-3 text-amber-400"></i>Como Chegar</h3>
-                    <p class="text-gray-300 mb-4">O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.</p>
-                    <p class="text-gray-300">Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.</p>
+                    <p class="text-gray-300 mb-4 font-roboto">O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.</p>
+                    <p class="text-gray-300 font-roboto">Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.</p>
                 </div>
                 <div>
                     <h3 class="text-4xl text-white mb-6 flex items-center"><i data-lucide="handshake" class="w-8 h-8 mr-3 text-amber-400"></i>Agências Parceiras</h3>
-                    <ul class="space-y-4 text-gray-300">
+                    <ul class="space-y-4 text-gray-300 font-roboto">
                         <li class="flex items-start">
                             <i data-lucide="briefcase" class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
                             <div>
@@ -197,80 +404,83 @@
         </div>
     </section>
 
-    <section id="kit" class="py-20 bg-gray-800">
+    <section id="kit" class="py-20 bg-slate-800">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left" data-aos="fade-right">
                     <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Seu Kit de Lenda</h2>
-                    <p class="text-xl text-gray-300 mb-8">
+                    <p class="text-xl text-gray-300 mb-8 font-roboto">
                         Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
                     </p>
                     <div class="space-y-6">
-                        <div class="flex items-center bg-gray-900 p-4 rounded-lg">
+                        <!-- Adicionado efeito de hover nos itens do kit -->
+                        <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
                             <i data-lucide="shirt" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
                             <div>
                                 <h4 class="text-2xl text-white">Camiseta Premium do Evento</h4>
-                                <p class="text-gray-400">Design exclusivo, personalizada com seu nome e número.</p>
+                                <p class="text-gray-400 font-roboto">Design exclusivo, personalizada com seu nome e número.</p>
                             </div>
                         </div>
-                        <div class="flex items-center bg-gray-900 p-4 rounded-lg">
+                        <div class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
                             <i data-lucide="beer" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
                             <div>
                                 <h4 class="text-2xl text-white">Copo Térmico Personalizado</h4>
-                                <p class="text-gray-400">Mantenha sua bebida na temperatura ideal durante a resenha.</p>
+                                <p class="text-gray-400 font-roboto">Mantenha sua bebida na temperatura ideal durante a resenha.</p>
                             </div>
                         </div>
                     </div>
                      <div class="mt-10">
-                         <button id="openKitModalBtn" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">QUERO MEU KIT!</button>
+                         <button id="openKitModalBtn" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg">QUERO MEU KIT!</button>
                      </div>
                 </div>
-                <div>
-                    <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo" alt="Kit Rugby Legends" class="rounded-xl shadow-2xl w-full">
+                <!-- IMAGEM DO KIT RESTAURADA PARA A ORIGINAL -->
+                <div data-aos="fade-left" class="perspective-1000">
+                    <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo" alt="Kit Rugby Legends" class="rounded-xl shadow-2xl w-full transition-transform duration-700 hover:rotate-y-12 hover:shadow-amber-500/30">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="inscricao" class="py-20 bg-gray-900">
+    <section id="inscricao" class="py-20 bg-slate-900">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
                 <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Garanta sua Vaga no Time!</h2>
-                <p class="text-xl text-gray-300 mb-8">
+                <p class="text-xl text-gray-300 mb-8 font-roboto">
                     As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!
                 </p>
             </div>
-            <div id="inscription-wrapper" class="max-w-2xl mx-auto">
-                <form id="inscriptionForm" class="bg-gray-800 p-8 rounded-xl shadow-lg space-y-6">
+            <div id="inscription-wrapper" class="max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Formulário Modificado: Estilos de input ajustados para o tema Slate -->
+                <form id="inscriptionForm" class="bg-slate-800 p-8 rounded-xl shadow-lg space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="fullName" class="block text-amber-400 font-bold mb-2">Nome Completo</label>
-                            <input type="text" id="fullName" name="fullName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            <label for="fullName" class="block text-amber-400 font-bold mb-2 font-roboto">Nome Completo</label>
+                            <input type="text" id="fullName" name="fullName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                         </div>
                         <div>
-                            <label for="nickname" class="block text-amber-400 font-bold mb-2">Apelido (de campo)</label>
-                            <input type="text" id="nickname" name="nickname" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            <label for="nickname" class="block text-amber-400 font-bold mb-2 font-roboto">Apelido (de campo)</label>
+                            <input type="text" id="nickname" name="nickname" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                         </div>
                     </div>
                     
                     <div>
-                        <label for="celular" class="block text-amber-400 font-bold mb-2">Celular (com DDD)</label>
-                        <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        <label for="celular" class="block text-amber-400 font-bold mb-2 font-roboto">Celular (com DDD)</label>
+                        <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                     </div>
 
                     <div>
-                        <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2">De qual cidade está vindo? (Cidade / Estado)</label>
-                        <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                        <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2 font-roboto">De qual cidade está vindo? (Cidade / Estado)</label>
+                        <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="age" class="block text-amber-400 font-bold mb-2">Idade</label>
-                            <input type="number" id="age" name="age" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            <label for="age" class="block text-amber-400 font-bold mb-2 font-roboto">Idade</label>
+                            <input type="number" id="age" name="age" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                         </div>
                         <div>
-                            <label for="position" class="block text-amber-400 font-bold mb-2">Posição Principal</label>
-                            <select id="position" name="position" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            <label for="position" class="block text-amber-400 font-bold mb-2 font-roboto">Posição Principal</label>
+                            <select id="position" name="position" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600" required>
                                 <option value="">Selecione...</option>
                                 <option value="Pilar">Pilar</option>
                                 <option value="Hooker">Hooker</option>
@@ -287,40 +497,40 @@
                     </div>
 
                     <div>
-                        <span class="block text-amber-400 font-bold mb-2">Você já tem uma equipe?</span>
+                        <span class="block text-amber-400 font-bold mb-2 font-roboto">Você já tem uma equipe?</span>
                         <div class="flex items-center space-x-6 mt-2">
-                            <label class="flex items-center text-white cursor-pointer">
-                                <input type="radio" name="hasTeam" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400" required>
+                            <label class="flex items-center text-white cursor-pointer font-roboto">
+                                <input type="radio" name="hasTeam" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
                                 <span class="ml-2">Sim</span>
                             </label>
-                            <label class="flex items-center text-white cursor-pointer">
-                                <input type="radio" name="hasTeam" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400">
+                            <label class="flex items-center text-white cursor-pointer font-roboto">
+                                <input type="radio" name="hasTeam" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
                                 <span class="ml-2">Não</span>
                             </label>
                         </div>
                     </div>
 
                     <div id="teamSelectionContainer" class="hidden">
-                        <label for="teamName" class="block text-amber-400 font-bold mb-2">Selecione sua equipe</label>
-                        <select id="teamName" name="teamName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <label for="teamName" class="block text-amber-400 font-bold mb-2 font-roboto">Selecione sua equipe</label>
+                        <select id="teamName" name="teamName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600">
                             </select>
                     </div>
 
                     <div>
-                        <span class="block text-amber-400 font-bold mb-2">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
+                        <span class="block text-amber-400 font-bold mb-2 font-roboto">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
                         <div class="flex items-center space-x-6 mt-2">
-                            <label class="flex items-center text-white cursor-pointer">
-                                <input type="radio" name="hasPackage" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400" required>
+                            <label class="flex items-center text-white cursor-pointer font-roboto">
+                                <input type="radio" name="hasPackage" value="Sim" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400" required>
                                 <span class="ml-2">Sim</span>
                             </label>
-                            <label class="flex items-center text-white cursor-pointer">
-                                <input type="radio" name="hasPackage" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-gray-700 border-gray-600 focus:ring-amber-400">
+                            <label class="flex items-center text-white cursor-pointer font-roboto">
+                                <input type="radio" name="hasPackage" value="Não" class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
                                 <span class="ml-2">Não, preciso reservar</span>
                             </label>
                         </div>
                     </div>
                     <div class="pt-4">
-                        <button type="submit" id="submitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                        <button type="submit" id="submitButton" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/50">
                             ENVIAR INSCRIÇÃO
                         </button>
                     </div>
@@ -330,82 +540,86 @@
         </div>
     </section>
 
-    <section id="countdown-section" class="py-12 bg-amber-500 text-gray-900">
-        <div class="container mx-auto text-center px-4">
+    <!-- Contagem Regressiva Modificada: Fundo alterado para um verde Emerald vibrante (Gramado) -->
+    <section id="countdown-section" class="py-12 bg-emerald-700 text-white">
+        <div class="container mx-auto text-center px-4" data-aos="fade-up">
             <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!</h3>
-            <p class="text-lg mb-6">A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
+            <p class="text-lg mb-6 font-roboto">A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
             <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
-                    <span id="days" class="text-5xl font-bold">00</span>
-                    <p class="text-sm">Dias</p>
+                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                    <span id="days" class="text-5xl font-bold block">00</span>
+                    <p class="text-sm font-roboto">Dias</p>
                 </div>
-                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
-                    <span id="hours" class="text-5xl font-bold">00</span>
-                    <p class="text-sm">Horas</p>
+                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                    <span id="hours" class="text-5xl font-bold block">00</span>
+                    <p class="text-sm font-roboto">Horas</p>
                 </div>
-                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
-                    <span id="minutes" class="text-5xl font-bold">00</span>
-                    <p class="text-sm">Minutos</p>
+                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                    <span id="minutes" class="text-5xl font-bold block">00</span>
+                    <p class="text-sm font-roboto">Minutos</p>
                 </div>
-                <div class="countdown-box p-4 rounded-lg bg-amber-600/50">
-                    <span id="seconds" class="text-5xl font-bold">00</span>
-                    <p class="text-sm">Segundos</p>
+                <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
+                    <span id="seconds" class="text-5xl font-bold block">00</span>
+                    <p class="text-sm font-roboto">Segundos</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="pacotes" class="py-20 bg-gray-800">
+    <section id="pacotes" class="py-20 bg-slate-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12">Pacotes de Hospedagem</h2>
-            <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12">
+            <h2 class="text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-up" data-aos-delay="100">
                 A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
             </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <!-- Cartões de Pacote Modificados: Adicionado 'card-mud' e AOS -->
+                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="100">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
-                        <ul class="space-y-2 text-gray-300">
+                        <ul class="space-y-2 text-gray-300 font-roboto">
                             <li><span class="font-bold text-white">Single:</span> R$ 2.503,00</li>
                             <li><span class="font-bold text-white">Duplo:</span> R$ 3.224,00</li>
                             <li><span class="font-bold text-white">Triplo:</span> R$ 3.943,00</li>
                             <li><span class="font-bold text-white">Quádruplo:</span> R$ 4.697,00</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <!-- NOVO: Pacote do meio destacado -->
+                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud border-4 border-amber-400 transform lg:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                   <div class="bg-amber-400 text-gray-900 text-center py-2 font-bold">MAIS POPULAR</div>
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
-                        <ul class="space-y-2 text-gray-300">
+                        <ul class="space-y-2 text-gray-300 font-roboto">
                             <li><span class="font-bold text-white">Single:</span> R$ 2.852,00</li>
                             <li><span class="font-bold text-white">Duplo:</span> R$ 3.506,00</li>
                             <li><span class="font-bold text-white">Triplo:</span> R$ 4.259,00</li>
                             <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.050,00</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud" data-aos="zoom-in" data-aos-delay="300">
                     <div class="p-8 flex-grow">
                         <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
-                        <ul class="space-y-2 text-gray-300">
+                        <ul class="space-y-2 text-gray-300 font-roboto">
                             <li><span class="font-bold text-white">Single:</span> R$ 3.030,00</li>
                             <li><span class="font-bold text-white">Duplo:</span> R$ 3.821,00</li>
                             <li><span class="font-bold text-white">Triplo:</span> R$ 4.612,00</li>
                             <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.446,00</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-900 p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
+                    <div class="p-4"><a href="#inscricao" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                 </div>
             </div>
             
-            <div class="mt-16">
+            <div class="mt-16" data-aos="fade-up">
                 <h3 class="text-4xl text-center text-white mb-10">O que o pacote de hospedagem inclui?</h3>
                 <div class="grid lg:grid-cols-5 gap-8 items-stretch">
-                    <div class="bg-gray-900 p-8 rounded-xl lg:col-span-3">
+                    <div class="bg-slate-900 p-8 rounded-xl lg:col-span-3">
                         <h4 class="text-3xl text-amber-400 mb-6">Refeições e Hospedagem</h4>
-                        <ul class="space-y-4 text-lg text-gray-300">
+                        <ul class="space-y-4 text-lg text-gray-300 font-roboto">
                             <li class="flex items-start">
                                 <i data-lucide="calendar-days" class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
                                 <span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>
@@ -420,15 +634,16 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="bg-amber-500 text-gray-900 p-8 rounded-xl shadow-2xl border-4 border-amber-300 transform lg:scale-105 flex flex-col justify-center items-center lg:col-span-2">
+                    <!-- Cartão Open Bar Modificado: Design mais impactante e ícones rotacionados -->
+                    <div class="bg-amber-500 text-gray-900 p-8 rounded-xl shadow-2xl border-4 border-amber-300 transform lg:scale-105 flex flex-col justify-center items-center lg:col-span-2 hover:shadow-amber-500/50 transition duration-300">
                          <div class="flex items-center justify-center mb-4">
-                            <i data-lucide="beer" class="w-12 h-12 md:w-16 md:h-16 text-gray-900"></i>
-                            <i data-lucide="martini" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4"></i>
-                        </div>
+                            <i data-lucide="beer" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 transform rotate-12"></i>
+                            <i data-lucide="martini" class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4 transform -rotate-12"></i>
+                         </div>
                         <h4 class="text-4xl md:text-5xl text-center font-bold">OPEN BAR</h4>
-                        <p class="text-center text-xl font-semibold mb-2">SÁBADO, 07/02</p>
-                        <p class="text-center text-lg font-bold mb-4">(das 11h às 23h)</p>
-                        <p class="text-center text-base md:text-lg">
+                        <p class="text-center text-xl font-semibold mb-2 font-roboto">SÁBADO, 07/02</p>
+                        <p class="text-center text-lg font-bold mb-4 font-roboto">(das 11h às 23h)</p>
+                        <p class="text-center text-base md:text-lg font-roboto">
                             Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para celebrar o dia todo!
                         </p>
                     </div>
@@ -437,28 +652,28 @@
         </div>
     </section>
 
-    <section id="reserva" class="py-20 bg-gray-800 border-t border-gray-700">
-        <div class="container mx-auto text-center px-4">
+    <section id="reserva" class="py-20 bg-slate-800 border-t border-slate-700">
+        <div class="container mx-auto text-center px-4" data-aos="fade-up">
             <h2 class="text-5xl md:text-6xl text-amber-400 mb-4">Faça sua Reserva no Hotel</h2>
-            <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12">
+            <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                 As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!
             </p>
             <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-                <div class="bg-gray-900 p-8 rounded-lg text-center">
+                <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
                     <i data-lucide="phone" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
                     <h3 class="text-3xl mb-2">Telefone</h3>
-                    <a href="tel:+556732555534" class="text-2xl text-white hover:text-amber-400 transition duration-300">(67) 3255-5534</a>
+                    <a href="tel:+556732555534" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">(67) 3255-5534</a>
                 </div>
-                <div class="bg-gray-900 p-8 rounded-lg text-center">
+                <div class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
                     <i data-lucide="mail" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
                     <h3 class="text-3xl mb-2">E-mail</h3>
-                    <a href="mailto:comercial@zagaia.com.br" class="text-2xl text-white hover:text-amber-400 transition duration-300">comercial@zagaia.com.br</a>
+                    <a href="mailto:comercial@zagaia.com.br" class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">comercial@zagaia.com.br</a>
                 </div>
             </div>
             <div class="mt-12">
                 <h4 class="text-2xl text-amber-400 mb-4">Formas de Pagamento da Hospedagem</h4>
-                <p class="text-gray-300">Opção 1: Sinal de 30% + saldo em 3x no check-in.</p>
-                <p class="text-gray-300">Opção 2: Parcelado em 10x no cartão no ato da reserva.</p>
+                <p class="text-gray-300 font-roboto">Opção 1: Sinal de 30% + saldo em 3x no check-in.</p>
+                <p class="text-gray-300 font-roboto">Opção 2: Parcelado em 10x no cartão no ato da reserva.</p>
             </div>
         </div>
     </section>
@@ -466,9 +681,9 @@
     <footer class="bg-black py-8">
         <div class="container mx-auto text-center text-gray-500">
             <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span class="text-amber-400">EGENDS</span></h3>
-            <p class="mb-4">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
-            <p>&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.</p>
-            <p class="mt-4 text-sm">
+            <p class="mb-4 font-roboto">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
+            <p class="font-roboto">&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.</p>
+            <p class="mt-4 text-sm font-roboto">
                 <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
                     Criado por Victor Cruzetta
                 </a>
@@ -476,14 +691,15 @@
         </div>
     </footer>
 
+    <!-- Botão WhatsApp (Funcionalidade inalterada) -->
     <div id="whatsapp-container" class="fixed bottom-5 right-5 z-[100]">
         <div id="whatsapp-options" class="flex flex-col items-end mb-3 space-y-2 hidden">
             <a href="https://wa.me/5567996129961?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
-                <span class="font-bold mr-2">Falar com Roberto</span>
+                <span class="font-bold mr-2 font-roboto">Falar com Roberto</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
             </a>
             <a href="https://wa.me/5567992002916?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
-                <span class="font-bold mr-2">Falar com Rodrigo</span>
+                <span class="font-bold mr-2 font-roboto">Falar com Rodrigo</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
             </a>
         </div>
@@ -492,16 +708,17 @@
         </button>
     </div>
 
-    <!-- MODAL DO KIT COM A NOVA ETAPA DE BOAS-VINDAS -->
+    <!-- MODAL DO KIT -->
+    <!-- Conteúdo do Modal Modificado: Cores alteradas para o tema Slate -->
     <div id="kitModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-start justify-center overflow-y-auto p-4 pt-8 sm:pt-12">
-        <div id="kitModalContent" class="bg-gray-800 rounded-xl shadow-lg w-full max-w-2xl p-8 relative transform transition-all duration-300 scale-95 opacity-0">
+        <div id="kitModalContent" class="bg-slate-800 rounded-xl shadow-lg w-full max-w-2xl p-8 relative transform transition-all duration-300 scale-95 opacity-0">
             <button id="closeKitModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             
-            <!-- NOVA ETAPA DE BOAS-VINDAS (PÓS-INSCRIÇÃO) -->
+            <!-- ETAPA DE BOAS-VINDAS (PÓS-INSCRIÇÃO) -->
             <div id="kit-welcome-step" class="hidden text-center">
                 <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
                 <h3 id="kit-welcome-title" class="text-4xl text-amber-400 mb-4">Inscrição Confirmada, Lenda!</h3>
-                <p class="text-lg text-gray-300 mb-8">Agora o próximo passo é garantir seu manto sagrado. Monte o kit para você e toda a família e eternize esse encontro!</p>
+                <p class="text-lg text-gray-300 mb-8 font-roboto">Agora o próximo passo é garantir seu manto sagrado. Monte o kit para você e toda a família e eternize esse encontro!</p>
                 <button type="button" id="startKitOrderBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
                     MONTAR MEU KIT
                 </button>
@@ -510,54 +727,55 @@
             <!-- ETAPA 1: MONTAGEM DO PEDIDO -->
             <div id="kit-step-1" class="hidden">
                 <h3 class="text-4xl text-amber-400 mb-2 text-center">Monte seu Pedido de Kits</h3>
-                <p class="text-gray-300 mb-6 text-center">Adicione quantos kits (camiseta + copo) você precisar para sua família e amigos!</p>
+                <p class="text-gray-300 mb-6 text-center font-roboto">Adicione quantos kits (camiseta + copo) você precisar para sua família e amigos!</p>
                 
-                <div class="bg-gray-900 p-4 rounded-lg mb-6 text-sm text-center">
-                     <p class="font-bold text-amber-400 mb-2">VALORES DOS LOTES (POR KIT):</p>
-                     <p><strong class="text-white">1º Lote:</strong> R$ 150,00 (até 22 de Setembro)</p>
-                     <p><strong class="text-white">2º Lote:</strong> R$ 180,00 (até 22 de Outubro)</p>
-                     <p><strong class="text-white">3º Lote:</strong> R$ 210,00 (até 10 de Novembro)</p>
+                <!-- Lista de Preços Modificada: Cor de fundo alterada -->
+                <div class="bg-slate-900 p-4 rounded-lg mb-6 text-sm text-center font-roboto">
+                      <p class="font-bold text-amber-400 mb-2">VALORES DOS LOTES (POR KIT):</p>
+                      <p><strong class="text-white">1º Lote:</strong> R$ 150,00 (até 22 de Setembro)</p>
+                      <p><strong class="text-white">2º Lote:</strong> R$ 180,00 (até 22 de Outubro)</p>
+                      <p><strong class="text-white">3º Lote:</strong> R$ 210,00 (até 10 de Novembro)</p>
                 </div>
 
                 <form id="kitOrderForm" class="space-y-6 text-left">
-                    <fieldset class="border-2 border-gray-700 p-4 rounded-lg">
+                    <fieldset class="border-2 border-slate-700 p-4 rounded-lg">
                         <legend class="text-amber-400 font-bold px-2 text-xl">Seus Dados de Contato</legend>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label for="buyerName" class="block text-white font-bold mb-2">Nome Completo</label>
-                                <input type="text" id="buyerName" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <label for="buyerName" class="block text-white font-bold mb-2 font-roboto">Nome Completo</label>
+                                <input type="text" id="buyerName" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                             <div>
-                                <label for="buyerCelular" class="block text-white font-bold mb-2">Celular (com DDD)</label>
-                                <input type="tel" id="buyerCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                                <label for="buyerCelular" class="block text-white font-bold mb-2 font-roboto">Celular (com DDD)</label>
+                                <input type="tel" id="buyerCelular" placeholder="(XX) XXXXX-XXXX" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                             </div>
                         </div>
                     </fieldset>
 
-                    <fieldset class="border-2 border-dashed border-gray-600 p-4 rounded-lg">
+                    <fieldset class="border-2 border-dashed border-slate-600 p-4 rounded-lg">
                         <legend class="text-amber-400 font-bold px-2 text-xl">Adicionar Kit ao Pedido</legend>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                               <label for="kitShirtName" class="block text-white font-bold mb-2">Nome na Camiseta</label>
-                               <input type="text" id="kitShirtName" placeholder="Apelido ou nome" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                               <label for="kitShirtName" class="block text-white font-bold mb-2 font-roboto">Nome na Camiseta</label>
+                               <input type="text" id="kitShirtName" placeholder="Apelido ou nome" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
                             </div>
                             <div>
-                                <label for="kitShirtNumber" class="block text-white font-bold mb-2">Número</label>
-                                <input type="number" id="kitShirtNumber" min="0" max="99" placeholder="Ex: 10" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                <label for="kitShirtNumber" class="block text-white font-bold mb-2 font-roboto">Número</label>
+                                <input type="number" id="kitShirtNumber" min="0" max="99" placeholder="Ex: 10" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
                             </div>
                         </div>
                         <div class="grid md:grid-cols-2 gap-4 mt-4">
                              <div>
-                                <label for="kitGender" class="block text-white font-bold mb-2">Gênero</label>
-                                <select id="kitGender" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                <label for="kitGender" class="block text-white font-bold mb-2 font-roboto">Gênero</label>
+                                <select id="kitGender" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino (Baby Look)</option>
                                     <option value="Infantil">Infantil</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="kitShirtSize" class="block text-white font-bold mb-2">Tamanho</label>
-                                <select id="kitShirtSize" class="w-full bg-gray-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                <label for="kitShirtSize" class="block text-white font-bold mb-2 font-roboto">Tamanho</label>
+                                <select id="kitShirtSize" class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
                                     <option value="">Selecione</option>
                                     <option value="PP">PP</option>
                                     <option value="P">P</option>
@@ -578,7 +796,7 @@
                     <div>
                         <h4 class="text-2xl text-white mt-6 mb-2">Resumo do Pedido</h4>
                         <div id="kit-summary-list" class="space-y-2">
-                           <p class="text-gray-400 text-center p-4">Seu carrinho de kits está vazio.</p>
+                           <p class="text-gray-400 text-center p-4 font-roboto">Seu carrinho de kits está vazio.</p>
                         </div>
                     </div>
 
@@ -595,17 +813,17 @@
             <div id="kit-step-2" class="hidden text-center">
                 <h3 class="text-4xl text-amber-400 mb-4">Quase lá! Siga os passos abaixo:</h3>
                 
-                <div class="bg-gray-900 p-6 rounded-lg text-left space-y-6">
+                <div class="bg-slate-900 p-6 rounded-lg text-left space-y-6">
                     <div>
                         <h4 class="text-2xl text-amber-400 flex items-center"><span class="bg-amber-400 text-gray-900 rounded-full h-8 w-8 flex items-center justify-center font-bold text-lg mr-3">1</span>Faça o Pagamento via PIX</h4>
-                        <p class="mt-2 ml-11 text-gray-300">Use a chave abaixo para pagar o valor total do seu pedido.</p>
-                        <div class="mt-4 ml-11 bg-gray-800 p-4 rounded-lg">
-                            <p class="text-sm text-gray-400">Valor Total a Pagar:</p>
+                        <p class="mt-2 ml-11 text-gray-300 font-roboto">Use a chave abaixo para pagar o valor total do seu pedido.</p>
+                        <div class="mt-4 ml-11 bg-slate-800 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400 font-roboto">Valor Total a Pagar:</p>
                             <p id="pix-total-value" class="text-3xl font-bold text-amber-400 mb-4">R$ 0,00</p>
-                            <p class="text-sm text-gray-400">Chave PIX (CNPJ):</p>
+                            <p class="text-sm text-gray-400 font-roboto">Chave PIX (CNPJ):</p>
                             <p id="pix-key" class="text-xl font-mono text-white tracking-widest break-all">07860029000192</p>
-                            <p class="text-sm text-gray-400 mt-2">Você está pagando para: <strong class="text-white">Campo Grande Rugby Clube</strong></p>
-                            <button type="button" id="copyPixKeyBtn" class="mt-3 w-full bg-gray-700 hover:bg-gray-600 text-amber-400 font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <p class="text-sm text-gray-400 mt-2 font-roboto">Você está pagando para: <strong class="text-white">Campo Grande Rugby Clube</strong></p>
+                            <button type="button" id="copyPixKeyBtn" class="mt-3 w-full bg-slate-700 hover:bg-slate-600 text-amber-400 font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
                                 <i data-lucide="copy" class="w-5 h-5 mr-2"></i> <span id="copy-btn-text">Copiar Chave PIX</span>
                             </button>
                         </div>
@@ -613,18 +831,18 @@
 
                     <div>
                         <h4 class="text-2xl text-amber-400 flex items-center"><span class="bg-amber-400 text-gray-900 rounded-full h-8 w-8 flex items-center justify-center font-bold text-lg mr-3">2</span>Anexe o Comprovante</h4>
-                         <p class="mt-2 ml-11 text-gray-300">Isso é essencial para confirmarmos seu pagamento e seu pedido.</p>
+                         <p class="mt-2 ml-11 text-gray-300 font-roboto">Isso é essencial para confirmarmos seu pagamento e seu pedido.</p>
                          <div class="mt-4 ml-11">
                              <input type="file" name="receipt" id="receipt-upload" class="hidden" accept="image/*,application/pdf">
                              <label for="receipt-upload" class="custom-file-upload">
                                  <div id="file-upload-prompt">
                                      <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2 text-gray-400"></i>
-                                     <span class="font-bold text-white">Clique para escolher o arquivo</span>
-                                     <p class="text-sm text-gray-500">PNG, JPG, PDF, etc.</p>
+                                     <span class="font-bold text-white font-roboto">Clique para escolher o arquivo</span>
+                                     <p class="text-sm text-gray-500 font-roboto">PNG, JPG, PDF, etc.</p>
                                  </div>
                                   <div id="file-upload-name" class="hidden items-center justify-center text-green-400">
                                      <i data-lucide="check-circle" class="w-6 h-6 mr-2"></i>
-                                     <span class="font-bold"></span>
+                                     <span class="font-bold font-roboto"></span>
                                  </div>
                              </label>
                          </div>
@@ -643,16 +861,16 @@
             <div id="kit-step-3" class="hidden text-center">
                  <i data-lucide="party-popper" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
                  <h3 class="text-4xl text-green-400 mb-4">Pedido Enviado com Sucesso!</h3>
-                 <p class="text-lg text-gray-300 mb-6">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
+                 <p class="text-lg text-gray-300 mb-6 font-roboto">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
                  <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                      Fechar
+                       Fechar
                  </button>
             </div>
             <div id="kit-form-message" class="text-center font-bold mt-4"></div>
         </div>
     </div>
 
-
+    <!-- Inicialização do Firebase (Inalterada) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
@@ -674,8 +892,10 @@
         const auth = getAuth(app);
         const storage = getStorage(app);
         
+        // Lógica do Formulário e Modal (Adaptada para os novos estilos)
         const submitOrderBtn = document.getElementById('submitOrderBtn');
         
+        // Lógica de Autenticação Anônima
         submitOrderBtn.disabled = true;
         submitOrderBtn.innerHTML = '<span class="animate-pulse">AUTENTICANDO...</span>';
 
@@ -690,22 +910,19 @@
             submitOrderBtn.textContent = 'ERRO DE AUTENTICAÇÃO';
           });
 
+        // Seleção de elementos
         const inscriptionForm = document.getElementById('inscriptionForm');
         const submitButton = document.getElementById('submitButton');
-        
-        // --- KIT MODAL LOGIC ---
         const kitModal = document.getElementById('kitModal');
         const kitModalContent = document.getElementById('kitModalContent');
         const openKitModalBtn = document.getElementById('openKitModalBtn');
         const closeKitModalButton = document.getElementById('closeKitModal');
         const kitOrderForm = document.getElementById('kitOrderForm');
-        
         const welcomeStep = document.getElementById('kit-welcome-step');
         const startKitOrderBtn = document.getElementById('startKitOrderBtn');
         const step1 = document.getElementById('kit-step-1');
         const step2 = document.getElementById('kit-step-2');
         const step3 = document.getElementById('kit-step-3');
-
         const addKitItemBtn = document.getElementById('addKitItemBtn');
         const kitSummaryList = document.getElementById('kit-summary-list');
         const kitTotalPrice = document.getElementById('kit-total-price');
@@ -719,8 +936,10 @@
         let kitOrder = [];
         let currentKitPrice = 0;
 
+        // Funções (getCurrentKitPrice, formatCurrency, updateOrderSummary, open/close modals)
         function getCurrentKitPrice() {
             const now = new Date();
+            // Assumindo o ano de 2025 baseado no contexto do evento
             const lote1Date = new Date('2025-09-22T23:59:59');
             const lote2Date = new Date('2025-10-22T23:59:59');
             if (now <= lote1Date) return 150;
@@ -735,7 +954,7 @@
         function updateOrderSummary() {
             kitSummaryList.innerHTML = '';
             if (kitOrder.length === 0) {
-                kitSummaryList.innerHTML = '<p class="text-gray-400 text-center p-4">Seu carrinho de kits está vazio.</p>';
+                kitSummaryList.innerHTML = '<p class="text-gray-400 text-center p-4 font-roboto">Seu carrinho de kits está vazio.</p>';
                 goToPaymentBtn.disabled = true;
                 goToPaymentBtn.classList.add('opacity-50', 'cursor-not-allowed');
             } else {
@@ -743,11 +962,12 @@
                  goToPaymentBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 kitOrder.forEach((item, index) => {
                     const itemDiv = document.createElement('div');
-                    itemDiv.className = 'bg-gray-900 p-3 rounded-lg flex justify-between items-center';
+                    // Estilo atualizado para o tema Slate
+                    itemDiv.className = 'bg-slate-900 p-3 rounded-lg flex justify-between items-center';
                     itemDiv.innerHTML = `
                         <div>
-                            <p class="font-bold text-white">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
-                            <p class="text-sm text-gray-400">Número: ${item.shirtNumber || 'S/N'}</p>
+                            <p class="font-bold text-white font-roboto">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
+                            <p class="text-sm text-gray-400 font-roboto">Número: ${item.shirtNumber || 'S/N'}</p>
                         </div>
                         <button type="button" data-index="${index}" class="remove-kit-item text-red-500 hover:text-red-400 p-2">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -762,6 +982,7 @@
             pixTotalValue.textContent = formatCurrency(total);
         }
 
+        // Funções de controle do modal (Inalteradas)
         function openKitModalWithWelcome(nickname) {
             document.body.classList.add('overflow-hidden');
             kitModal.classList.remove('hidden');
@@ -818,12 +1039,13 @@
             }, 300);
         }
 
+        // Event Listeners (Inalterados)
         startKitOrderBtn.addEventListener('click', () => {
             welcomeStep.classList.add('hidden');
-            
             currentKitPrice = getCurrentKitPrice();
             kitOrder = [];
-            kitOrderForm.reset();
+            // Não resetar o form aqui, pois os dados do comprador podem já estar preenchidos se vieram do welcome step
+            // kitOrderForm.reset(); 
             updateOrderSummary();
             step1.classList.remove('hidden');
         });
@@ -835,7 +1057,11 @@
             const size = document.getElementById('kitShirtSize').value;
 
             if (!shirtName || !size) {
-                alert('Por favor, preencha o Nome na Camiseta e o Tamanho para adicionar ao pedido.');
+                // Substituindo alert por uma mensagem no modal
+                const msgDiv = document.getElementById('kit-form-message');
+                msgDiv.textContent = 'Por favor, preencha o Nome na Camiseta e o Tamanho.';
+                msgDiv.className = 'text-center font-bold mt-4 text-red-400';
+                setTimeout(() => msgDiv.textContent = '', 3000);
                 return;
             }
 
@@ -860,7 +1086,10 @@
         kitOrderForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (kitOrder.length === 0) {
-                alert("Você precisa adicionar pelo menos um kit ao pedido antes de prosseguir.");
+                const msgDiv = document.getElementById('kit-form-message');
+                msgDiv.textContent = "Adicione pelo menos um kit ao pedido.";
+                msgDiv.className = 'text-center font-bold mt-4 text-red-400';
+                setTimeout(() => msgDiv.textContent = '', 3000);
                 return;
             }
             step1.classList.add('hidden');
@@ -880,7 +1109,7 @@
                 setTimeout(() => { btnText.textContent = 'Copiar Chave PIX'; }, 2000);
             }).catch(err => {
                 console.error('Erro ao copiar:', err);
-                alert("Não foi possível copiar a chave.");
+                // alert("Não foi possível copiar a chave.");
             });
         });
 
@@ -895,19 +1124,23 @@
             }
         });
 
+        // Lógica de Envio do Pedido
         submitOrderBtn.addEventListener('click', async () => {
             const buyerName = document.getElementById('buyerName').value.trim();
             const buyerCelular = document.getElementById('buyerCelular').value.trim();
             const receiptFile = receiptUploadInput.files[0];
 
             if (!buyerName || !buyerCelular) {
-                 alert('Por favor, volte e preencha seu Nome e Celular.');
                  backToCartBtn.click();
                  document.getElementById('buyerName').focus();
                  return;
             }
             if (!receiptFile) {
-                alert('Por favor, anexe o comprovante de pagamento para finalizar.');
+                const msgDiv = document.getElementById('kit-form-message'); // Usando um elemento de mensagem
+                msgDiv.textContent = 'Por favor, anexe o comprovante de pagamento.';
+                msgDiv.className = 'text-center font-bold mt-4 text-red-400';
+                step2.prepend(msgDiv); // Adiciona a mensagem no topo do passo 2
+                setTimeout(() => msgDiv.remove(), 3000);
                 return;
             }
 
@@ -915,12 +1148,14 @@
             submitOrderBtn.textContent = 'ENVIANDO, AGUARDE...';
 
             try {
+                // Upload do comprovante
                 const timestamp = Date.now();
                 const uniqueFileName = `${timestamp}-${receiptFile.name}`;
                 const storageRef = ref(storage, `comprovantes/${uniqueFileName}`);
                 const uploadResult = await uploadBytes(storageRef, receiptFile);
                 const receiptUrl = await getDownloadURL(uploadResult.ref);
 
+                // Preparação dos dados do pedido
                 const orderData = {
                     buyerName: buyerName,
                     buyerCelular: buyerCelular,
@@ -932,33 +1167,39 @@
                     timestamp: serverTimestamp()
                 };
 
+                // Salvamento no Firestore
                 await addDoc(collection(db, "inscriptions"), orderData);
                 
+                // Tela de sucesso
                 step2.classList.add('hidden');
                 step3.classList.remove('hidden');
                 lucide.createIcons();
 
             } catch (error) {
                 console.error("Erro ao finalizar pedido:", error);
-                alert("Ocorreu um erro ao enviar seu pedido. Por favor, tente novamente.");
+                const msgDiv = document.getElementById('kit-form-message');
+                msgDiv.textContent = 'Ocorreu um erro. Tente novamente.';
+                msgDiv.className = 'text-center font-bold mt-4 text-red-400';
             } finally {
                 submitOrderBtn.disabled = false;
                 submitOrderBtn.textContent = 'ENVIAR COMPROVANTE E FINALIZAR';
             }
         });
 
-        // --- INSCRIPTION FORM LOGIC ---
+        // --- LÓGICA DO FORMULÁRIO DE INSCRIÇÃO ---
         inscriptionForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             submitButton.disabled = true;
             submitButton.textContent = 'ENVIANDO...';
             const formData = new FormData(this);
             const nickname = formData.get('nickname');
+            const fullName = formData.get('fullName');
+            const celular = formData.get('celular');
 
             const inscriptionData = {
-                fullName: formData.get('fullName'),
+                fullName: fullName,
                 nickname: nickname,
-                celular: formData.get('celular'),
+                celular: celular,
                 cidadeEstado: formData.get('cidadeEstado'),
                 age: formData.get('age'),
                 position: formData.get('position'),
@@ -972,26 +1213,35 @@
             try {
                 await addDoc(collection(db, "inscriptions"), inscriptionData);
                 
+                // Personalização via Local Storage
                 const userData = {
                     inscrito: true,
-                    apelido: nickname 
+                    apelido: nickname,
+                    nomeCompleto: fullName,
+                    celular: celular
                 };
                 localStorage.setItem('rugbyLegendsUser', JSON.stringify(userData)); 
                 
-                // APLICA A PERSONALIZAÇÃO NA PÁGINA ATUAL SEM RECARREGAR
+                // Aplica a personalização imediatamente
                 window.applyPersonalization(userData);
 
                 const inscriptionWrapper = document.getElementById('inscription-wrapper');
                 inscriptionWrapper.style.transition = 'opacity 0.5s ease';
                 inscriptionWrapper.style.opacity = '0';
                 
+                // Abre o modal de boas-vindas
                 setTimeout(() => {
+                    // Pré-preenche os dados do comprador no modal do kit
+                    document.getElementById('buyerName').value = fullName;
+                    document.getElementById('buyerCelular').value = celular;
                     openKitModalWithWelcome(nickname);
                 }, 500);
 
             } catch (error) {
                 console.error("Error adding document: ", error);
-                alert('Houve um erro ao enviar sua inscrição. Tente novamente.')
+                const formMessage = document.getElementById('form-message');
+                formMessage.textContent = 'Houve um erro. Tente novamente.';
+                formMessage.className = 'text-center font-bold mt-4 text-red-400';
                 submitButton.disabled = false;
                 submitButton.textContent = 'ENVIAR INSCRIÇÃO';
             }
@@ -1002,8 +1252,16 @@
         closeSuccessBtn.addEventListener('click', closeKitModal);
     </script>
     
+    <!-- JavaScript Principal (Interatividade, Animações) -->
     <script>
-        // FUNÇÃO GLOBAL PARA APLICAR PERSONALIZAÇÃO
+        // Inicialização do AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800, // Duração das animações
+            once: true, // Animação ocorre apenas uma vez
+            offset: 100, // Offset (em px) do ponto de gatilho original
+        });
+
+        // FUNÇÃO GLOBAL PARA APLICAR PERSONALIZAÇÃO (Funcionalidade inalterada, ajustes de estilo)
         window.applyPersonalization = (userData) => {
              if (userData && userData.inscrito && userData.apelido) {
                 // 1. Personaliza a seção de Inscrição
@@ -1013,11 +1271,11 @@
                 if(inscriptionForm) inscriptionForm.style.display = 'none';
 
                 const alreadyRegisteredMessage = `
-                    <div class="text-center p-8 bg-gray-800 rounded-xl">
+                    <div class="text-center p-8 bg-slate-800 rounded-xl shadow-xl">
                         <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
                         <h3 class="text-3xl text-green-400 mb-2">Olá, ${userData.apelido}! Você já está no time.</h3>
-                        <p class="text-lg text-gray-300 mb-6">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
-                        <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                        <p class="text-lg text-gray-300 mb-6 font-roboto">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
+                        <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50">
                             GARANTIR MEU KIT
                         </button>
                     </div>
@@ -1027,19 +1285,21 @@
                 const kitButton = document.getElementById('showKitModalFromRegistered');
                 if(kitButton) {
                     kitButton.addEventListener('click', () => {
+                        // Pré-preenche os dados se o usuário clicar aqui também
+                        if (userData.nomeCompleto) document.getElementById('buyerName').value = userData.nomeCompleto;
+                        if (userData.celular) document.getElementById('buyerCelular').value = userData.celular;
                         document.getElementById('openKitModalBtn').click();
                     });
                 }
 
                 // 2. Adiciona mensagem de boas-vindas na seção Hero
                 const heroContent = document.querySelector('#hero .z-20.container');
-                // Remove a mensagem antiga se ela existir para não duplicar
                 const oldWelcome = heroContent.querySelector('.welcome-back-msg');
                 if(oldWelcome) oldWelcome.remove();
 
                 if(heroContent) {
                     const welcomeMessage = document.createElement('div');
-                    welcomeMessage.className = 'welcome-back-msg bg-amber-500/90 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
+                    welcomeMessage.className = 'welcome-back-msg bg-amber-500/95 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
                     welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> Bem-vindo de volta, <span class="underline">${userData.apelido}</span>!`;
                     heroContent.prepend(welcomeMessage);
                 }
@@ -1066,7 +1326,7 @@
                 window.applyPersonalization(userData);
             }
             
-            // Lógica para seleção de times
+            // Lógica para seleção de times (Inalterada)
             const hasTeamRadios = document.querySelectorAll('input[name="hasTeam"]');
             const teamSelectionContainer = document.getElementById('teamSelectionContainer');
             const teamNameSelect = document.getElementById('teamName');
@@ -1090,20 +1350,58 @@
                     }
                 });
             });
+
+            // NOVA LÓGICA: Abas da programação
+            const scheduleTabs = document.querySelectorAll('.schedule-tab');
+            const scheduleContents = document.querySelectorAll('.schedule-content');
+
+            scheduleTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    scheduleTabs.forEach(t => t.classList.remove('active-tab'));
+                    tab.classList.add('active-tab');
+
+                    scheduleContents.forEach(content => content.classList.add('hidden'));
+                    const targetContent = document.getElementById(tab.dataset.target);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
         });
 
+        // Lógica da Contagem Regressiva (Melhorada com animação sutil na mudança)
         const countdown = () => {
             const countDate = new Date("November 27, 2025 23:59:59").getTime();
             const now = new Date().getTime();
             const gap = countDate - now;
             const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-            const textDay = Math.floor(gap / day), textHour = Math.floor((gap % day) / hour), textMinute = Math.floor((gap % hour) / minute), textSecond = Math.floor((gap % minute) / second);
-            if (document.getElementById('days')) {
-                document.getElementById('days').innerText = textDay < 10 ? '0' + textDay : textDay;
-                document.getElementById('hours').innerText = textHour < 10 ? '0' + textHour : textHour;
-                document.getElementById('minutes').innerText = textMinute < 10 ? '0' + textMinute : textMinute;
-                document.getElementById('seconds').innerText = textSecond < 10 ? '0' + textSecond : textSecond;
-            }
+            
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            const updateElement = (id, value) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    const formattedValue = value < 10 ? '0' + value : String(value);
+                    if (element.innerText !== formattedValue) {
+                        element.innerText = formattedValue;
+                        // NOVO: Adiciona um efeito de pulso sutil quando o número muda
+                        const parentBox = element.parentElement;
+                        parentBox.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            parentBox.style.transform = 'scale(1)';
+                        }, 250);
+                    }
+                }
+            };
+
+            updateElement('days', textDay);
+            updateElement('hours', textHour);
+            updateElement('minutes', textMinute);
+            updateElement('seconds', textSecond);
+
             if (gap < 0) {
                 clearInterval(interval);
                 if(document.getElementById('countdown-section')) {
@@ -1114,6 +1412,7 @@
         const interval = setInterval(countdown, 1000);
         countdown();
 
+        // Lógica do Botão WhatsApp (Inalterada)
         const whatsappContainer = document.getElementById('whatsapp-container');
         const whatsappToggle = document.getElementById('whatsapp-toggle');
         const whatsappOptions = document.getElementById('whatsapp-options');
@@ -1129,6 +1428,78 @@
                 whatsappOptions.classList.add('hidden');
                 whatsappOptions.classList.remove('flex');
             }
+        });
+
+        // NOVO: Efeito de Scroll no Header
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // NOVO: Lógica da Bola de Rugby Interativa (O Interceptor)
+        const interceptorBall = document.getElementById('interceptor-ball');
+        let ballInterval;
+
+        function moveBall() {
+            // Garante que a bola fique dentro da viewport
+            const maxX = window.innerWidth - interceptorBall.offsetWidth - 20;
+            const maxY = window.innerHeight - interceptorBall.offsetHeight - 20;
+
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(80, Math.floor(Math.random() * maxY)); // Evita a área do header
+
+            interceptorBall.style.left = `${randomX}px`;
+            interceptorBall.style.top = `${randomY}px`;
+        }
+
+        // Move a bola a cada 3.5 segundos
+        ballInterval = setInterval(moveBall, 3500);
+        moveBall(); // Posição inicial
+
+        // Reação ao clique (TRY!)
+        interceptorBall.addEventListener('click', (e) => {
+            e.stopPropagation(); // Previne cliques
+            // Para de mover temporariamente
+            clearInterval(ballInterval);
+            
+            // Efeito visual "TRY" na bola
+            interceptorBall.style.transition = 'transform 0.5s ease-out';
+            interceptorBall.style.transform = 'scale(2) rotate(720deg)';
+
+            // Adiciona um elemento de texto "TRY!" temporário
+            const tryText = document.createElement('div');
+            tryText.innerText = 'TRY!';
+            tryText.style.position = 'fixed';
+            tryText.style.left = interceptorBall.style.left;
+            tryText.style.top = interceptorBall.style.top;
+            tryText.style.fontSize = '4rem';
+            tryText.style.fontFamily = "'Bowlby One SC', cursive";
+            tryText.style.color = '#fBBF24';
+            tryText.style.zIndex = '9999';
+            tryText.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+            tryText.style.pointerEvents = 'none';
+            tryText.style.textShadow = '2px 2px 5px black';
+            document.body.appendChild(tryText);
+
+            // Anima o texto
+            setTimeout(() => {
+                tryText.style.opacity = '0';
+                tryText.style.transform = 'translateY(-60px) scale(1.5)';
+            }, 50);
+
+            // Reseta a bola e retoma o movimento
+            setTimeout(() => {
+                interceptorBall.style.transform = 'scale(1) rotate(0deg)';
+                // Restaura as transições originais
+                interceptorBall.style.transition = 'transform 0.1s ease-out, top 2.5s ease-in-out, left 2.5s ease-in-out';
+                document.body.removeChild(tryText);
+                ballInterval = setInterval(moveBall, 3500);
+                moveBall();
+            }, 1000);
         });
     </script>
 
