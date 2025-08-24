@@ -34,8 +34,7 @@
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--rugby-dark);
-            /* NOVO: Cursor Personalizado de Bola de Rugby */
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 30"><ellipse cx="25" cy="15" rx="24" ry="14" fill="%238B4513" stroke="black" stroke-width="1"/><path d="M25 1 L25 29" stroke="white" stroke-width="1" stroke-dasharray="3,3"/></svg>') 14 14, auto;
+            /* REMOVIDO: Cursor personalizado de bola de rugby */
         }
         h1, h2, h3, h4 {
             /* NOVA FONTE: Esportiva e robusta */
@@ -62,27 +61,7 @@
             object-fit: cover;
         }
 
-        /* --- BOLA VOADORA (O Interceptor) --- */
-        #interceptor-ball {
-            position: fixed;
-            width: 80px; /* Tamanho ajustado para a imagem */
-            height: 80px;
-            z-index: 9998; /* Abaixo do header/modal */
-            cursor: pointer;
-            transition: transform 0.1s ease-out, top 2.5s ease-in-out, left 2.5s ease-in-out;
-            user-select: none;
-        }
-        #interceptor-ball img { /* Alvo alterado de SVG para IMG */
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Garante que a imagem caiba sem distorcer */
-            /* Animação giratória */
-            animation: spin 4s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        /* --- REMOVIDO: Estilos da Bola Voadora --- */
 
         /* --- NOVO: Efeito de Scroll no Header --- */
         header.scrolled {
@@ -176,10 +155,7 @@
 </head>
 <body class="text-white">
 
-    <!-- BOLA VOADORA (O Interceptor) - AGORA COM A IMAGEM PEDIDA -->
-    <div id="interceptor-ball" title="Tenta pegar!">
-        <img src="https://firebasestorage.googleapis.com/v0/b/encontrorugbylegends.firebasestorage.app/o/Design%20sem%20nome%20(23).png?alt=media&token=bc9b1966-78f9-4611-a7ac-55cbc0d596b2" alt="Bola voadora">
-    </div>
+    <!-- REMOVIDO: Bola Voadora -->
 
     <!-- Header Modificado: Adicionadas classes de transição e novo link de navegação -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg transition-all duration-300 p-4">
@@ -1449,67 +1425,7 @@
             }
         });
 
-        // NOVO: Lógica da Bola de Rugby Interativa (O Interceptor)
-        const interceptorBall = document.getElementById('interceptor-ball');
-        let ballInterval;
-
-        function moveBall() {
-            // Garante que a bola fique dentro da viewport
-            const maxX = window.innerWidth - interceptorBall.offsetWidth - 20;
-            const maxY = window.innerHeight - interceptorBall.offsetHeight - 20;
-
-            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(80, Math.floor(Math.random() * maxY)); // Evita a área do header
-
-            interceptorBall.style.left = `${randomX}px`;
-            interceptorBall.style.top = `${randomY}px`;
-        }
-
-        // Move a bola a cada 3.5 segundos
-        ballInterval = setInterval(moveBall, 3500);
-        moveBall(); // Posição inicial
-
-        // Reação ao clique (TRY!)
-        interceptorBall.addEventListener('click', (e) => {
-            e.stopPropagation(); // Previne cliques
-            // Para de mover temporariamente
-            clearInterval(ballInterval);
-            
-            // Efeito visual "TRY" na bola
-            interceptorBall.style.transition = 'transform 0.5s ease-out';
-            interceptorBall.style.transform = 'scale(2) rotate(720deg)';
-
-            // Adiciona um elemento de texto "TRY!" temporário
-            const tryText = document.createElement('div');
-            tryText.innerText = 'TRY!';
-            tryText.style.position = 'fixed';
-            tryText.style.left = interceptorBall.style.left;
-            tryText.style.top = interceptorBall.style.top;
-            tryText.style.fontSize = '4rem';
-            tryText.style.fontFamily = "'Bowlby One SC', cursive";
-            tryText.style.color = '#fBBF24';
-            tryText.style.zIndex = '9999';
-            tryText.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
-            tryText.style.pointerEvents = 'none';
-            tryText.style.textShadow = '2px 2px 5px black';
-            document.body.appendChild(tryText);
-
-            // Anima o texto
-            setTimeout(() => {
-                tryText.style.opacity = '0';
-                tryText.style.transform = 'translateY(-60px) scale(1.5)';
-            }, 50);
-
-            // Reseta a bola e retoma o movimento
-            setTimeout(() => {
-                interceptorBall.style.transform = 'scale(1) rotate(0deg)';
-                // Restaura as transições originais
-                interceptorBall.style.transition = 'transform 0.1s ease-out, top 2.5s ease-in-out, left 2.5s ease-in-out';
-                document.body.removeChild(tryText);
-                ballInterval = setInterval(moveBall, 3500);
-                moveBall();
-            }, 1000);
-        });
+        // REMOVIDO: Lógica da Bola de Rugby Interativa
     </script>
 
 </body>
