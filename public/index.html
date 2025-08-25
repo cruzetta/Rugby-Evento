@@ -34,7 +34,6 @@
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--rugby-dark);
-            /* REMOVIDO: Cursor personalizado de bola de rugby */
         }
         h1, h2, h3, h4 {
             /* NOVA FONTE: Esportiva e robusta */
@@ -60,8 +59,6 @@
         #hero video {
             object-fit: cover;
         }
-
-        /* --- REMOVIDO: Estilos da Bola Voadora --- */
 
         /* --- NOVO: Efeito de Scroll no Header --- */
         header.scrolled {
@@ -137,7 +134,7 @@
         .perspective-1000 { perspective: 1000px; }
         .hover\:rotate-y-12:hover { transform: rotateY(12deg); }
         
-        /* --- NOVOS ESTILOS: Abas da Programação --- */
+        /* --- ESTILOS ABAS DA PROGRAMAÇÃO --- */
         .schedule-tab {
             color: #94a3b8; /* gray-400 */
             border-bottom: 4px solid transparent;
@@ -154,8 +151,6 @@
     </style>
 </head>
 <body class="text-white">
-
-    <!-- REMOVIDO: Bola Voadora -->
 
     <!-- Header Modificado: Adicionadas classes de transição e novo link de navegação -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg transition-all duration-300 p-4">
@@ -248,91 +243,118 @@
             </div>
         </section>
         
-        <!-- NOVA SEÇÃO: Programação do Evento -->
+        <!-- SEÇÃO PROGRAMAÇÃO REESTRUTURADA -->
         <section id="programacao" class="py-20 bg-slate-900">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">Programação do Evento</h2>
-                <div class="grid lg:grid-cols-5 gap-12">
-                    <!-- Coluna da Sexta-feira -->
-                    <div class="lg:col-span-2" data-aos="fade-right">
-                        <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sexta, 05/02</h3>
-                        <div class="bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud h-full">
-                            <div class="flex items-center">
-                                <i data-lucide="clock-4" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0"></i>
+                
+                <!-- ABAS DOS DIAS -->
+                <div class="mb-8 flex justify-center border-b border-slate-700 max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <button data-day-target="dia-sexta" class="schedule-tab active-tab text-lg font-bold py-3 px-6">Sexta, 06/02</button>
+                    <button data-day-target="dia-sabado" class="schedule-tab text-lg font-bold py-3 px-6">Sábado, 07/02</button>
+                    <button data-day-target="dia-domingo" class="schedule-tab text-lg font-bold py-3 px-6">Domingo, 08/02</button>
+                </div>
+
+                <!-- CONTEÚDO DOS DIAS -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <!-- Conteúdo da Sexta -->
+                    <div id="dia-sexta" class="day-content">
+                        <div class="max-w-3xl mx-auto bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-6 card-mud">
+                            <div class="flex items-start">
+                                <i data-lucide="log-in" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <p class="text-2xl font-bold text-white">A partir das 14:00</p>
+                                    <p class="text-lg text-gray-300">Check-in e Boas-vindas</p>
+                                    <p class="text-gray-400 font-roboto mt-1">Recepção dos atletas e famílias no Zagaia Eco Resort.</p>
+                                </div>
+                            </div>
+                            <div class="border-t border-slate-700 my-4"></div>
+                            <div class="flex items-start">
+                                <i data-lucide="sun" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
                                 <div>
                                     <p class="text-2xl font-bold text-white">16:00 - 18:00</p>
-                                    <p class="text-lg text-gray-300">Touch Sunset</p>
+                                    <p class="text-lg text-gray-300">Touch Rugby Sunset</p>
+                                    <ul class="list-disc list-inside text-gray-400 pl-2 mt-2 space-y-1 font-roboto">
+                                        <li>Jogo de confraternização para todas as idades.</li>
+                                        <li>Times mistos montados na hora.</li>
+                                        <li>Perfeito para aquecer e reencontrar os amigos.</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <ul class="list-disc list-inside text-gray-400 pl-4 space-y-2 font-roboto">
-                                <li>Idade livre</li>
-                                <li>Times até XV</li>
-                                <li>Todos contra todos</li>
-                                <li>Tempo de 10 min ou 2 tries</li>
-                            </ul>
                         </div>
                     </div>
-        
-                    <!-- Coluna do Sábado -->
-                    <div class="lg:col-span-3" data-aos="fade-left">
-                        <h3 class="text-4xl text-white mb-6 border-b-2 border-amber-400 pb-2 inline-block">Sábado, 06/02</h3>
-                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
-                            <!-- Abas para selecionar o número de times -->
-                            <div class="mb-6 flex justify-center border-b border-slate-700">
-                                <button data-target="tabela-6-times" class="schedule-tab active-tab text-lg font-bold py-3 px-6">6 Times</button>
-                                <button data-target="tabela-5-times" class="schedule-tab text-lg font-bold py-3 px-6">5 Times</button>
-                                <button data-target="tabela-4-times" class="schedule-tab text-lg font-bold py-3 px-6">4 Times</button>
+
+                    <!-- Conteúdo do Sábado ATUALIZADO -->
+                    <div id="dia-sabado" class="day-content hidden">
+                         <div class="max-w-3xl mx-auto bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud">
+                            <p class="text-center text-amber-400 font-bold mb-4 font-roboto">Cada bloco de 30 minutos corresponde a um jogo completo.</p>
+                            
+                            <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">08:30 - 10:00</span>
+                                <div>
+                                    <strong class="text-amber-400 text-xl">Rodadas Golden Oldies (3 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">Jogos com regras adaptadas para os veteranos.</p>
+                                </div>
                             </div>
-        
-                            <!-- Conteúdo das Tabelas -->
-                            <div class="text-left space-y-3 font-roboto">
-                                <!-- Tabela para 6 Times (Padrão) -->
-                                <div id="tabela-6-times" class="schedule-content space-y-3">
-                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 6</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 3 vs Time 6</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 2 vs Time 6</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 3 vs Time 5</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-white w-24 text-center text-lg pt-1">10:00 - 11:30</span>
+                                <div>
+                                    <strong class="text-white text-xl">Rodadas Idade Livre (3 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">Jogos abertos para todas as idades e níveis.</p>
                                 </div>
-                                <!-- Tabela para 5 Times -->
-                                <div id="tabela-5-times" class="schedule-content hidden space-y-3">
-                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 5 vs Time 1</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 4 vs Time 5</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:00</span><span class="text-gray-200">Time 2 vs Time 5</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">16:30</span><span class="text-gray-200">Time 4 vs Time 1</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">17:00</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            </div>
+                            <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center justify-center gap-4">
+                                <strong class="text-white text-xl">11:30 - 14:30 | ALMOÇO E RESENHA</strong>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">14:30 - 16:00</span>
+                                <div>
+                                    <strong class="text-amber-400 text-xl">Rodadas Golden Oldies (3 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">Mais uma rodada de jogos para as lendas.</p>
                                 </div>
-                                <!-- Tabela para 4 Times -->
-                                <div id="tabela-4-times" class="schedule-content hidden space-y-3">
-                                    <h4 class="text-2xl text-amber-400 pt-4 pb-2 text-center">Jogos Olden Goldies</h4>
-                                    <p class="text-center text-gray-400 text-sm -mt-2 mb-4">(Tempo: 14x14 min, 1 min água)</p>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:00</span><span class="text-gray-200">Time 1 vs Time 2</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">09:30</span><span class="text-gray-200">Time 3 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">10:00</span><span class="text-gray-200">Time 1 vs Time 3</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">10:30</span><div><strong class="text-white">Jogo XV (Idade Livre)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
-                                    <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center gap-4"><span class="font-bold w-16 text-center">11:30</span><strong class="text-white">ALMOÇO E RESENHA</strong></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">14:30</span><span class="text-gray-200">Time 2 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:00</span><span class="text-gray-200">Time 1 vs Time 4</span></div>
-                                    <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-amber-400 w-16 text-center">15:30</span><span class="text-gray-200">Time 2 vs Time 3</span></div>
-                                    <div class="bg-slate-700 p-3 rounded-lg flex items-center gap-4"><span class="font-bold text-white w-16 text-center">17:30</span><div><strong class="text-white">Jogo XV (Todas Idades)</strong><br><span class="text-sm text-gray-400">Tempo: 20x20 min (5 min intervalo)</span></div></div>
+                            </div>
+                            <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-white w-24 text-center text-lg pt-1">16:00 - 17:00</span>
+                                <div>
+                                    <strong class="text-white text-xl">Rodadas Idade Livre (2 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">Confraternização em campo para todos.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">17:00 - 17:30</span>
+                                <div>
+                                    <strong class="text-amber-400 text-xl">Rodada Golden Oldies (1 Jogo)</strong>
+                                    <p class="text-sm text-gray-400">Último jogo dos veteranos.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
+                                <span class="font-bold text-white w-24 text-center text-lg pt-1">17:30 - 18:30</span>
+                                <div>
+                                    <strong class="text-white text-xl">Encerramento Idade Livre (2 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">As grandes partidas de confraternização para fechar o dia.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo do Domingo -->
+                    <div id="dia-domingo" class="day-content hidden">
+                        <div class="max-w-3xl mx-auto bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-6 card-mud">
+                            <div class="flex items-start">
+                                <i data-lucide="coffee" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <p class="text-2xl font-bold text-white">Manhã</p>
+                                    <p class="text-lg text-gray-300">Café da Manhã de Despedida</p>
+                                    <p class="text-gray-400 font-roboto mt-1">Última oportunidade para a resenha final e troca de contatos.</p>
+                                </div>
+                            </div>
+                            <div class="border-t border-slate-700 my-4"></div>
+                            <div class="flex items-start">
+                                <i data-lucide="log-out" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <p class="text-2xl font-bold text-white">Até 12:00</p>
+                                    <p class="text-lg text-gray-300">Check-out</p>
+                                    <p class="text-gray-400 font-roboto mt-1">Encerramento oficial do 1º Encontro Rugby Legends.</p>
                                 </div>
                             </div>
                         </div>
@@ -848,7 +870,7 @@
                  <h3 class="text-4xl text-green-400 mb-4">Pedido Enviado com Sucesso!</h3>
                  <p class="text-lg text-gray-300 mb-6 font-roboto">Obrigado! Recebemos seu pedido e o comprovante de pagamento. Após a confirmação, seu pedido será processado.<br>Nos vemos no evento!</p>
                  <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                     Fechar
+                      Fechar
                  </button>
             </div>
             <div id="kit-form-message" class="text-center font-bold mt-4"></div>
@@ -1336,8 +1358,31 @@
                 });
             });
 
-            // NOVA LÓGICA: Abas da programação
-            const scheduleTabs = document.querySelectorAll('.schedule-tab');
+            // LÓGICA ABAS DA PROGRAMAÇÃO (DIAS)
+            const dayTabs = document.querySelectorAll('button[data-day-target]');
+            const dayContents = document.querySelectorAll('.day-content');
+
+            dayTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Desativa todas as abas de dia
+                    dayTabs.forEach(t => t.classList.remove('active-tab'));
+                    // Ativa a aba clicada
+                    tab.classList.add('active-tab');
+
+                    // Esconde todos os conteúdos de dia
+                    dayContents.forEach(content => content.classList.add('hidden'));
+                    
+                    // Mostra o conteúdo correspondente
+                    const targetContent = document.getElementById(tab.dataset.dayTarget);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                    lucide.createIcons(); // Garante que os ícones sejam renderizados no conteúdo ativado
+                });
+            });
+
+            // LÓGICA ABAS DA PROGRAMAÇÃO (TIMES) - REMOVIDA DA INTERFACE, MAS MANTIDA CASO NECESSÁRIO NO FUTURO
+            const scheduleTabs = document.querySelectorAll('button[data-target]');
             const scheduleContents = document.querySelectorAll('.schedule-content');
 
             scheduleTabs.forEach(tab => {
@@ -1424,8 +1469,6 @@
                 header.classList.remove('scrolled');
             }
         });
-
-        // REMOVIDO: Lógica da Bola de Rugby Interativa
     </script>
 
 </body>
