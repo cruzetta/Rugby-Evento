@@ -107,17 +107,21 @@ exports.createKitCardPayment = onCall({
 
 /**
  * Cria um pagamento com PIX para a compra de kits.
+ * [CORRIGIDO] Adicionado o campo de CPF do comprador, obrigatório para PIX.
  */
 exports.createKitPixPayment = onCall({
   secrets: [mercadoPagoAccessToken],
   region: "us-central1",
 }, async (request) => {
   const {order} = request.data;
-  const {buyerName, buyerCelular, buyerEmail, kits, totalPrice} = order;
+  // [CORREÇÃO] Recebe o CPF do comprador.
+  const {buyerName, buyerCelular, buyerEmail, buyerCPF, kits, totalPrice} =
+    order;
 
-  if (!order || !buyerEmail) {
-    throw new HttpsError(
-        "invalid-argument", "Dados do pedido ou e-mail estão incompletos.");
+  // [CORREÇÃO] Valida se o CPF foi enviado.
+  if (!order || !buyerEmail || !buyerCPF) {
+    throw new HttpsError("invalid-argument",
+        "Dados do pedido, e-mail ou CPF estão incompletos.");
   }
   if (!totalPrice || totalPrice <= 0) {
     throw new HttpsError(
@@ -133,13 +137,17 @@ exports.createKitPixPayment = onCall({
     body: {
       transaction_amount: Number(totalPrice),
       description: `Kit(s) Rugby Legends - ${buyerName}`,
-      /* eslint-disable camelcase */
       payment_method_id: "pix",
-      /* eslint-enable camelcase */
       payer: {
         email: buyerEmail,
         first_name: buyerName.split(" ")[0],
         last_name: buyerName.split(" ").slice(1).join(" "),
+        // [CORREÇÃO] Adiciona o objeto de identificação com o CPF.
+        identification: {
+          type: "CPF",
+          // Remove caracteres não numéricos
+          number: buyerCPF.replace(/\D/g, ""),
+        },
       },
       notification_url: `https://us-central1-${process.env.GCLOUD_PROJECT}` +
         ".cloudfunctions.net/rugbyMercadoPagoWebhook",
@@ -158,14 +166,13 @@ exports.createKitPixPayment = onCall({
       buyerName: buyerName,
       buyerCelular: buyerCelular,
       buyerEmail: buyerEmail,
+      buyerCPF: buyerCPF, // Opcional: Salva o CPF para referência
       kits: kits,
       totalPrice: Number(totalPrice),
       purchaseType: "kit_order",
       paymentId: paymentId,
       paymentStatus: "pending", // PIX começa como pendente
-      /* eslint-disable camelcase */
       paymentMethod: "pix",
-      /* eslint-enable camelcase */
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -233,3 +240,4 @@ exports.rugbyMercadoPagoWebhook = onRequest({
   }
   res.status(200).send("Notificação recebida.");
 });
+

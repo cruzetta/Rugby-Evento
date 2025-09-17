@@ -1139,6 +1139,8 @@
                                 </button>
                             </div>
                             <p id="copy-feedback" class="text-green-400 mt-2 h-5"></p>
+                            <!-- [CORREÇÃO DE UX] Mensagem de aguardando pagamento -->
+                            <p id="pix-wait-message" class="text-amber-400 mt-4 font-roboto">Aguardando pagamento... Você receberá a confirmação por e-mail.</p>
                         </div>
                     </div>
                     
@@ -1470,7 +1472,6 @@
             cardPaymentBrickController = await mp.bricks().create('cardPayment', 'cardPaymentBrick_container', settings);
         };
         
-        // [CORREÇÃO] Função handlePixPayment atualizada
         const handlePixPayment = async () => {
             pixReady.classList.add('hidden');
             pixLoading.classList.remove('hidden');
@@ -1481,7 +1482,7 @@
                     buyerName: document.getElementById('buyerName').value,
                     buyerCelular: document.getElementById('buyerCelular').value,
                     buyerEmail: document.getElementById('buyerEmail').value,
-                    buyerCPF: document.getElementById('buyerCPF').value, // Envia o CPF
+                    buyerCPF: document.getElementById('buyerCPF').value, 
                     kits: window.kitOrder,
                     totalPrice: window.kitOrder.length * window.currentKitPrice,
                 };
@@ -1494,37 +1495,35 @@
                     pixLoading.classList.add('hidden');
                     pixReady.classList.remove('hidden');
                 } else {
-                    // Se o resultado não vier como esperado, joga um erro
-                    const errorMsg = result.data.message || 'Não foi possível obter os dados do PIX.';
+                    const errorMsg = (result.data && result.data.message) ? result.data.message : 'Não foi possível obter os dados do PIX.';
                     throw new Error(errorMsg);
                 }
             } catch (error) {
-                // Captura erros da chamada da função ou do throw acima
                  document.getElementById('payment-error-message').textContent = `Erro: ${error.message}`;
                  pixLoading.classList.add('hidden');
             }
         };
         
-        // [CORREÇÃO] Função showSuccessScreen agora esconde a etapa 2 corretamente
         const showSuccessScreen = (paymentMethod = 'card') => {
              const lang = localStorage.getItem('language') || 'pt';
              const successTitle = document.getElementById('success-title');
              const successMessage = document.getElementById('success-message');
 
             if(paymentMethod === 'pix'){
-                successTitle.textContent = window.translations[lang].modal_step3_pix_title;
-                successMessage.innerHTML = window.translations[lang].modal_step3_pix_p1;
-            } else {
-                 successTitle.textContent = window.translations[lang].modal_step3_title;
-                 successMessage.innerHTML = window.translations[lang].modal_step3_p1;
+                // Para PIX, não vamos para a tela de sucesso final, pois o pagamento ainda está pendente.
+                // A função `handlePixPayment` já exibe o QR Code. O webhook tratará da confirmação.
+                // Esta lógica só será usada para o Cartão.
+                return;
             }
-
-            step2.classList.add('hidden'); // Esconde a etapa de pagamento
-            step3.classList.remove('hidden'); // Mostra a etapa de sucesso
+            
+            successTitle.textContent = window.translations[lang].modal_step3_title;
+            successMessage.innerHTML = window.translations[lang].modal_step3_p1;
+            
+            step2.classList.add('hidden');
+            step3.classList.remove('hidden');
             lucide.createIcons();
         }
 
-        // [CORREÇÃO] Listener de goToPaymentBtn atualizado para validar CPF
         goToPaymentBtn.addEventListener('click', () => {
              const buyerName = document.getElementById('buyerName').value.trim();
              const buyerEmail = document.getElementById('buyerEmail').value.trim();
@@ -1988,4 +1987,5 @@
 </body>
 
 </html>
+
 
