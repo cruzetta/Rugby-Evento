@@ -151,21 +151,6 @@
             border-bottom-color: var(--rugby-gold);
         }
 
-        /* Estilos do Seletor de Idioma */
-        #lang-switcher button {
-            transition: transform 0.2s ease-in-out;
-        }
-
-        #lang-switcher button:hover {
-            transform: scale(1.1);
-        }
-
-        #lang-switcher button.active-lang {
-            transform: scale(1.1);
-            border: 2px solid var(--rugby-gold);
-            box-shadow: 0 0 10px var(--rugby-gold);
-        }
-
         /* Estilos para abas de pagamento */
         .payment-tab {
             transition: all 0.2s ease-in-out;
@@ -180,36 +165,19 @@
             <h1 class="text-3xl tracking-wider text-amber-400">R<span class="text-white">UGBY</span> L<span
                     class="text-white">EGENDS</span></h1>
             <nav class="hidden md:flex space-x-6 font-roboto">
-                <a href="#sobre" class="hover:text-amber-400 transition duration-300" data-translate="nav_about">O
-                    Encontro</a>
-                <a href="#local" class="hover:text-amber-400 transition duration-300" data-translate="nav_venue">O
-                    Local</a>
-                <a href="#programacao" class="hover:text-amber-400 transition duration-300"
-                    data-translate="nav_schedule">Programação</a>
-                <a href="#bonito" class="hover:text-amber-400 transition duration-300"
-                    data-translate="nav_bonito">Explore Bonito</a>
-                <a href="#kit" class="hover:text-amber-400 transition duration-300" data-translate="nav_kit">Kit
-                    Atleta</a>
-                <a href="#inscricao" class="hover:text-amber-400 transition duration-300"
-                    data-translate="nav_register">Inscrição</a>
-                <a href="#pacotes" class="hover:text-amber-400 transition duration-300"
-                    data-translate="nav_packages">Pacotes</a>
+                <a href="#sobre" class="hover:text-amber-400 transition duration-300">O Encontro</a>
+                <a href="#local" class="hover:text-amber-400 transition duration-300">O Local</a>
+                <a href="#programacao" class="hover:text-amber-400 transition duration-300">Programação</a>
+                <a href="#bonito" class="hover:text-amber-400 transition duration-300">Explore Bonito</a>
+                <a href="#kit" class="hover:text-amber-400 transition duration-300">Kit Atleta</a>
+                <a href="#inscricao" class="hover:text-amber-400 transition duration-300">Inscrição</a>
+                <a href="#pacotes" class="hover:text-amber-400 transition duration-300">Pacotes</a>
             </nav>
             <div class="flex items-center gap-4">
                 <a href="#inscricao" id="header-cta-btn"
-                    class="hidden sm:block bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-xl hover:shadow-amber-500/50 transform hover:scale-105"
-                    data-translate="header_cta">GARANTA SUA VAGA</a>
-                <div id="lang-switcher" class="flex items-center space-x-2">
-                    <button data-lang="pt" class="p-0.5 rounded-full border-2 border-transparent"><img
-                            src="https://flagcdn.com/w20/br.png" alt="Português"
-                            class="w-6 h-auto rounded-full"></button>
-                    <button data-lang="en" class="p-0.5 rounded-full border-2 border-transparent"><img
-                            src="https://flagcdn.com/w20/us.png" alt="English"
-                            class="w-6 h-auto rounded-full"></button>
-                    <button data-lang="es" class="p-0.5 rounded-full border-2 border-transparent"><img
-                            src="https://flagcdn.com/w20/es.png" alt="Español"
-                            class="w-6 h-auto rounded-full"></button>
-                </div>
+                    class="hidden sm:block bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-xl hover:shadow-amber-500/50 transform hover:scale-105">
+                    GARANTA SUA VAGA
+                </a>
             </div>
         </div>
     </header>
@@ -225,32 +193,31 @@
             <div class="absolute inset-0 bg-black/75 z-10"></div>
             <div class="relative z-20 container mx-auto px-4 pt-20">
                 <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-widest leading-tight"
-                    data-aos="fade-up" data-aos-delay="400" data-translate="hero_save_date">SAVE THE DATE</h2>
+                    data-aos="fade-up" data-aos-delay="400">SAVE THE DATE</h2>
                 <p class="text-amber-400 text-2xl md:text-4xl font-bold tracking-wider mb-4" data-aos="fade-up"
-                    data-aos-delay="600" data-translate="hero_date">06 a 08 de Fevereiro de 2026</p>
-                <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800"
-                    data-translate="hero_title">1º Encontro Rugby LEGENDS</h1>
+                    data-aos-delay="600">06 a 08 de Fevereiro de 2026</p>
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="800">
+                    1º Encontro Rugby LEGENDS</h1>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300 font-roboto" data-aos="fade-up"
-                    data-aos-delay="1000" data-translate="hero_subtitle">Rugby, Família e Resort. A oportunidade única
+                    data-aos-delay="1000">Rugby, Família e Resort. A oportunidade única
                     de reunir todas as suas paixões em um só lugar.</p>
                 <a href="#inscricao"
                     class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-110 shadow-xl"
-                    data-aos="zoom-in" data-aos-delay="1200" data-translate="hero_cta">INSCREVA-SE AGORA</a>
+                    data-aos="zoom-in" data-aos-delay="1200">INSCREVA-SE AGORA</a>
             </div>
         </section>
 
         <section id="sobre" class="py-20 bg-slate-800">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right"
-                    data-translate="about_title">Uma Convocação Histórica</h2>
-                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left"
-                    data-translate="about_p1">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-aos="fade-right">
+                    Uma Convocação Histórica</h2>
+                <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-6 font-roboto" data-aos="fade-left">
                     Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história
                     e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três
                     dias inesquecíveis de resenha, reencontros e, claro, muito rugby.
                 </p>
                 <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-left"
-                    data-aos-delay="200" data-translate="about_p2">
+                    data-aos-delay="200">
                     O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas.
                     As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se
                     para reviver a glória dos velhos tempos!
@@ -259,9 +226,8 @@
                     <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud flex flex-col" data-aos="zoom-in-up"
                         data-aos-delay="100">
                         <i data-lucide="shield-half" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                        <h3 class="text-3xl mb-2" data-translate="about_card1_title">Rugby Para Todos</h3>
-                        <div class="text-gray-400 flex-grow text-left font-roboto" data-translate="about_card1_text"
-                            data-is-html>
+                        <h3 class="text-3xl mb-2">Rugby Para Todos</h3>
+                        <div class="text-gray-400 flex-grow text-left font-roboto">
                             <strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande
                             destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).
                             <strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma
@@ -273,31 +239,31 @@
                     <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up"
                         data-aos-delay="300">
                         <i data-lucide="heart-handshake" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                        <h3 class="text-3xl mb-2" data-translate="about_card2_title">Família</h3>
-                        <p class="text-gray-400 font-roboto" data-translate="about_card2_text">Estrutura completa de
+                        <h3 class="text-3xl mb-2">Família</h3>
+                        <p class="text-gray-400 font-roboto">Estrutura completa de
                             lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e
                             diversão.</p>
                     </div>
                     <div class="bg-slate-900 p-8 rounded-xl shadow-lg card-mud" data-aos="zoom-in-up"
                         data-aos-delay="500">
                         <i data-lucide="palmtree" class="mx-auto h-16 w-16 text-amber-400 mb-4"></i>
-                        <h3 class="text-3xl mb-2" data-translate="about_card3_title">Resort</h3>
-                        <p class="text-gray-400 font-roboto" data-translate="about_card3_text">Desfrute de piscinas,
+                        <h3 class="text-3xl mb-2">Resort</h3>
+                        <p class="text-gray-400 font-roboto">Desfrute de piscinas,
                             gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.
                         </p>
                     </div>
                 </div>
                 <a href="#inscricao"
                     class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50"
-                    data-aos="flip-up" data-translate="about_cta">QUERO FAZER PARTE DE UM TIME!</a>
+                    data-aos="flip-up">QUERO FAZER PARTE DE UM TIME!</a>
             </div>
         </section>
 
         <section id="local" class="py-20 zagaia-bg">
             <div class="container mx-auto text-center px-4" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4" data-translate="venue_title">O Cenário Perfeito</h2>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4">O Cenário Perfeito</h2>
                 <h3 class="text-3xl text-amber-400 mb-8">Zagaia Eco Resort | Bonito-MS</h3>
-                <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto" data-translate="venue_p1">
+                <p class="max-w-4xl mx-auto text-lg text-gray-200 mb-12 font-roboto">
                     Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe
                     mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o
                     campo de jogo ideal para nossas lendas e suas famílias.
@@ -325,17 +291,17 @@
 
         <section id="programacao" class="py-20 bg-slate-900">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up"
-                    data-translate="schedule_title">Programação do Evento</h2>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-12" data-aos="fade-up">
+                    Programação do Evento</h2>
 
                 <div class="mb-8 flex justify-center border-b border-slate-700 max-w-lg mx-auto" data-aos="fade-up"
                     data-aos-delay="100">
-                    <button data-day-target="dia-sexta" class="schedule-tab active-tab text-lg font-bold py-3 px-6"
-                        data-translate="schedule_friday">Sexta, 06/02</button>
-                    <button data-day-target="dia-sabado" class="schedule-tab text-lg font-bold py-3 px-6"
-                        data-translate="schedule_saturday">Sábado, 07/02</button>
-                    <button data-day-target="dia-domingo" class="schedule-tab text-lg font-bold py-3 px-6"
-                        data-translate="schedule_sunday">Domingo, 08/02</button>
+                    <button data-day-target="dia-sexta" class="schedule-tab active-tab text-lg font-bold py-3 px-6">
+                        Sexta, 06/02</button>
+                    <button data-day-target="dia-sabado" class="schedule-tab text-lg font-bold py-3 px-6">
+                        Sábado, 07/02</button>
+                    <button data-day-target="dia-domingo" class="schedule-tab text-lg font-bold py-3 px-6">
+                        Domingo, 08/02</button>
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="200">
@@ -344,11 +310,11 @@
                             <div class="flex items-start">
                                 <i data-lucide="log-in" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
                                 <div>
-                                    <p class="text-2xl font-bold text-white" data-translate="schedule_fri1_time">A
+                                    <p class="text-2xl font-bold text-white">A
                                         partir das 14:00</p>
-                                    <p class="text-lg text-gray-300" data-translate="schedule_fri1_title">Check-in e
+                                    <p class="text-lg text-gray-300">Check-in e
                                         Boas-vindas</p>
-                                    <p class="text-gray-400 font-roboto mt-1" data-translate="schedule_fri1_desc">
+                                    <p class="text-gray-400 font-roboto mt-1">
                                         Recepção dos atletas e famílias no Zagaia Eco Resort.</p>
                                 </div>
                             </div>
@@ -357,10 +323,9 @@
                                 <i data-lucide="sun" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
                                 <div>
                                     <p class="text-2xl font-bold text-white">16:00 - 18:00</p>
-                                    <p class="text-lg text-gray-300" data-translate="schedule_fri2_title">Touch Rugby
+                                    <p class="text-lg text-gray-300">Touch Rugby
                                         Sunset</p>
-                                    <ul class="list-disc list-inside text-gray-400 pl-2 mt-2 space-y-1 font-roboto"
-                                        data-translate="schedule_fri2_desc" data-is-html>
+                                    <ul class="list-disc list-inside text-gray-400 pl-2 mt-2 space-y-1 font-roboto">
                                         <li>Jogo de confraternização para todas as idades.</li>
                                         <li>Times mistos montados na hora.</li>
                                         <li>Perfeito para aquecer e reencontrar os amigos.</li>
@@ -372,65 +337,62 @@
 
                     <div id="dia-sabado" class="day-content hidden">
                         <div class="max-w-3xl mx-auto bg-slate-800 p-8 rounded-xl shadow-lg text-left space-y-4 card-mud">
-                            <p class="text-center text-amber-400 font-bold mb-4 font-roboto"
-                                data-translate="schedule_sat_note">Cada bloco de 30 minutos corresponde a um jogo
-                                completo.</p>
+                            <p class="text-center text-amber-400 font-bold mb-4 font-roboto">
+                                Cada bloco de 30 minutos corresponde a um jogo completo.</p>
 
                             <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">08:30 - 10:00</span>
                                 <div>
-                                    <strong class="text-amber-400 text-xl" data-translate="schedule_sat1_title">Rodadas
+                                    <strong class="text-amber-400 text-xl">Rodadas
                                         Golden Oldies (3 Jogos)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat1_desc">Jogos com
+                                    <p class="text-sm text-gray-400">Jogos com
                                         regras adaptadas para os veteranos.</p>
                                 </div>
                             </div>
                             <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-white w-24 text-center text-lg pt-1">10:00 - 11:30</span>
                                 <div>
-                                    <strong class="text-white text-xl" data-translate="schedule_sat2_title">Rodadas
+                                    <strong class="text-white text-xl">Rodadas
                                         Idade Livre (3 Jogos)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat2_desc">Jogos abertos
+                                    <p class="text-sm text-gray-400">Jogos abertos
                                         para todas as idades e níveis.</p>
                                 </div>
                             </div>
                             <div class="bg-green-800/50 text-green-300 p-3 rounded-lg flex items-center justify-center gap-4">
-                                <strong class="text-white text-xl" data-translate="schedule_sat3_title">11:30 - 14:30 |
+                                <strong class="text-white text-xl">11:30 - 14:30 |
                                     ALMOÇO E RESENHA</strong>
                             </div>
                             <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">14:30 - 16:00</span>
                                 <div>
-                                    <strong class="text-amber-400 text-xl" data-translate="schedule_sat4_title">Rodadas
+                                    <strong class="text-amber-400 text-xl">Rodadas
                                         Golden Oldies (3 Jogos)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat4_desc">Mais uma
+                                    <p class="text-sm text-gray-400">Mais uma
                                         rodada de jogos para as lendas.</p>
                                 </div>
                             </div>
                             <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-white w-24 text-center text-lg pt-1">16:00 - 17:00</span>
                                 <div>
-                                    <strong class="text-white text-xl" data-translate="schedule_sat5_title">Rodadas
+                                    <strong class="text-white text-xl">Rodadas
                                         Idade Livre (2 Jogos)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat5_desc">
+                                    <p class="text-sm text-gray-400">
                                         Confraternização em campo para todos.</p>
                                 </div>
                             </div>
                             <div class="bg-slate-900 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-amber-400 w-24 text-center text-lg pt-1">17:00 - 17:30</span>
                                 <div>
-                                    <strong class="text-amber-400 text-xl"
-                                        data-translate="schedule_sat6_title">Rodada Golden Oldies (1 Jogo)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat6_desc">Último jogo
+                                    <strong class="text-amber-400 text-xl">Rodada Golden Oldies (1 Jogo)</strong>
+                                    <p class="text-sm text-gray-400">Último jogo
                                         dos veteranos.</p>
                                 </div>
                             </div>
                             <div class="bg-slate-700 p-3 rounded-lg flex items-start gap-4">
                                 <span class="font-bold text-white w-24 text-center text-lg pt-1">17:30 - 18:30</span>
                                 <div>
-                                    <strong class="text-white text-xl"
-                                        data-translate="schedule_sat7_title">Encerramento Idade Livre (2 Jogos)</strong>
-                                    <p class="text-sm text-gray-400" data-translate="schedule_sat7_desc">As grandes
+                                    <strong class="text-white text-xl">Encerramento Idade Livre (2 Jogos)</strong>
+                                    <p class="text-sm text-gray-400">As grandes
                                         partidas de confraternização para fechar o dia.</p>
                                 </div>
                             </div>
@@ -442,11 +404,11 @@
                             <div class="flex items-start">
                                 <i data-lucide="coffee" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
                                 <div>
-                                    <p class="text-2xl font-bold text-white" data-translate="schedule_sun1_time">Manhã
+                                    <p class="text-2xl font-bold text-white">Manhã
                                     </p>
-                                    <p class="text-lg text-gray-300" data-translate="schedule_sun1_title">Café da Manhã
+                                    <p class="text-lg text-gray-300">Café da Manhã
                                         de Despedida</p>
-                                    <p class="text-gray-400 font-roboto mt-1" data-translate="schedule_sun1_desc">Última
+                                    <p class="text-gray-400 font-roboto mt-1">Última
                                         oportunidade para a resenha final e troca de contatos.</p>
                                 </div>
                             </div>
@@ -454,10 +416,10 @@
                             <div class="flex items-start">
                                 <i data-lucide="log-out" class="w-8 h-8 text-amber-400 mr-4 flex-shrink-0 mt-1"></i>
                                 <div>
-                                    <p class="text-2xl font-bold text-white" data-translate="schedule_sun2_time">Até
+                                    <p class="text-2xl font-bold text-white">Até
                                         12:00</p>
-                                    <p class="text-lg text-gray-300" data-translate="schedule_sun2_title">Check-out</p>
-                                    <p class="text-gray-400 font-roboto mt-1" data-translate="schedule_sun2_desc">
+                                    <p class="text-lg text-gray-300">Check-out</p>
+                                    <p class="text-gray-400 font-roboto mt-1">
                                         Encerramento oficial do 1º Encontro Rugby Legends.</p>
                                 </div>
                             </div>
@@ -470,9 +432,9 @@
         <section id="bonito" class="py-20 bg-slate-800">
             <div class="container mx-auto px-4">
                 <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-translate="bonito_title">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">
                         Explore Bonito, um Paraíso Natural</h2>
-                    <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-translate="bonito_p1">
+                    <p class="max-w-4xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                         Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS
                         é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito
                         para flutuação, mergulho e aventuras inesquecíveis com a família.
@@ -491,17 +453,17 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 text-left bg-slate-900 p-8 rounded-xl" data-aos="fade-up">
                     <div>
-                        <h3 class="text-4xl text-white mb-6 flex items-center" data-translate="bonito_how_to_get_title">
+                        <h3 class="text-4xl text-white mb-6 flex items-center">
                             <i data-lucide="map-pin" class="w-8 h-8 mr-3 text-amber-400"></i>Como Chegar</h3>
-                        <p class="text-gray-300 mb-4 font-roboto" data-translate="bonito_how_to_get_p1">O aeroporto mais
+                        <p class="text-gray-300 mb-4 font-roboto">O aeroporto mais
                             próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até
                             Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de
                             aproximadamente 259km.</p>
-                        <p class="text-gray-300 font-roboto" data-translate="bonito_how_to_get_p2">Para facilitar sua
+                        <p class="text-gray-300 font-roboto">Para facilitar sua
                             logística, recomendamos o contato com nossas agências parceiras.</p>
                     </div>
                     <div>
-                        <h3 class="text-4xl text-white mb-6 flex items-center" data-translate="bonito_partners_title"><i
+                        <h3 class="text-4xl text-white mb-6 flex items-center"><i
                                 data-lucide="handshake" class="w-8 h-8 mr-3 text-amber-400"></i>Agências Parceiras</h3>
                         <ul class="space-y-4 text-gray-300 font-roboto">
                             <li class="flex items-start">
@@ -509,8 +471,7 @@
                                     class="w-5 h-5 mr-3 mt-1 text-amber-400 flex-shrink-0"></i>
                                 <div>
                                     <strong>PNGTur (Agência)</strong><br>
-                                    <a href="tel:+551148838899" class="hover:text-amber-400"
-                                        data-translate="bonito_partners_phone">Telefone</a>: 11 4883-8899<br>
+                                    <a href="tel:+551148838899" class="hover:text-amber-400">Telefone</a>: 11 4883-8899<br>
                                     <a href="https://wa.me/5511940190054" target="_blank"
                                         class="hover:text-amber-400">WhatsApp</a>: 11 94019-0054<br>
                                     <a href="mailto:alima@pngtur.com.br" class="hover:text-amber-400">Email</a>:
@@ -526,8 +487,7 @@
                                         class="hover:text-amber-400">WhatsApp</a>: +55 67 99986-3298<br>
                                     <a href="mailto:gerencia@crisval.com.br"
                                         class="hover:text-amber-400">Email</a>: gerencia@crisval.com.br<br>
-                                    <a href="https://crisval.com.br/" target="_blank" class="hover:text-amber-400"
-                                        data-translate="bonito_partners_website">Website</a>: crisval.com.br
+                                    <a href="https://crisval.com.br/" target="_blank" class="hover:text-amber-400">Website</a>: crisval.com.br
                                 </div>
                             </li>
                         </ul>
@@ -540,9 +500,9 @@
             <div class="container mx-auto px-4">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="text-center md:text-left" data-aos="fade-right">
-                        <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-translate="kit_title">Seu
+                        <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Seu
                             Kit de Lenda</h2>
-                        <p class="text-xl text-gray-300 mb-8 font-roboto" data-translate="kit_p1">
+                        <p class="text-xl text-gray-300 mb-8 font-roboto">
                             Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit
                             exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!
                         </p>
@@ -551,9 +511,9 @@
                                 class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
                                 <i data-lucide="shirt" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
                                 <div>
-                                    <h4 class="text-2xl text-white" data-translate="kit_item1_title">Camiseta Premium do
+                                    <h4 class="text-2xl text-white">Camiseta Premium do
                                         Evento</h4>
-                                    <p class="text-gray-400 font-roboto" data-translate="kit_item1_desc">Design
+                                    <p class="text-gray-400 font-roboto">Design
                                         exclusivo, personalizada com seu nome e número.</p>
                                 </div>
                             </div>
@@ -561,23 +521,37 @@
                                 class="flex items-center bg-slate-900 p-4 rounded-lg transition duration-300 hover:bg-slate-700/50 transform hover:translate-x-2">
                                 <i data-lucide="beer" class="w-12 h-12 text-amber-400 mr-4 flex-shrink-0"></i>
                                 <div>
-                                    <h4 class="text-2xl text-white" data-translate="kit_item2_title">Copo Térmico
+                                    <h4 class="text-2xl text-white">Copo Térmico
                                         Personalizado</h4>
-                                    <p class="text-gray-400 font-roboto" data-translate="kit_item2_desc">Mantenha sua
+                                    <p class="text-gray-400 font-roboto">Mantenha sua
                                         bebida na temperatura ideal durante a resenha.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-10">
                             <button id="openKitModalBtn"
-                                class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg"
-                                data-translate="kit_cta">QUERO MEU KIT!</button>
+                                class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg">QUERO MEU KIT!</button>
                         </div>
                     </div>
-                    <div data-aos="fade-left" class="perspective-1000">
-                        <img src="https://placehold.co/600x600/1f2937/fBBF24?text=Kit+Exclusivo"
-                            alt="Kit Rugby Legends"
-                            class="rounded-xl shadow-2xl w-full transition-transform duration-700 hover:rotate-y-12 hover:shadow-amber-500/30">
+                    
+                    <!-- CARROSSEL DE IMAGENS -->
+                    <div data-aos="fade-left" class="perspective-1000 relative w-full aspect-[4/5] rounded-xl shadow-2xl overflow-hidden group bg-gray-900 border border-slate-700">
+                        <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out h-full w-full">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/conecta-web-digital.firebasestorage.app/o/rugby%20kit%2FWhatsApp%20Image%202025-12-04%20at%2013.52.30%20(1).jpeg?alt=media&token=e97b0d06-762e-40b3-aa52-5aa420bbd8c1"
+                                alt="Kit Rugby Legends Camiseta"
+                                class="w-full h-full object-contain flex-shrink-0 bg-slate-800">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/conecta-web-digital.firebasestorage.app/o/rugby%20kit%2FWhatsApp%20Image%202025-12-04%20at%2013.52.30.jpeg?alt=media&token=08b6d893-2a78-4953-b639-6603df1e7692"
+                                alt="Kit Rugby Legends Copo"
+                                class="w-full h-full object-contain flex-shrink-0 bg-slate-800">
+                        </div>
+                        
+                        <!-- Setas de navegação -->
+                        <button id="prev-slide" type="button" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-amber-500 hover:text-black transition duration-300 z-50 backdrop-blur-sm cursor-pointer shadow-lg border border-white/20">
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        </button>
+                        <button id="next-slide" type="button" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-amber-500 hover:text-black transition duration-300 z-50 backdrop-blur-sm cursor-pointer shadow-lg border border-white/20">
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -586,9 +560,9 @@
         <section id="inscricao" class="py-20 bg-slate-900">
             <div class="container mx-auto px-4">
                 <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-translate="register_title">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">
                         Garanta sua Vaga no Time!</h2>
-                    <p class="text-xl text-gray-300 mb-8 font-roboto" data-translate="register_p1" data-is-html>
+                    <p class="text-xl text-gray-300 mb-8 font-roboto">
                         As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento
                             Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos
                             times</strong>. Não fique de fora desta convocação histórica!
@@ -598,15 +572,13 @@
                     <form id="inscriptionForm" class="bg-slate-800 p-8 rounded-xl shadow-lg space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="fullName" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                    data-translate="form_fullName">Nome Completo</label>
+                                <label for="fullName" class="block text-amber-400 font-bold mb-2 font-roboto">Nome Completo</label>
                                 <input type="text" id="fullName" name="fullName"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                     required>
                             </div>
                             <div>
-                                <label for="nickname" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                    data-translate="form_nickname">Apelido (de campo)</label>
+                                <label for="nickname" class="block text-amber-400 font-bold mb-2 font-roboto">Apelido (de campo)</label>
                                 <input type="text" id="nickname" name="nickname"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                     required>
@@ -614,16 +586,14 @@
                         </div>
 
                         <div>
-                            <label for="celular" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                data-translate="form_phone">Celular (com DDD)</label>
+                            <label for="celular" class="block text-amber-400 font-bold mb-2 font-roboto">Celular (com DDD)</label>
                             <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX"
                                 class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                 required>
                         </div>
 
                         <div>
-                            <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                data-translate="form_city">De qual cidade está vindo? (Cidade / Estado)</label>
+                            <label for="cidadeEstado" class="block text-amber-400 font-bold mb-2 font-roboto">De qual cidade está vindo? (Cidade / Estado)</label>
                             <input type="text" id="cidadeEstado" name="cidadeEstado" placeholder="Ex: Campo Grande / MS"
                                 class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                 required>
@@ -631,19 +601,17 @@
 
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="age" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                    data-translate="form_age">Idade</label>
+                                <label for="age" class="block text-amber-400 font-bold mb-2 font-roboto">Idade</label>
                                 <input type="number" id="age" name="age"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                     required>
                             </div>
                             <div>
-                                <label for="position" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                    data-translate="form_position">Posição Principal</label>
+                                <label for="position" class="block text-amber-400 font-bold mb-2 font-roboto">Posição Principal</label>
                                 <select id="position" name="position"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600"
                                     required>
-                                    <option value="" data-translate="form_select">Selecione...</option>
+                                    <option value="">Selecione...</option>
                                     <option value="Pilar">Pilar</option>
                                     <option value="Hooker">Hooker</option>
                                     <option value="Segunda Linha">Segunda Linha</option>
@@ -659,52 +627,48 @@
                         </div>
 
                         <div>
-                            <span class="block text-amber-400 font-bold mb-2 font-roboto"
-                                data-translate="form_hasTeam">Você já tem uma equipe?</span>
+                            <span class="block text-amber-400 font-bold mb-2 font-roboto">Você já tem uma equipe?</span>
                             <div class="flex items-center space-x-6 mt-2">
                                 <label class="flex items-center text-white cursor-pointer font-roboto">
                                     <input type="radio" name="hasTeam" value="Sim"
                                         class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400"
                                         required>
-                                    <span class="ml-2" data-translate="form_yes">Sim</span>
+                                    <span class="ml-2">Sim</span>
                                 </label>
                                 <label class="flex items-center text-white cursor-pointer font-roboto">
                                     <input type="radio" name="hasTeam" value="Não"
                                         class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
-                                    <span class="ml-2" data-translate="form_no">Não</span>
+                                    <span class="ml-2">Não</span>
                                 </label>
                             </div>
                         </div>
 
                         <div id="teamSelectionContainer" class="hidden">
-                            <label for="teamName" class="block text-amber-400 font-bold mb-2 font-roboto"
-                                data-translate="form_selectTeam">Selecione sua equipe</label>
+                            <label for="teamName" class="block text-amber-400 font-bold mb-2 font-roboto">Selecione sua equipe</label>
                             <select id="teamName" name="teamName"
                                 class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-200 focus:bg-slate-600">
                             </select>
                         </div>
 
                         <div>
-                            <span class="block text-amber-400 font-bold mb-2 font-roboto"
-                                data-translate="form_hasPackage">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
+                            <span class="block text-amber-400 font-bold mb-2 font-roboto">Já adquiriu o pacote e garantiu a vaga no hotel?</span>
                             <div class="flex items-center space-x-6 mt-2">
                                 <label class="flex items-center text-white cursor-pointer font-roboto">
                                     <input type="radio" name="hasPackage" value="Sim"
                                         class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400"
                                         required>
-                                    <span class="ml-2" data-translate="form_yes">Sim</span>
+                                    <span class="ml-2">Sim</span>
                                 </label>
                                 <label class="flex items-center text-white cursor-pointer font-roboto">
                                     <input type="radio" name="hasPackage" value="Não"
                                         class="form-radio h-5 w-5 text-amber-500 bg-slate-700 border-gray-600 focus:ring-amber-400">
-                                    <span class="ml-2" data-translate="form_noBook">Não, preciso reservar</span>
+                                    <span class="ml-2">Não, preciso reservar</span>
                                 </label>
                             </div>
                         </div>
                         <div class="pt-4">
                             <button type="submit" id="submitButton"
-                                class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/50"
-                                data-translate="form_submit">
+                                class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-amber-500/50">
                                 ENVIAR INSCRIÇÃO
                             </button>
                         </div>
@@ -716,26 +680,26 @@
 
         <section id="countdown-section" class="py-12 bg-emerald-700 text-white">
             <div class="container mx-auto text-center px-4" data-aos="fade-up">
-                <h3 class="text-4xl mb-4" data-translate="countdown_title">Garanta a Tarifa Especial de Hospedagem!
+                <h3 class="text-4xl mb-4">Garanta a Tarifa Especial de Hospedagem!
                 </h3>
-                <p class="text-lg mb-6 font-roboto" data-translate="countdown_p1">A tarifa de grupo com desconto é
+                <p class="text-lg mb-6 font-roboto">A tarifa de grupo com desconto é
                     válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!</p>
                 <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
                     <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
                         <span id="days" class="text-5xl font-bold block">00</span>
-                        <p class="text-sm font-roboto" data-translate="countdown_days">Dias</p>
+                        <p class="text-sm font-roboto">Dias</p>
                     </div>
                     <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
                         <span id="hours" class="text-5xl font-bold block">00</span>
-                        <p class="text-sm font-roboto" data-translate="countdown_hours">Horas</p>
+                        <p class="text-sm font-roboto">Horas</p>
                     </div>
                     <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
                         <span id="minutes" class="text-5xl font-bold block">00</span>
-                        <p class="text-sm font-roboto" data-translate="countdown_minutes">Minutos</p>
+                        <p class="text-sm font-roboto">Minutos</p>
                     </div>
                     <div class="countdown-box p-4 rounded-lg bg-emerald-800/50">
                         <span id="seconds" class="text-5xl font-bold block">00</span>
-                        <p class="text-sm font-roboto" data-translate="countdown_seconds">Segundos</p>
+                        <p class="text-sm font-roboto">Segundos</p>
                     </div>
                 </div>
             </div>
@@ -743,10 +707,9 @@
 
         <section id="pacotes" class="py-20 bg-slate-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up"
-                    data-translate="packages_title">Pacotes de Hospedagem</h2>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-center text-amber-400 mb-12" data-aos="fade-up">Pacotes de Hospedagem</h2>
                 <p class="max-w-3xl mx-auto text-center text-lg text-gray-300 mb-12 font-roboto" data-aos="fade-up"
-                    data-aos-delay="100" data-translate="packages_p1">
+                    data-aos-delay="100">
                     A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos
                     pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!
                 </p>
@@ -756,82 +719,75 @@
                         <div class="p-8 flex-grow">
                             <h3 class="text-3xl text-amber-400 mb-4">Premium</h3>
                             <ul class="space-y-2 text-gray-300 font-roboto">
-                                <li><span class="font-bold text-white" data-translate="packages_single">Single:</span>
+                                <li><span class="font-bold text-white">Single:</span>
                                     R$ 2.503,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_double">Duplo:</span>
+                                <li><span class="font-bold text-white">Duplo:</span>
                                     R$ 3.224,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_triple">Triplo:</span>
+                                <li><span class="font-bold text-white">Triplo:</span>
                                     R$ 3.943,00</li>
-                                <li><span class="font-bold text-white"
-                                        data-translate="packages_quad">Quádruplo:</span> R$ 4.697,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 4.697,00</li>
                             </ul>
                         </div>
                         <div class="p-4"><a href="#inscricao"
-                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300"
-                                data-translate="packages_cta">INSCREVA-SE E RESERVE</a></div>
+                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                     </div>
                     <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud border-4 border-amber-400 transform lg:scale-105"
                         data-aos="zoom-in" data-aos-delay="200">
-                        <div class="bg-amber-400 text-gray-900 text-center py-2 font-bold"
-                            data-translate="packages_popular">MAIS POPULAR</div>
+                        <div class="bg-amber-400 text-gray-900 text-center py-2 font-bold">MAIS POPULAR</div>
                         <div class="p-8 flex-grow">
                             <h3 class="text-3xl text-amber-400 mb-4">Premium Luxo</h3>
                             <ul class="space-y-2 text-gray-300 font-roboto">
-                                <li><span class="font-bold text-white" data-translate="packages_single">Single:</span>
+                                <li><span class="font-bold text-white">Single:</span>
                                     R$ 2.852,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_double">Duplo:</span>
+                                <li><span class="font-bold text-white">Duplo:</span>
                                     R$ 3.506,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_triple">Triplo:</span>
+                                <li><span class="font-bold text-white">Triplo:</span>
                                     R$ 4.259,00</li>
-                                <li><span class="font-bold text-white"
-                                        data-translate="packages_quad">Quádruplo:</span> R$ 5.050,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.050,00</li>
                             </ul>
                         </div>
                         <div class="p-4"><a href="#inscricao"
-                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300"
-                                data-translate="packages_cta">INSCREVA-SE E RESERVE</a></div>
+                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                     </div>
                     <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-mud"
                         data-aos="zoom-in" data-aos-delay="300">
                         <div class="p-8 flex-grow">
-                            <h3 class="text-3xl text-amber-400 mb-4" data-translate="packages_suite">Suíte</h3>
+                            <h3 class="text-3xl text-amber-400 mb-4">Suíte</h3>
                             <ul class="space-y-2 text-gray-300 font-roboto">
-                                <li><span class="font-bold text-white" data-translate="packages_single">Single:</span>
+                                <li><span class="font-bold text-white">Single:</span>
                                     R$ 3.030,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_double">Duplo:</span>
+                                <li><span class="font-bold text-white">Duplo:</span>
                                     R$ 3.821,00</li>
-                                <li><span class="font-bold text-white" data-translate="packages_triple">Triplo:</span>
+                                <li><span class="font-bold text-white">Triplo:</span>
                                     R$ 4.612,00</li>
-                                <li><span class="font-bold text-white"
-                                        data-translate="packages_quad">Quádruplo:</span> R$ 5.446,00</li>
+                                <li><span class="font-bold text-white">Quádruplo:</span> R$ 5.446,00</li>
                             </ul>
                         </div>
                         <div class="p-4"><a href="#inscricao"
-                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300"
-                                data-translate="packages_cta">INSCREVA-SE E RESERVE</a></div>
+                                class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">INSCREVA-SE E RESERVE</a></div>
                     </div>
                 </div>
 
                 <div class="mt-16" data-aos="fade-up">
-                    <h3 class="text-4xl text-center text-white mb-10" data-translate="packages_includes_title">O que o
+                    <h3 class="text-4xl text-center text-white mb-10">O que o
                         pacote de hospedagem inclui?</h3>
                     <div class="grid lg:grid-cols-5 gap-8 items-stretch">
                         <div class="bg-slate-900 p-8 rounded-xl lg:col-span-3">
-                            <h4 class="text-3xl text-amber-400 mb-6" data-translate="packages_includes_meals">Refeições
+                            <h4 class="text-3xl text-amber-400 mb-6">Refeições
                                 e Hospedagem</h4>
                             <ul class="space-y-4 text-lg text-gray-300 font-roboto">
-                                <li class="flex items-start" data-translate="packages_includes_item1" data-is-html>
+                                <li class="flex items-start">
                                     <i data-lucide="calendar-days"
                                         class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
                                     <span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>
                                 </li>
-                                <li class="flex items-start" data-translate="packages_includes_item2" data-is-html>
+                                <li class="flex items-start">
                                     <i data-lucide="coffee"
                                         class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
                                     <span><strong>Café da Manhã e Jantar:</strong> Inclusos durante toda a
                                         estadia.</span>
                                 </li>
-                                <li class="flex items-start" data-translate="packages_includes_item3" data-is-html>
+                                <li class="flex items-start">
                                     <i data-lucide="utensils-crossed"
                                         class="w-6 h-6 text-amber-400 mr-3 mt-1 flex-shrink-0"></i>
                                     <span><strong>Almoço Especial de Sábado:</strong> Para recarregar as energias
@@ -847,14 +803,10 @@
                                 <i data-lucide="martini"
                                     class="w-12 h-12 md:w-16 md:h-16 text-gray-900 -ml-4 transform -rotate-12"></i>
                             </div>
-                            <h4 class="text-4xl md:text-5xl text-center font-bold"
-                                data-translate="packages_openbar_title">OPEN BAR</h4>
-                            <p class="text-center text-xl font-semibold mb-2 font-roboto"
-                                data-translate="packages_openbar_day">SÁBADO, 07/02</p>
-                            <p class="text-center text-lg font-bold mb-4 font-roboto"
-                                data-translate="packages_openbar_time">(das 11h às 23h)</p>
-                            <p class="text-center text-base md:text-lg font-roboto"
-                                data-translate="packages_openbar_desc">
+                            <h4 class="text-4xl md:text-5xl text-center font-bold">OPEN BAR</h4>
+                            <p class="text-center text-xl font-semibold mb-2 font-roboto">SÁBADO, 07/02</p>
+                            <p class="text-center text-lg font-bold mb-4 font-roboto">(das 11h às 23h)</p>
+                            <p class="text-center text-base md:text-lg font-roboto">
                                 Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para
                                 celebrar o dia todo!
                             </p>
@@ -866,10 +818,9 @@
 
         <section id="reserva" class="py-20 bg-slate-800 border-t border-slate-700">
             <div class="container mx-auto text-center px-4" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4" data-translate="booking_title">Faça
+                <h2 class="text-4xl sm:text-5xl md:text-6xl text-amber-400 mb-4">Faça
                     sua Reserva no Hotel</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto" data-translate="booking_p1"
-                    data-is-html>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 mb-12 font-roboto">
                     As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato,
                     mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e
                     confirme sua presença nesta celebração histórica!
@@ -878,7 +829,7 @@
                     <div
                         class="bg-slate-900 p-8 rounded-lg text-center transition duration-300 hover:bg-slate-700/50 transform hover:scale-105">
                         <i data-lucide="phone" class="mx-auto h-12 w-12 text-amber-400 mb-4"></i>
-                        <h3 class="text-3xl mb-2" data-translate="booking_phone">Telefone</h3>
+                        <h3 class="text-3xl mb-2">Telefone</h3>
                         <a href="tel:+556732555534"
                             class="text-2xl text-white hover:text-amber-400 transition duration-300 font-roboto">(67)
                             3255-5534</a>
@@ -892,11 +843,11 @@
                     </div>
                 </div>
                 <div class="mt-12">
-                    <h4 class="text-2xl text-amber-400 mb-4" data-translate="booking_payment_title">Formas de Pagamento
+                    <h4 class="text-2xl text-amber-400 mb-4">Formas de Pagamento
                         da Hospedagem</h4>
-                    <p class="text-gray-300 font-roboto" data-translate="booking_payment1">Opção 1: Sinal de 30% +
+                    <p class="text-gray-300 font-roboto">Opção 1: Sinal de 30% +
                         saldo em 3x no check-in.</p>
-                    <p class="text-gray-300 font-roboto" data-translate="booking_payment2">Opção 2: Parcelado em 10x no
+                    <p class="text-gray-300 font-roboto">Opção 2: Parcelado em 10x no
                         cartão no ato da reserva.</p>
                 </div>
             </div>
@@ -907,11 +858,11 @@
                 <h3 class="text-3xl text-white tracking-wider mb-2">R<span class="text-amber-400">UGBY</span> L<span
                         class="text-amber-400">EGENDS</span></h3>
                 <p class="mb-4 font-roboto">#RugbyLegendsBrasil #RugbyVeterano #BonitoMS #ZagaiaResort</p>
-                <p class="font-roboto" data-translate="footer_copyright">&copy; 2025 1º Encontro Rugby LEGENDS. Todos os
+                <p class="font-roboto">&copy; 2025 1º Encontro Rugby LEGENDS. Todos os
                     direitos reservados.</p>
                 <p class="mt-4 text-sm font-roboto">
                     <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer"
-                        class="hover:text-amber-400 transition-colors" data-translate="footer_created_by">
+                        class="hover:text-amber-400 transition-colors">
                         Criado por Victor Cruzetta
                     </a>
                 </p>
@@ -924,7 +875,7 @@
             <a href="https://wa.me/5567996129961?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F"
                 target="_blank" rel="noopener noreferrer"
                 class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
-                <span class="font-bold mr-2 font-roboto" data-translate="whatsapp_roberto">Falar com Roberto</span>
+                <span class="font-bold mr-2 font-roboto">Falar com Roberto</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24"
                     fill="currentColor">
                     <path
@@ -934,7 +885,7 @@
             <a href="https://wa.me/5567992002916?text=Olá!%20Visitei%20o%20site%20do%201º%20Encontro%20Rugby%20LEGENDS%20e%20gostaria%20de%20mais%20informações%20sobre%20o%20evento.%20Poderia%20me%20ajudar%3F"
                 target="_blank" rel="noopener noreferrer"
                 class="flex items-center bg-white text-gray-800 py-2 px-4 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 w-max">
-                <span class="font-bold mr-2 font-roboto" data-translate="whatsapp_rodrigo">Falar com Rodrigo</span>
+                <span class="font-bold mr-2 font-roboto">Falar com Rodrigo</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 24 24"
                     fill="currentColor">
                     <path
@@ -947,8 +898,8 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
                 <path
                     d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-            </svg>
-        </button>
+                </svg>
+            </button>
     </div>
 
     <div id="kitModal"
@@ -959,104 +910,95 @@
 
             <div id="kit-welcome-step" class="hidden text-center">
                 <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                <h3 id="kit-welcome-title" class="text-4xl text-amber-400 mb-4" data-translate="modal_welcome_title">
+                <h3 id="kit-welcome-title" class="text-4xl text-amber-400 mb-4">
                     Inscrição Confirmada, Lenda!</h3>
-                <p class="text-lg text-gray-300 mb-8 font-roboto" data-translate="modal_welcome_p1">Agora o próximo
+                <p class="text-lg text-gray-300 mb-8 font-roboto">Agora o próximo
                     passo é garantir seu manto sagrado. Monte o kit para você e toda a família e eternize esse
                     encontro!</p>
                 <button type="button" id="startKitOrderBtn"
-                    class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl"
-                    data-translate="modal_welcome_cta">
+                    class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
                     MONTAR MEU KIT
                 </button>
             </div>
 
             <div id="kit-step-1" class="hidden">
-                <h3 class="text-4xl text-amber-400 mb-2 text-center" data-translate="modal_step1_title">Monte seu Pedido
+                <h3 class="text-4xl text-amber-400 mb-2 text-center">Monte seu Pedido
                     de Kits</h3>
-                <p class="text-gray-300 mb-6 text-center font-roboto" data-translate="modal_step1_p1">Adicione quantos
+                <p class="text-gray-300 mb-6 text-center font-roboto">Adicione quantos
                     kits (camiseta + copo) você precisar para sua família e amigos!</p>
 
                 <div class="bg-slate-900 p-4 rounded-lg mb-6 text-sm text-center font-roboto">
-                    <p class="font-bold text-amber-400 mb-2" data-translate="modal_lote_title">VALOR DO KIT:</p>
+                    <p class="font-bold text-amber-400 mb-2">VALOR DO KIT:</p>
                     <p><strong class="text-white">Preço Fixo:</strong> R$ 150,00</p>
                 </div>
 
                 <form id="kitOrderForm" class="space-y-6 text-left">
                     <fieldset class="border-2 border-slate-700 p-4 rounded-lg">
-                        <legend class="text-amber-400 font-bold px-2 text-xl" data-translate="modal_contact_title">Seus
+                        <legend class="text-amber-400 font-bold px-2 text-xl">Seus
                             Dados de Contato</legend>
                         <div class="space-y-4">
                             <div>
-                                <label for="buyerName" class="block text-white font-bold mb-2 font-roboto"
-                                    data-translate="form_fullName">Nome Completo</label>
+                                <label for="buyerName" class="block text-white font-bold mb-2 font-roboto">Nome Completo</label>
                                 <input type="text" id="buyerName"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
                                     required>
                             </div>
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label for="buyerEmail" class="block text-white font-bold mb-2 font-roboto"
-                                        data-translate="form_email">E-mail para Contato</label>
+                                    <label for="buyerEmail" class="block text-white font-bold mb-2 font-roboto">E-mail para Contato</label>
                                     <input type="email" id="buyerEmail"
                                         class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
                                         required>
                                 </div>
                                 <div>
-                                    <label for="buyerCelular" class="block text-white font-bold mb-2 font-roboto"
-                                        data-translate="form_phone">Celular (com DDD)</label>
+                                    <label for="buyerCelular" class="block text-white font-bold mb-2 font-roboto">Celular (com DDD)</label>
                                     <input type="tel" id="buyerCelular" placeholder="(XX) XXXXX-XXXX"
                                         class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
                                         required>
                                 </div>
                             </div>
-                            <!-- [CORREÇÃO] Adicionado campo de CPF -->
                             <div>
-                                <label for="buyerCPF" class="block text-white font-bold mb-2 font-roboto" data-translate="form_cpf">CPF do Pagador</label>
+                                <label for="buyerCPF" class="block text-white font-bold mb-2 font-roboto">CPF do Pagador</label>
                                 <input type="text" id="buyerCPF" placeholder="000.000.000-00"
-                                       class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-                                       required>
+                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                     required>
                             </div>
                         </div>
                     </fieldset>
 
                     <fieldset class="border-2 border-dashed border-slate-600 p-4 rounded-lg">
-                        <legend class="text-amber-400 font-bold px-2 text-xl" data-translate="modal_add_kit_title">
+                        <legend class="text-amber-400 font-bold px-2 text-xl">
                             Adicionar Kit ao Pedido</legend>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label for="kitShirtName" class="block text-white font-bold mb-2 font-roboto"
-                                    data-translate="modal_shirt_name">Nome na Camiseta</label>
+                                <label for="kitShirtName" class="block text-white font-bold mb-2 font-roboto">Nome na Camiseta</label>
                                 <input type="text" id="kitShirtName"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-                                    data-translate="modal_shirt_name_placeholder" placeholder="Apelido ou nome">
+                                    placeholder="Apelido ou nome">
                             </div>
                             <div>
-                                <label for="kitShirtNumber" class="block text-white font-bold mb-2 font-roboto"
-                                    data-translate="modal_shirt_number">Número</label>
+                                <label for="kitShirtNumber" class="block text-white font-bold mb-2 font-roboto">Número</label>
                                 <input type="number" id="kitShirtNumber" min="0" max="99"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-                                    data-translate="modal_shirt_number_placeholder" placeholder="Ex: 10">
+                                    placeholder="Ex: 10">
                             </div>
                         </div>
                         <div class="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
-                                <label for="kitGender" class="block text-white font-bold mb-2 font-roboto"
-                                    data-translate="modal_gender">Gênero</label>
+                                <label for="kitGender" class="block text-white font-bold mb-2 font-roboto">Gênero</label>
                                 <select id="kitGender"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
-                                    <option value="Masculino" data-translate="modal_gender_male">Masculino</option>
-                                    <option value="Feminino" data-translate="modal_gender_female">Feminino (Baby Look)
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino (Baby Look)
                                     </option>
-                                    <option value="Infantil" data-translate="modal_gender_child">Infantil</option>
+                                    <option value="Infantil">Infantil</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="kitShirtSize" class="block text-white font-bold mb-2 font-roboto"
-                                    data-translate="modal_size">Tamanho</label>
+                                <label for="kitShirtSize" class="block text-white font-bold mb-2 font-roboto">Tamanho</label>
                                 <select id="kitShirtSize"
                                     class="w-full bg-slate-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400">
-                                    <option value="" data-translate="form_select">Selecione</option>
+                                    <option value="">Selecione</option>
                                     <option value="PP">PP</option>
                                     <option value="P">P</option>
                                     <option value="M">M</option>
@@ -1070,26 +1012,24 @@
                         </div>
                         <button type="button" id="addKitItemBtn"
                             class="mt-4 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
-                            <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i> <span
-                                data-translate="modal_add_kit_cta">Adicionar Kit</span>
+                            <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i> <span>Adicionar Kit</span>
                         </button>
                     </fieldset>
 
                     <div>
-                        <h4 class="text-2xl text-white mt-6 mb-2" data-translate="modal_summary_title">Resumo do Pedido
+                        <h4 class="text-2xl text-white mt-6 mb-2">Resumo do Pedido
                         </h4>
                         <div id="kit-summary-list" class="space-y-2">
-                            <p class="text-gray-400 text-center p-4 font-roboto" data-translate="modal_summary_empty">
+                            <p class="text-gray-400 text-center p-4 font-roboto">
                                 Seu carrinho de kits está vazio.</p>
                         </div>
                     </div>
 
                     <div class="text-center pt-4">
-                        <h4 class="text-4xl text-white mb-6"><span data-translate="modal_total">Valor Total:</span>
+                        <h4 class="text-4xl text-white mb-6"><span>Valor Total:</span>
                             <span id="kit-total-price" class="text-amber-400">R$ 0,00</span></h4>
                         <button type="button" id="goToPaymentBtn"
-                            class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl"
-                            data-translate="modal_payment_cta">
+                            class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 text-xl">
                             IR PARA PAGAMENTO
                         </button>
                     </div>
@@ -1139,7 +1079,7 @@
                                 </button>
                             </div>
                             <p id="copy-feedback" class="text-green-400 mt-2 h-5"></p>
-                            <!-- [CORREÇÃO DE UX] Mensagem de aguardando pagamento -->
+                            
                             <p id="pix-wait-message" class="text-amber-400 mt-4 font-roboto">Aguardando pagamento... Você receberá a confirmação por e-mail.</p>
                         </div>
                     </div>
@@ -1155,10 +1095,9 @@
 
             <div id="kit-step-3" class="hidden text-center">
                 <i data-lucide="party-popper" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                <h3 id="success-title" class="text-4xl text-green-400 mb-4" data-translate="modal_step3_title">Pedido Realizado com Sucesso!</h3>
-                <p id="success-message" class="text-lg text-gray-300 mb-6 font-roboto" data-translate="modal_step3_p1">Obrigado! Seu pagamento foi aprovado e já recebemos seu pedido.<br>Nos vemos no evento!</p>
-                <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
-                    data-translate="modal_close_cta">
+                <h3 id="success-title" class="text-4xl text-green-400 mb-4">Pedido Realizado com Sucesso!</h3>
+                <p id="success-message" class="text-lg text-gray-300 mb-6 font-roboto">Obrigado! Seu pagamento foi aprovado e já recebemos seu pedido.<br>Nos vemos no evento!</p>
+                <button id="close-success-btn" class="mt-8 w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                     Fechar
                 </button>
             </div>
@@ -1192,7 +1131,6 @@
         signInAnonymously(auth)
             .then(() => {
                 console.log("Anonymous user authenticated successfully.");
-                window.translatePage(localStorage.getItem('language') || 'pt');
             })
             .catch((error) => {
                 console.error("Anonymous authentication failed:", error);
@@ -1235,11 +1173,12 @@
             return 150;
         }
 
+        // CARROSSEL REMOVIDO DAQUI E MOVIDO PARA O SCRIPT ABAIXO PARA GARANTIR FUNCIONAMENTO
+
         function updateOrderSummary() {
-            const lang = localStorage.getItem('language') || 'pt';
             kitSummaryList.innerHTML = '';
             if (window.kitOrder.length === 0) {
-                kitSummaryList.innerHTML = `<p class="text-gray-400 text-center p-4 font-roboto">${window.translations[lang].modal_summary_empty}</p>`;
+                kitSummaryList.innerHTML = `<p class="text-gray-400 text-center p-4 font-roboto">Seu carrinho de kits está vazio.</p>`;
                 goToPaymentBtn.disabled = true;
                 goToPaymentBtn.classList.add('opacity-50', 'cursor-not-allowed');
             } else {
@@ -1250,8 +1189,8 @@
                     itemDiv.className = 'bg-slate-900 p-3 rounded-lg flex justify-between items-center';
                     itemDiv.innerHTML = `
                         <div>
-                            <p class="font-bold text-white font-roboto">${item.shirtName} (${item.gender}, ${window.translations[lang].modal_size_short}: ${item.size})</p>
-                            <p class="text-sm text-gray-400 font-roboto">${window.translations[lang].modal_shirt_number}: ${item.shirtNumber || 'S/N'}</p>
+                            <p class="font-bold text-white font-roboto">${item.shirtName} (${item.gender}, Tam: ${item.size})</p>
+                            <p class="text-sm text-gray-400 font-roboto">Número: ${item.shirtNumber || 'S/N'}</p>
                         </div>
                         <button type="button" data-index="${index}" class="remove-kit-item text-red-500 hover:text-red-400 p-2">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -1275,9 +1214,8 @@
             step2.classList.add('hidden');
             step3.classList.add('hidden');
 
-            const lang = localStorage.getItem('language') || 'pt';
             const welcomeTitle = document.getElementById('kit-welcome-title');
-            welcomeTitle.innerHTML = `${window.translations[lang].modal_welcome_title.replace('Lenda', nickname)}!`;
+            welcomeTitle.innerHTML = `Inscrição Confirmada, ${nickname}!`;
             lucide.createIcons();
 
             setTimeout(() => {
@@ -1329,11 +1267,10 @@
             const shirtNumber = document.getElementById('kitShirtNumber').value;
             const gender = document.getElementById('kitGender').value;
             const size = document.getElementById('kitShirtSize').value;
-            const lang = localStorage.getItem('language') || 'pt';
 
             if (!shirtName || !size) {
                 const msgDiv = document.getElementById('kit-form-message');
-                msgDiv.textContent = window.translations[lang].modal_error_kit;
+                msgDiv.textContent = "Por favor, preencha o Nome na Camiseta e o Tamanho.";
                 msgDiv.className = 'text-center font-bold mt-4 text-red-400';
                 setTimeout(() => msgDiv.textContent = '', 3000);
                 return;
@@ -1364,9 +1301,8 @@
 
         inscriptionForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            const lang = localStorage.getItem('language') || 'pt';
             submitButton.disabled = true;
-            submitButton.textContent = window.translations[lang].form_sending;
+            submitButton.textContent = "ENVIANDO...";
             const formData = new FormData(this);
             const nickname = formData.get('nickname');
             const fullName = formData.get('fullName');
@@ -1412,10 +1348,10 @@
             } catch (error) {
                 console.error("Error adding document: ", error);
                 const formMessage = document.getElementById('form-message');
-                formMessage.textContent = window.translations[lang].modal_error_general;
+                formMessage.textContent = "Ocorreu um erro. Tente novamente.";
                 formMessage.className = 'text-center font-bold mt-4 text-red-400';
                 submitButton.disabled = false;
-                submitButton.textContent = window.translations[lang].form_submit;
+                submitButton.textContent = "ENVIAR INSCRIÇÃO";
             }
         });
 
@@ -1427,6 +1363,7 @@
             locale: 'pt-BR'
         });
         let cardPaymentBrickController;
+        let currentKitOrderId = null; // <-- VARIÁVEL PARA GUARDAR O ID DO PEDIDO
         
         const renderCardPaymentBrick = async () => {
             if (cardPaymentBrickController) {
@@ -1453,7 +1390,8 @@
                                 kits: window.kitOrder,
                                 totalPrice: window.kitOrder.length * window.currentKitPrice,
                             };
-                            const result = await createKitCardPayment({ ...formData, order: orderData });
+                            // --> CORREÇÃO: Passa o ID do pedido para o backend
+                            const result = await createKitCardPayment({ ...formData, order: orderData, orderId: currentKitOrderId });
                             if (result.data && result.data.status === 'approved') {
                                 showSuccessScreen();
                             } else {
@@ -1487,7 +1425,8 @@
                     totalPrice: window.kitOrder.length * window.currentKitPrice,
                 };
                 
-                const result = await createKitPixPayment({ order: orderData });
+                // --> CORREÇÃO: Passa o ID do pedido para o backend
+                const result = await createKitPixPayment({ order: orderData, orderId: currentKitOrderId });
                 
                 if (result.data && result.data.qr_code) {
                     pixQrcode.src = `data:image/png;base64,${result.data.qr_code_base64}`;
@@ -1505,48 +1444,76 @@
         };
         
         const showSuccessScreen = (paymentMethod = 'card') => {
-             const lang = localStorage.getItem('language') || 'pt';
              const successTitle = document.getElementById('success-title');
              const successMessage = document.getElementById('success-message');
 
             if(paymentMethod === 'pix'){
-                // Para PIX, não vamos para a tela de sucesso final, pois o pagamento ainda está pendente.
-                // A função `handlePixPayment` já exibe o QR Code. O webhook tratará da confirmação.
-                // Esta lógica só será usada para o Cartão.
                 return;
             }
             
-            successTitle.textContent = window.translations[lang].modal_step3_title;
-            successMessage.innerHTML = window.translations[lang].modal_step3_p1;
+            successTitle.textContent = "Pedido Realizado com Sucesso!";
+            successMessage.innerHTML = "Obrigado! Seu pagamento foi aprovado e já recebemos seu pedido.<br>Nos vemos no evento!";
             
             step2.classList.add('hidden');
             step3.classList.remove('hidden');
             lucide.createIcons();
         }
 
-        goToPaymentBtn.addEventListener('click', () => {
-             const buyerName = document.getElementById('buyerName').value.trim();
-             const buyerEmail = document.getElementById('buyerEmail').value.trim();
-             const buyerCelular = document.getElementById('buyerCelular').value.trim();
-             const buyerCPF = document.getElementById('buyerCPF').value.trim();
-             const lang = localStorage.getItem('language') || 'pt';
+        // --> CÓDIGO DO BOTÃO "IR PARA PAGAMENTO" TOTALMENTE SUBSTITUÍDO
+        goToPaymentBtn.addEventListener('click', async () => {
+            const buyerName = document.getElementById('buyerName').value.trim();
+            const buyerEmail = document.getElementById('buyerEmail').value.trim();
+            const buyerCelular = document.getElementById('buyerCelular').value.trim();
+            const buyerCPF = document.getElementById('buyerCPF').value.trim();
 
             if (window.kitOrder.length === 0 || !buyerName || !buyerEmail || !buyerCelular || !buyerCPF) {
                 const msgDiv = document.getElementById('kit-form-message');
-                msgDiv.textContent = window.translations[lang].modal_error_fields;
+                msgDiv.textContent = "Por favor, preencha todos os seus dados de contato (incluindo CPF) e adicione ao menos um kit.";
                 msgDiv.className = 'text-center font-bold mt-4 text-red-400';
                 setTimeout(() => msgDiv.textContent = '', 3000);
                 return;
             }
 
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
-            lucide.createIcons();
+            goToPaymentBtn.disabled = true;
+            goToPaymentBtn.textContent = 'Aguarde...';
 
-            const total = window.kitOrder.length * window.currentKitPrice;
-            document.getElementById('payment-total-value').textContent = window.formatCurrency(total);
-            
-            showCardBtn.click(); 
+            try {
+                const orderData = {
+                    purchaseType: 'kit_order',
+                    paymentStatus: 'pending', // Status inicial
+                    buyerName,
+                    buyerEmail,
+                    buyerCelular,
+                    buyerCPF,
+                    kits: window.kitOrder,
+                    totalPrice: window.kitOrder.length * window.currentKitPrice,
+                    timestamp: serverTimestamp()
+                };
+
+                // Salva o pedido no banco de dados ANTES de ir para o pagamento
+                const docRef = await addDoc(collection(db, "inscriptions"), orderData);
+                currentKitOrderId = docRef.id; // Guarda o ID do novo pedido
+
+                // Procede para a tela de pagamento
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                lucide.createIcons();
+
+                const total = window.kitOrder.length * window.currentKitPrice;
+                document.getElementById('payment-total-value').textContent = window.formatCurrency(total);
+                
+                showCardBtn.click(); // Mostra a opção de cartão primeiro
+
+            } catch (error) {
+                console.error("Erro ao criar pedido pendente: ", error);
+                const msgDiv = document.getElementById('kit-form-message');
+                msgDiv.textContent = "Ocorreu um erro. Tente novamente.";
+                msgDiv.className = 'text-center font-bold mt-4 text-red-400';
+            } finally {
+                // Reabilita o botão, independentemente do resultado
+                goToPaymentBtn.disabled = false;
+                goToPaymentBtn.textContent = "IR PARA PAGAMENTO";
+            }
         });
 
         showCardBtn.addEventListener('click', () => {
@@ -1573,8 +1540,7 @@
             pixCopiaCola.select();
             document.execCommand('copy');
             const feedback = document.getElementById('copy-feedback');
-            const lang = localStorage.getItem('language') || 'pt';
-            feedback.textContent = window.translations[lang].modal_pix_copied;
+            feedback.textContent = "Código PIX copiado!";
             setTimeout(() => feedback.textContent = '', 2000);
         });
 
@@ -1584,222 +1550,6 @@
         window.formatCurrency = function (value) {
             return `R$ ${value.toFixed(2).replace('.', ',')}`;
         }
- 
-        const translations = {
-            pt: {
-                nav_about: "O Encontro",
-                nav_venue: "O Local",
-                nav_schedule: "Programação",
-                nav_bonito: "Explore Bonito",
-                nav_kit: "Kit Atleta",
-                nav_register: "Inscrição",
-                nav_packages: "Pacotes",
-                header_cta: "GARANTA SUA VAGA",
-                hero_save_date: "SAVE THE DATE",
-                hero_date: "06 a 08 de Fevereiro de 2026",
-                hero_title: "1º Encontro Rugby LEGENDS",
-                hero_subtitle: "Rugby, Família e Resort. A oportunidade única de reunir todas as suas paixões em um só lugar.",
-                hero_cta: "INSCREVA-SE AGORA",
-                about_title: "Uma Convocação Histórica",
-                about_p1: "Mais do que um simples evento, o 1º Encontro Rugby LEGENDS é uma celebração da amizade, da história e da paixão que nos une. Estamos reunindo veteranos de todo o Brasil e da América do Sul para três dias inesquecíveis de resenha, reencontros e, claro, muito rugby.",
-                about_p2: 'O coração do nosso encontro será um **torneio amistoso de Rugby XV**, com times formados por lendas. As vagas são limitadas para garantir o equilíbrio das equipes e a qualidade do jogo. Prepare-se para reviver a glória dos velhos tempos!',
-                about_card1_title: "Rugby Para Todos",
-                about_card1_text: '<strong class="text-amber-400 block mb-2"> • Torneio Principal (XV):</strong> O grande destaque, com times de Lendas, seguindo as regras adaptadas Golden Oldies (+45).<strong class="text-amber-400 block mt-3 mb-2"> • Touch Rugby Familiar:</strong> Uma atividade leve para que esposas, filhos e amigos possam se divertir em campo.<strong class="text-amber-400 block mt-3 mb-2"> • Jogo de Confraternização (XV):</strong> Para fechar, uma partida aberta de XV, unindo jogadores de todas as idades.',
-                about_card2_title: "Família",
-                about_card2_text: "Estrutura completa de lazer para todas as idades. A torcida mais importante da sua vida merece todo o conforto e diversão.",
-                about_card3_title: "Resort",
-                about_card3_text: "Desfrute de piscinas, gastronomia de alta qualidade e todo o conforto que só o Zagaia Eco Resort pode oferecer.",
-                about_cta: "QUERO FAZER PARTE DE UM TIME!",
-                venue_title: "O Cenário Perfeito",
-                venue_p1: "Em meio à natureza exuberante de Bonito, o Zagaia Eco Resort oferece uma infraestrutura de classe mundial. Com 600.000 m² de área exclusiva, piscinas, quadras, spa, e uma gastronomia premiada, é o campo de jogo ideal para nossas lendas e suas famílias.",
-                schedule_title: "Programação do Evento",
-                schedule_friday: "Sexta, 06/02",
-                schedule_saturday: "Sábado, 07/02",
-                schedule_sunday: "Domingo, 08/02",
-                schedule_fri1_time: "A partir das 14:00",
-                schedule_fri1_title: "Check-in e Boas-vindas",
-                schedule_fri1_desc: "Recepção dos atletas e famílias no Zagaia Eco Resort.",
-                schedule_fri2_title: "Touch Rugby Sunset",
-                schedule_fri2_desc: "<li>Jogo de confraternização para todas as idades.</li><li>Times mistos montados na hora.</li><li>Perfeito para aquecer e reencontrar os amigos.</li>",
-                schedule_sat_note: "Cada bloco de 30 minutos corresponde a um jogo completo.",
-                schedule_sat1_title: "Rodadas Golden Oldies (3 Jogos)",
-                schedule_sat1_desc: "Jogos com regras adaptadas para os veteranos.",
-                schedule_sat2_title: "Rodadas Idade Livre (3 Jogos)",
-                schedule_sat2_desc: "Jogos abertos para todas as idades e níveis.",
-                schedule_sat3_title: "11:30 - 14:30 | ALMOÇO E RESENHA",
-                schedule_sat4_title: "Rodadas Golden Oldies (3 Jogos)",
-                schedule_sat4_desc: "Mais uma rodada de jogos para as lendas.",
-                schedule_sat5_title: "Rodadas Idade Livre (2 Jogos)",
-                schedule_sat5_desc: "Confraternização em campo para todos.",
-                schedule_sat6_title: "Rodada Golden Oldies (1 Jogo)",
-                schedule_sat6_desc: "Último jogo dos veteranos.",
-                schedule_sat7_title: "Encerramento Idade Livre (2 Jogos)",
-                schedule_sat7_desc: "As grandes partidas de confraternização para fechar o dia.",
-                schedule_sun1_time: "Manhã",
-                schedule_sun1_title: "Café da Manhã de Despedida",
-                schedule_sun1_desc: "Última oportunidade para a resenha final e troca de contatos.",
-                schedule_sun2_time: "Até 12:00",
-                schedule_sun2_title: "Check-out",
-                schedule_sun2_desc: "Encerramento oficial do 1º Encontro Rugby Legends.",
-                bonito_title: "Explore Bonito, um Paraíso Natural",
-                bonito_p1: "Aproveite a viagem para conhecer um dos destinos de ecoturismo mais famosos do mundo. Bonito-MS é um santuário de águas cristalinas, grutas impressionantes e uma fauna exuberante. Perfeito para flutuação, mergulho e aventuras inesquecíveis com a família.",
-                bonito_how_to_get_title: "Como Chegar",
-                bonito_how_to_get_p1: "O aeroporto mais próximo é o de Bonito (BYO), que recebe voos de diversas capitais. Outra opção é voar até Campo Grande (CGR) e contratar um serviço de transfer ou alugar um carro para uma viagem de aproximadamente 259km.",
-                bonito_how_to_get_p2: "Para facilitar sua logística, recomendamos o contato com nossas agências parceiras.",
-                bonito_partners_title: "Agências Parceiras",
-                bonito_partners_phone: "Telefone",
-                bonito_partners_website: "Website",
-                kit_title: "Seu Kit de Lenda",
-                kit_p1: "Ao garantir sua vaga, você não apenas entra em campo, mas também leva para casa um kit exclusivo para eternizar este encontro. Vista toda a família com as cores do evento!",
-                kit_item1_title: "Camiseta Premium do Evento",
-                kit_item1_desc: "Design exclusivo, personalizada com seu nome e número.",
-                kit_item2_title: "Copo Térmico Personalizado",
-                kit_item2_desc: "Mantenha sua bebida na temperatura ideal durante a resenha.",
-                kit_cta: "QUERO MEU KIT!",
-                register_title: "Garanta sua Vaga no Time!",
-                register_p1: 'As vagas são <strong>extremamente limitadas e exclusivas para quem adquirir o pacote do evento Rugby Legends do Zagaia</strong>. A inscrição garante um lugar em <strong>um dos times</strong>. Não fique de fora desta convocação histórica!',
-                form_fullName: "Nome Completo",
-                form_nickname: "Apelido (de campo)",
-                form_phone: "Celular (com DDD)",
-                form_email: "E-mail para Contato",
-                form_cpf: "CPF do Pagador",
-                form_city: "De qual cidade está vindo? (Cidade / Estado)",
-                form_age: "Idade",
-                form_position: "Posição Principal",
-                form_select: "Selecione...",
-                form_hasTeam: "Você já tem uma equipe?",
-                form_yes: "Sim",
-                form_no: "Não",
-                form_selectTeam: "Selecione sua equipe",
-                form_hasPackage: "Já adquiriu o pacote e garantiu a vaga no hotel?",
-                form_noBook: "Não, preciso reservar",
-                form_submit: "ENVIAR INSCRIÇÃO",
-                form_sending: "ENVIANDO...",
-                countdown_title: "Garanta a Tarifa Especial de Hospedagem!",
-                countdown_p1: "A tarifa de grupo com desconto é válida para reservas feitas até 27 de Novembro de 2025. Não perca tempo!",
-                countdown_days: "Dias",
-                countdown_hours: "Horas",
-                countdown_minutes: "Minutos",
-                countdown_seconds: "Segundos",
-                packages_title: "Pacotes de Hospedagem",
-                packages_p1: "A inscrição no torneio é gratuita, mas a participação está condicionada à aquisição de um dos pacotes de hospedagem abaixo. Garanta sua estadia para confirmar sua vaga!",
-                packages_single: "Single:",
-                packages_double: "Duplo:",
-                packages_triple: "Triplo:",
-                packages_quad: "Quádruplo:",
-                packages_popular: "MAIS POPULAR",
-                packages_suite: "Suíte",
-                packages_cta: "INSCREVA-SE E RESERVE",
-                packages_includes_title: "O que o pacote de hospedagem inclui?",
-                packages_includes_meals: "Refeições e Hospedagem",
-                packages_includes_item1: '<span><strong>2 Diárias Completas:</strong> de 06 a 08 de Fevereiro de 2026.</span>',
-                packages_includes_item2: '<span><strong>Café da Manhã e Jantar:</strong> Inclusos durante toda a estadia.</span>',
-                packages_includes_item3: '<span><strong>Almoço Especial de Sábado:</strong> Para recarregar as energias (07/02).</span>',
-                packages_openbar_title: "OPEN BAR",
-                packages_openbar_day: "SÁBADO, 07/02",
-                packages_openbar_time: "(das 11h às 23h)",
-                packages_openbar_desc: "Água, refrigerante, suco, cervejas (Skol & Heineken), caipirinhas e sorvetes para celebrar o dia todo!",
-                booking_title: "Faça sua Reserva no Hotel",
-                booking_p1: 'As reservas de hospedagem são feitas diretamente com o Zagaia Eco Resort. Entre em contato, mencione o evento <strong>"Encontro Rugby LEGENDS"</strong> para garantir a tarifa especial e confirme sua presença nesta celebração histórica!',
-                booking_phone: "Telefone",
-                booking_payment_title: "Formas de Pagamento da Hospedagem",
-                booking_payment1: "Opção 1: Sinal de 30% + saldo em 3x no check-in.",
-                booking_payment2: "Opção 2: Parcelado em 10x no cartão no ato da reserva.",
-                footer_copyright: "&copy; 2025 1º Encontro Rugby LEGENDS. Todos os direitos reservados.",
-                footer_created_by: "Criado por Victor Cruzetta",
-                whatsapp_roberto: "Falar com Roberto",
-                whatsapp_rodrigo: "Falar com Rodrigo",
-                modal_welcome_title: "Inscrição Confirmada, Lenda!",
-                modal_welcome_p1: "Agora o próximo passo é garantir seu manto sagrado. Monte o kit para você e toda a família e eternize esse encontro!",
-                modal_welcome_cta: "MONTAR MEU KIT",
-                modal_step1_title: "Monte seu Pedido de Kits",
-                modal_step1_p1: "Adicione quantos kits (camiseta + copo) você precisar para sua família e amigos!",
-                modal_lote_title: "VALOR DO KIT:",
-                modal_contact_title: "Seus Dados de Contato",
-                modal_add_kit_title: "Adicionar Kit ao Pedido",
-                modal_shirt_name: "Nome na Camiseta",
-                modal_shirt_name_placeholder: "Apelido ou nome",
-                modal_shirt_number: "Número",
-                modal_shirt_number_placeholder: "Ex: 10",
-                modal_gender: "Gênero",
-                modal_gender_male: "Masculino",
-                modal_gender_female: "Feminino (Baby Look)",
-                modal_gender_child: "Infantil",
-                modal_size: "Tamanho",
-                modal_size_short: "Tam",
-                modal_add_kit_cta: "Adicionar Kit",
-                modal_summary_title: "Resumo do Pedido",
-                modal_summary_empty: "Seu carrinho de kits está vazio.",
-                modal_total: "Valor Total:",
-                modal_payment_cta: "IR PARA PAGAMENTO",
-                modal_step3_title: "Pedido Realizado com Sucesso!",
-                modal_step3_p1: "Obrigado! Seu pagamento foi aprovado e já recebemos seu pedido.<br>Nos vemos no evento!",
-                modal_step3_pix_title: "PIX gerado com sucesso!",
-                modal_step3_pix_p1: "Realize o pagamento usando o QR Code ou o código Copia e Cola. Assim que o pagamento for confirmado, seu pedido será processado. <br>Obrigado!",
-                modal_close_cta: "Fechar",
-                modal_error_kit: "Por favor, preencha o Nome na Camiseta e o Tamanho.",
-                modal_error_one_kit: "Adicione pelo menos um kit ao pedido.",
-                modal_error_fields: "Por favor, preencha todos os seus dados de contato (incluindo CPF) e adicione ao menos um kit.",
-                modal_error_general: "Ocorreu um erro. Tente novamente.",
-                modal_pix_copied: "Código PIX copiado!",
-                dynamic_welcome_back: 'Bem-vindo de volta, <span class="underline">{nickname}</span>!',
-                dynamic_already_registered_title: 'Olá, {nickname}! Você já está no time.',
-                dynamic_already_registered_p1: 'Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!',
-                dynamic_already_registered_cta: 'GARANTIR MEU KIT',
-                dynamic_header_cta_welcome: 'BEM-VINDO, {nickname}!',
-            },
-            en: { /* ... traduções ... */ },
-            es: { /* ... traduções ... */ }
-        };
-
-
-        window.translations = translations;
-
-        const translatePage = (lang) => {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.hasAttribute('data-is-html')) {
-                        element.innerHTML = translations[lang][key];
-                    } else if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
-                        element.placeholder = translations[lang][key];
-                    }
-                    else {
-                        element.textContent = translations[lang][key];
-                    }
-                }
-            });
-        };
-        window.translatePage = translatePage;
-
-        const setLanguage = (lang) => {
-            if (!['pt', 'en', 'es'].includes(lang)) {
-                lang = 'pt';
-            }
-            localStorage.setItem('language', lang);
-            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
-
-            document.querySelectorAll('#lang-switcher button').forEach(button => {
-                button.classList.remove('active-lang');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active-lang');
-                }
-            });
-
-            translatePage(lang);
-            const userDataString = localStorage.getItem('rugbyLegendsUser');
-            if (userDataString) {
-                const userData = JSON.parse(userDataString);
-                window.applyPersonalization(userData);
-            }
-        };
-
-        document.querySelectorAll('#lang-switcher button').forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.getAttribute('data-lang');
-                setLanguage(lang);
-            });
-        });
 
         AOS.init({
             duration: 800,
@@ -1807,9 +1557,39 @@
             offset: 100,
         });
 
+        // LÓGICA DO CARROSSEL MOVIDA PARA CÁ E PROTEGIDA
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('carousel-track');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            let currentSlide = 0;
+            const totalSlides = 2; // Temos 2 imagens
+
+            if (track && prevBtn && nextBtn) {
+                // Função para atualizar posição
+                const updateSlidePosition = () => {
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                };
+
+                // Event Listeners diretos
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Previne comportamentos padrão
+                    e.stopPropagation(); // Garante que o clique fique no botão
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSlidePosition();
+                });
+
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateSlidePosition();
+                });
+            }
+        });
+
         window.applyPersonalization = (userData) => {
             if (userData && userData.inscrito && userData.apelido) {
-                const lang = localStorage.getItem('language') || 'pt';
                 const inscriptionWrapper = document.getElementById('inscription-wrapper');
                 const inscriptionForm = document.getElementById('inscriptionForm');
 
@@ -1818,10 +1598,10 @@
                 const alreadyRegisteredMessage = `
                     <div class="text-center p-8 bg-slate-800 rounded-xl shadow-xl">
                         <i data-lucide="shield-check" class="mx-auto h-20 w-20 text-green-400 mb-4"></i>
-                        <h3 class="text-3xl text-green-400 mb-2">${translations[lang].dynamic_already_registered_title.replace('{nickname}', userData.apelido)}</h3>
-                        <p class="text-lg text-gray-300 mb-6 font-roboto">${translations[lang].dynamic_already_registered_p1}</p>
+                        <h3 class="text-3xl text-green-400 mb-2">Olá, ${userData.apelido}! Você já está no time.</h3>
+                        <p class="text-lg text-gray-300 mb-6 font-roboto">Sua inscrição foi confirmada. Agora só falta garantir seu kit de lenda para fazer história em campo!</p>
                         <button id="showKitModalFromRegistered" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50">
-                            ${translations[lang].dynamic_already_registered_cta}
+                            GARANTIR MEU KIT
                         </button>
                     </div>
                 `;
@@ -1843,13 +1623,13 @@
                 if (heroContent) {
                     const welcomeMessage = document.createElement('div');
                     welcomeMessage.className = 'welcome-back-msg bg-amber-500/95 text-gray-900 font-bold p-3 rounded-lg mb-6 max-w-md mx-auto shadow-lg text-xl';
-                    welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> ${translations[lang].dynamic_welcome_back.replace('{nickname}', userData.apelido)}`;
+                    welcomeMessage.innerHTML = `<i data-lucide="party-popper" class="inline-block -mt-1 mr-2 h-6 w-6"></i> Bem-vindo de volta, <span class="underline">${userData.apelido}</span>!`;
                     heroContent.prepend(welcomeMessage);
                 }
 
                 const headerCta = document.getElementById('header-cta-btn');
                 if (headerCta) {
-                    headerCta.textContent = translations[lang].dynamic_header_cta_welcome.replace('{nickname}', userData.apelido.toUpperCase());
+                    headerCta.textContent = `BEM-VINDO, ${userData.apelido.toUpperCase()}!`;
                     headerCta.href = '#kit';
                 }
 
@@ -1860,8 +1640,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
-            const savedLanguage = localStorage.getItem('language') || 'pt';
-            setLanguage(savedLanguage);
+            const userDataString = localStorage.getItem('rugbyLegendsUser');
+            if (userDataString) {
+                const userData = JSON.parse(userDataString);
+                window.applyPersonalization(userData);
+            }
             
             const cpfInput = document.getElementById('buyerCPF');
             if (cpfInput) {
@@ -1949,8 +1732,7 @@
             if (gap < 0) {
                 clearInterval(interval);
                 if (document.getElementById('countdown-section')) {
-                    const lang = localStorage.getItem('language') || 'pt';
-                    document.getElementById('countdown-section').innerHTML = `<div class="container mx-auto text-center px-4"><h3 class="text-4xl">${window.translations[lang].countdown_expired || 'PRAZO ENCERRADO!'}</h3></div>`;
+                    document.getElementById('countdown-section').innerHTML = `<div class="container mx-auto text-center px-4"><h3 class="text-4xl">PRAZO ENCERRADO!</h3></div>`;
                 }
             }
         };
@@ -1987,5 +1769,3 @@
 </body>
 
 </html>
-
-

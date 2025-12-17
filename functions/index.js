@@ -23,14 +23,15 @@ exports.createKitCardPayment = onCall({
   region: "us-central1",
 }, async (request) => {
   /* eslint-disable camelcase */
-  const {token, installments, payment_method_id, issuer_id, payer, order} =
+  // ALTERAÇÃO 1: Adicionado 'orderId' para saber qual documento atualizar.
+  const {token, installments, payment_method_id, issuer_id, payer, order, orderId} =
     request.data;
-  const {buyerName, buyerCelular, buyerEmail, kits, totalPrice} = order;
+  const {buyerName, totalPrice} = order;
 
-  if (!token || !installments || !payment_method_id || !payer || !order) {
+  if (!token || !installments || !payment_method_id || !payer || !order || !orderId) {
     throw new HttpsError(
         "invalid-argument",
-        "Dados do pagamento ou do pedido estão incompletos.",
+        "Dados do pagamento, do pedido ou o ID do pedido estão incompletos.",
     );
   }
   if (!totalPrice || totalPrice <= 0) {
@@ -46,6 +47,10 @@ exports.createKitCardPayment = onCall({
   });
   const payment = new Payment(client);
 
+  const nameParts = buyerName.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ") || firstName;
+
   const paymentData = {
     body: {
       transaction_amount: Number(totalPrice),
@@ -58,8 +63,8 @@ exports.createKitCardPayment = onCall({
       /* eslint-enable camelcase */
       payer: {
         email: payer.email,
-        first_name: payer.name.split(" ")[0],
-        last_name: payer.name.split(" ").slice(1).join(" "),
+        first_name: firstName,
+        last_name: lastName,
       },
       notification_url: `https://us-central1-${process.env.GCLOUD_PROJECT}` +
         ".cloudfunctions.net/rugbyMercadoPagoWebhook",
@@ -74,21 +79,18 @@ exports.createKitCardPayment = onCall({
       throw new Error("ID do pagamento não foi retornado pelo Mercado Pago.");
     }
 
-    await db.collection("inscriptions").doc(String(paymentId)).set({
-      buyerName: buyerName,
-      buyerCelular: buyerCelular,
-      buyerEmail: buyerEmail,
-      kits: kits,
-      totalPrice: Number(totalPrice),
-      purchaseType: "kit_order",
+    // ALTERAÇÃO 2: Em vez de criar um novo doc, atualiza o existente.
+    const orderRef = db.collection("inscriptions").doc(orderId);
+    await orderRef.update({
       paymentId: paymentId,
       paymentStatus: result.status,
       /* eslint-disable camelcase */
       paymentMethod: payment_method_id,
       /* eslint-enable camelcase */
       installments: Number(installments),
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
+    // FIM DA ALTERAÇÃO 2
 
     return {
       status: result.status,
@@ -107,21 +109,18 @@ exports.createKitCardPayment = onCall({
 
 /**
  * Cria um pagamento com PIX para a compra de kits.
- * [CORRIGIDO] Adicionado o campo de CPF do comprador, obrigatório para PIX.
  */
 exports.createKitPixPayment = onCall({
   secrets: [mercadoPagoAccessToken],
   region: "us-central1",
 }, async (request) => {
-  const {order} = request.data;
-  // [CORREÇÃO] Recebe o CPF do comprador.
-  const {buyerName, buyerCelular, buyerEmail, buyerCPF, kits, totalPrice} =
-    order;
+  // ALTERAÇÃO 3: Adicionado 'orderId' para saber qual documento atualizar.
+  const {order, orderId} = request.data;
+  const {buyerName, buyerEmail, buyerCPF, totalPrice} = order;
 
-  // [CORREÇÃO] Valida se o CPF foi enviado.
-  if (!order || !buyerEmail || !buyerCPF) {
+  if (!order || !buyerEmail || !buyerCPF || !orderId) {
     throw new HttpsError("invalid-argument",
-        "Dados do pedido, e-mail ou CPF estão incompletos.");
+        "Dados do pedido, e-mail, CPF ou ID do pedido estão incompletos.");
   }
   if (!totalPrice || totalPrice <= 0) {
     throw new HttpsError(
@@ -140,12 +139,8 @@ exports.createKitPixPayment = onCall({
       payment_method_id: "pix",
       payer: {
         email: buyerEmail,
-        first_name: buyerName.split(" ")[0],
-        last_name: buyerName.split(" ").slice(1).join(" "),
-        // [CORREÇÃO] Adiciona o objeto de identificação com o CPF.
         identification: {
           type: "CPF",
-          // Remove caracteres não numéricos
           number: buyerCPF.replace(/\D/g, ""),
         },
       },
@@ -162,32 +157,37 @@ exports.createKitPixPayment = onCall({
       throw new Error("Dados do PIX não retornados pelo Mercado Pago.");
     }
 
-    await db.collection("inscriptions").doc(String(paymentId)).set({
-      buyerName: buyerName,
-      buyerCelular: buyerCelular,
-      buyerEmail: buyerEmail,
-      buyerCPF: buyerCPF, // Opcional: Salva o CPF para referência
-      kits: kits,
-      totalPrice: Number(totalPrice),
-      purchaseType: "kit_order",
+    // ALTERAÇÃO 4: Em vez de criar um novo doc, atualiza o existente.
+    const orderRef = db.collection("inscriptions").doc(orderId);
+    await orderRef.update({
       paymentId: paymentId,
       paymentStatus: "pending", // PIX começa como pendente
       paymentMethod: "pix",
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
+    // FIM DA ALTERAÇÃO 4
 
     return {
       id: paymentId,
       status: result.status,
+      /* eslint-disable camelcase */
       qr_code: result.point_of_interaction.transaction_data.qr_code,
       qr_code_base64:
         result.point_of_interaction.transaction_data.qr_code_base64,
+      /* eslint-enable camelcase */
     };
   } catch (error) {
-    console.error("Erro ao criar pagamento PIX:", error.cause || error);
-    const err = error.cause && error.cause.error && error.cause.error.message;
-    const errorMessage = err || "Não foi possível gerar o PIX.";
-    throw new HttpsError("internal", errorMessage);
+    console.error(
+        "DETALHES COMPLETOS DO ERRO MERCADO PAGO:",
+        JSON.stringify(error, null, 2),
+    );
+
+    const apiError = (error.cause && error.cause.error) || error.cause || {};
+    const apiMessage = apiError.message || "Erro desconhecido na API do MP.";
+    console.error(`Mensagem da API do Mercado Pago: ${apiMessage}`);
+
+    throw new HttpsError("internal",
+        "Não foi possível gerar o PIX. Verifique os logs da função.");
   }
 });
 
@@ -213,26 +213,29 @@ exports.rugbyMercadoPagoWebhook = onRequest({
       const payment = new Payment(client);
       const paymentInfo = await payment.get({id: paymentId});
 
-      if (paymentInfo.status === "approved") {
-        const orderRef = db.collection("inscriptions").doc(String(paymentId));
-        await orderRef.update({
-          paymentStatus: "approved",
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        console.log(`Webhook: Pedido ${paymentId} atualizado para 'approved'.`);
-      } else if (
-        paymentInfo.status === "rejected" || paymentInfo.status === "cancelled"
-      ) {
-        const orderRef = db.collection("inscriptions").doc(String(paymentId));
-        await orderRef.update({
-          paymentStatus: paymentInfo.status,
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        const status = paymentInfo.status;
-        const logMessage =
-          `Webhook: Pedido ${paymentId} atualizado para '${status}'.`;
-        console.log(logMessage);
+      // ALTERAÇÃO 5: Busca pelo documento usando o 'paymentId' em vez do ID do doc.
+      const inscriptionsRef = db.collection("inscriptions");
+      const querySnapshot = await inscriptionsRef.where("paymentId", "==", Number(paymentId)).get();
+
+      if (querySnapshot.empty) {
+        console.log(`Webhook: Nenhum pedido encontrado com paymentId: ${paymentId}`);
+        return res.status(200).send("Pedido não encontrado.");
       }
+
+      querySnapshot.forEach(async (doc) => {
+        const orderRef = doc.ref;
+        const newStatus = paymentInfo.status; // approved, rejected, cancelled
+
+        if (newStatus === "approved" || newStatus === "rejected" || newStatus === "cancelled") {
+          await orderRef.update({
+            paymentStatus: newStatus,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          });
+          console.log(`Webhook: Pedido ${doc.id} (paymentId: ${paymentId}) atualizado para '${newStatus}'.`);
+        }
+      });
+      // FIM DA ALTERAÇÃO 5
+
     } catch (error) {
       console.error("Erro no webhook Rugby Legends:", error);
       return res.status(500).send("Erro ao processar notificação.");
@@ -240,4 +243,3 @@ exports.rugbyMercadoPagoWebhook = onRequest({
   }
   res.status(200).send("Notificação recebida.");
 });
-
